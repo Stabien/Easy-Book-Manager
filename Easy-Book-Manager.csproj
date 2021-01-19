@@ -52,10 +52,28 @@
     <Compile Include="EBM.Designer.cs">
       <DependentUpon>EBM.cs</DependentUpon>
     </Compile>
+    <Compile Include="Emprunt.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Emprunt.Designer.cs">
+      <DependentUpon>Emprunt.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GererEmprunt.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GererEmprunt.Designer.cs">
+      <DependentUpon>GererEmprunt.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="EBM.resx">
       <DependentUpon>EBM.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Emprunt.resx">
+      <DependentUpon>Emprunt.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GererEmprunt.resx">
+      <DependentUpon>GererEmprunt.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
