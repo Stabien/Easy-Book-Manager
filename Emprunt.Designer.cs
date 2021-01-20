@@ -215,7 +215,7 @@
             this.Controls.Add(this.ListeAdherentsEmprunt);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "Emprunt";
-            this.Text = "Emprunt";
+            this.Text = "Easy Book Manager";
             this.InfosAdhérents.ResumeLayout(false);
             this.InfosAdhérents.PerformLayout();
             this.ResumeLayout(false);

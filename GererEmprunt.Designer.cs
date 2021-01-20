@@ -35,10 +35,10 @@
             this.SearchBarAdGererEmprunt = new System.Windows.Forms.Button();
             this.ListeAdherentGererEmprunt = new System.Windows.Forms.ListBox();
             this.PanelinfoAdherent = new System.Windows.Forms.Panel();
-            this.Nom_Adherent = new System.Windows.Forms.Label();
-            this.Prenom_Adherent = new System.Windows.Forms.Label();
-            this.Adresse_Adherent = new System.Windows.Forms.Label();
             this.Telephone_Adherent = new System.Windows.Forms.Label();
+            this.Adresse_Adherent = new System.Windows.Forms.Label();
+            this.Prenom_Adherent = new System.Windows.Forms.Label();
+            this.Nom_Adherent = new System.Windows.Forms.Label();
             this.Liste_Livre_Emprunt = new System.Windows.Forms.ListBox();
             this.BouttonEnregistrerAjoutEmprunt = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
@@ -121,23 +121,15 @@
             this.PanelinfoAdherent.Size = new System.Drawing.Size(246, 95);
             this.PanelinfoAdherent.TabIndex = 14;
             // 
-            // Nom_Adherent
+            // Telephone_Adherent
             // 
-            this.Nom_Adherent.AutoSize = true;
-            this.Nom_Adherent.Location = new System.Drawing.Point(3, 5);
-            this.Nom_Adherent.Name = "Nom_Adherent";
-            this.Nom_Adherent.Size = new System.Drawing.Size(29, 13);
-            this.Nom_Adherent.TabIndex = 0;
-            this.Nom_Adherent.Text = "Nom";
-            // 
-            // Prenom_Adherent
-            // 
-            this.Prenom_Adherent.AutoSize = true;
-            this.Prenom_Adherent.Location = new System.Drawing.Point(3, 27);
-            this.Prenom_Adherent.Name = "Prenom_Adherent";
-            this.Prenom_Adherent.Size = new System.Drawing.Size(43, 13);
-            this.Prenom_Adherent.TabIndex = 15;
-            this.Prenom_Adherent.Text = "Prénom";
+            this.Telephone_Adherent.AutoSize = true;
+            this.Telephone_Adherent.Location = new System.Drawing.Point(3, 71);
+            this.Telephone_Adherent.Name = "Telephone_Adherent";
+            this.Telephone_Adherent.Size = new System.Drawing.Size(58, 13);
+            this.Telephone_Adherent.TabIndex = 15;
+            this.Telephone_Adherent.Text = "Téléphone";
+            this.Telephone_Adherent.Click += new System.EventHandler(this.Telephone_Adherent_Click);
             // 
             // Adresse_Adherent
             // 
@@ -148,15 +140,23 @@
             this.Adresse_Adherent.TabIndex = 15;
             this.Adresse_Adherent.Text = "Adresse";
             // 
-            // Telephone_Adherent
+            // Prenom_Adherent
             // 
-            this.Telephone_Adherent.AutoSize = true;
-            this.Telephone_Adherent.Location = new System.Drawing.Point(3, 71);
-            this.Telephone_Adherent.Name = "Telephone_Adherent";
-            this.Telephone_Adherent.Size = new System.Drawing.Size(58, 13);
-            this.Telephone_Adherent.TabIndex = 15;
-            this.Telephone_Adherent.Text = "Téléphone";
-            this.Telephone_Adherent.Click += new System.EventHandler(this.Telephone_Adherent_Click);
+            this.Prenom_Adherent.AutoSize = true;
+            this.Prenom_Adherent.Location = new System.Drawing.Point(3, 27);
+            this.Prenom_Adherent.Name = "Prenom_Adherent";
+            this.Prenom_Adherent.Size = new System.Drawing.Size(43, 13);
+            this.Prenom_Adherent.TabIndex = 15;
+            this.Prenom_Adherent.Text = "Prénom";
+            // 
+            // Nom_Adherent
+            // 
+            this.Nom_Adherent.AutoSize = true;
+            this.Nom_Adherent.Location = new System.Drawing.Point(3, 5);
+            this.Nom_Adherent.Name = "Nom_Adherent";
+            this.Nom_Adherent.Size = new System.Drawing.Size(29, 13);
+            this.Nom_Adherent.TabIndex = 0;
+            this.Nom_Adherent.Text = "Nom";
             // 
             // Liste_Livre_Emprunt
             // 
@@ -306,7 +306,7 @@
             this.Controls.Add(this.SearchBarBook);
             this.Controls.Add(this.ListeLivre);
             this.Name = "GererEmprunt";
-            this.Text = "GererEmprunt";
+            this.Text = "Easy Book Manager";
             this.PanelinfoAdherent.ResumeLayout(false);
             this.PanelinfoAdherent.PerformLayout();
             this.ResumeLayout(false);
