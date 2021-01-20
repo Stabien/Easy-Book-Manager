@@ -26,10 +26,5 @@ namespace Easy_Book_Manager
         {
 
         }
-
-        private void Supprimer_Emprunt_Click(object sender, EventArgs e)
-        {
-
-        }
     }
 }

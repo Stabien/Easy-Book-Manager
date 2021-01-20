@@ -57,11 +57,12 @@
             // 
             // SearchBar
             // 
-            this.SearchBar.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.SearchBar.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
             this.SearchBar.Location = new System.Drawing.Point(12, 12);
             this.SearchBar.Name = "SearchBar";
-            this.SearchBar.Size = new System.Drawing.Size(205, 25);
+            this.SearchBar.Size = new System.Drawing.Size(205, 23);
             this.SearchBar.TabIndex = 1;
+            this.SearchBar.Text = "Rechercher un adhérent";
             // 
             // BouttonEnregistrer
             // 
@@ -88,10 +89,10 @@
             // AdresseAdherent
             // 
             this.AdresseAdherent.AutoSize = true;
-            this.AdresseAdherent.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.AdresseAdherent.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
             this.AdresseAdherent.Location = new System.Drawing.Point(13, 39);
             this.AdresseAdherent.Name = "AdresseAdherent";
-            this.AdresseAdherent.Size = new System.Drawing.Size(55, 17);
+            this.AdresseAdherent.Size = new System.Drawing.Size(60, 17);
             this.AdresseAdherent.TabIndex = 9;
             this.AdresseAdherent.Text = "Adresse";
             this.AdresseAdherent.Click += new System.EventHandler(this.label1_Click);
@@ -99,100 +100,100 @@
             // TelephoneAdherent
             // 
             this.TelephoneAdherent.AutoSize = true;
-            this.TelephoneAdherent.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TelephoneAdherent.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
             this.TelephoneAdherent.Location = new System.Drawing.Point(197, 67);
             this.TelephoneAdherent.Name = "TelephoneAdherent";
-            this.TelephoneAdherent.Size = new System.Drawing.Size(125, 17);
+            this.TelephoneAdherent.Size = new System.Drawing.Size(138, 17);
             this.TelephoneAdherent.TabIndex = 5;
             this.TelephoneAdherent.Text = "Telephone Adhérent";
             // 
             // NomAdherent
             // 
             this.NomAdherent.AutoSize = true;
-            this.NomAdherent.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.NomAdherent.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
             this.NomAdherent.Location = new System.Drawing.Point(197, 13);
             this.NomAdherent.Name = "NomAdherent";
-            this.NomAdherent.Size = new System.Drawing.Size(94, 17);
+            this.NomAdherent.Size = new System.Drawing.Size(99, 17);
             this.NomAdherent.TabIndex = 4;
             this.NomAdherent.Text = "Nom Adhérent";
             // 
             // PrenomAdherent
             // 
             this.PrenomAdherent.AutoSize = true;
-            this.PrenomAdherent.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.PrenomAdherent.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
             this.PrenomAdherent.Location = new System.Drawing.Point(13, 67);
             this.PrenomAdherent.Name = "PrenomAdherent";
-            this.PrenomAdherent.Size = new System.Drawing.Size(110, 17);
+            this.PrenomAdherent.Size = new System.Drawing.Size(119, 17);
             this.PrenomAdherent.TabIndex = 4;
             this.PrenomAdherent.Text = "Prénom Adhérent";
             // 
             // IdAdherent
             // 
             this.IdAdherent.AutoSize = true;
-            this.IdAdherent.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.IdAdherent.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
             this.IdAdherent.Location = new System.Drawing.Point(13, 13);
             this.IdAdherent.Name = "IdAdherent";
-            this.IdAdherent.Size = new System.Drawing.Size(20, 17);
+            this.IdAdherent.Size = new System.Drawing.Size(21, 17);
             this.IdAdherent.TabIndex = 0;
             this.IdAdherent.Text = "ID";
             // 
             // ListeLivre
             // 
-            this.ListeLivre.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ListeLivre.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
             this.ListeLivre.FormattingEnabled = true;
-            this.ListeLivre.ItemHeight = 17;
+            this.ListeLivre.ItemHeight = 16;
             this.ListeLivre.Location = new System.Drawing.Point(390, 146);
             this.ListeLivre.Name = "ListeLivre";
-            this.ListeLivre.Size = new System.Drawing.Size(415, 72);
+            this.ListeLivre.Size = new System.Drawing.Size(415, 84);
             this.ListeLivre.TabIndex = 4;
             // 
             // JourEmprunt
             // 
-            this.JourEmprunt.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.JourEmprunt.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
             this.JourEmprunt.FormattingEnabled = true;
             this.JourEmprunt.Location = new System.Drawing.Point(390, 291);
             this.JourEmprunt.Name = "JourEmprunt";
-            this.JourEmprunt.Size = new System.Drawing.Size(121, 25);
+            this.JourEmprunt.Size = new System.Drawing.Size(121, 24);
             this.JourEmprunt.TabIndex = 5;
             this.JourEmprunt.Text = "Jour";
             // 
             // AnneeEmprunt
             // 
-            this.AnneeEmprunt.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.AnneeEmprunt.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
             this.AnneeEmprunt.FormattingEnabled = true;
             this.AnneeEmprunt.Location = new System.Drawing.Point(684, 291);
             this.AnneeEmprunt.Name = "AnneeEmprunt";
-            this.AnneeEmprunt.Size = new System.Drawing.Size(121, 25);
+            this.AnneeEmprunt.Size = new System.Drawing.Size(121, 24);
             this.AnneeEmprunt.TabIndex = 6;
             this.AnneeEmprunt.Text = "Année";
             // 
             // MoisEmprunt
             // 
-            this.MoisEmprunt.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.MoisEmprunt.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
             this.MoisEmprunt.FormattingEnabled = true;
             this.MoisEmprunt.Location = new System.Drawing.Point(537, 291);
             this.MoisEmprunt.Name = "MoisEmprunt";
-            this.MoisEmprunt.Size = new System.Drawing.Size(121, 25);
+            this.MoisEmprunt.Size = new System.Drawing.Size(121, 24);
             this.MoisEmprunt.TabIndex = 7;
             this.MoisEmprunt.Text = "Mois";
             // 
             // EtatEmprunt
             // 
-            this.EtatEmprunt.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.EtatEmprunt.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
             this.EtatEmprunt.FormattingEnabled = true;
             this.EtatEmprunt.Location = new System.Drawing.Point(537, 387);
             this.EtatEmprunt.Name = "EtatEmprunt";
-            this.EtatEmprunt.Size = new System.Drawing.Size(121, 25);
+            this.EtatEmprunt.Size = new System.Drawing.Size(121, 24);
             this.EtatEmprunt.TabIndex = 8;
             this.EtatEmprunt.Text = "Etat";
             // 
             // ButtonRechercherAd
             // 
             this.ButtonRechercherAd.BackColor = System.Drawing.SystemColors.ButtonFace;
-            this.ButtonRechercherAd.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ButtonRechercherAd.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
             this.ButtonRechercherAd.Location = new System.Drawing.Point(223, 12);
             this.ButtonRechercherAd.Name = "ButtonRechercherAd";
-            this.ButtonRechercherAd.Size = new System.Drawing.Size(92, 25);
+            this.ButtonRechercherAd.Size = new System.Drawing.Size(92, 23);
             this.ButtonRechercherAd.TabIndex = 9;
             this.ButtonRechercherAd.Text = "Rechercher";
             this.ButtonRechercherAd.UseVisualStyleBackColor = false;
@@ -212,10 +213,9 @@
             this.Controls.Add(this.BouttonEnregistrer);
             this.Controls.Add(this.SearchBar);
             this.Controls.Add(this.ListeAdherentsEmprunt);
-            this.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "Emprunt";
-            this.Text = "Easy Book Manager";
+            this.Text = "Emprunt";
             this.InfosAdhérents.ResumeLayout(false);
             this.InfosAdhérents.PerformLayout();
             this.ResumeLayout(false);
