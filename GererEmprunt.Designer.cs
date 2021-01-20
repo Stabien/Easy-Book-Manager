@@ -279,7 +279,7 @@
             this.Supprimer_Emprunt.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Supprimer_Emprunt.Location = new System.Drawing.Point(380, 264);
             this.Supprimer_Emprunt.Name = "Supprimer_Emprunt";
-            this.Supprimer_Emprunt.Size = new System.Drawing.Size(64, 23);
+            this.Supprimer_Emprunt.Size = new System.Drawing.Size(69, 23);
             this.Supprimer_Emprunt.TabIndex = 26;
             this.Supprimer_Emprunt.Text = "Supprimer";
             this.Supprimer_Emprunt.UseVisualStyleBackColor = false;
