@@ -30,7 +30,6 @@
         {
             this.TabEmprunt = new System.Windows.Forms.TabControl();
             this.tabPageAdherentEmprunt = new System.Windows.Forms.TabPage();
-            this.tabPageEmprunt = new System.Windows.Forms.TabPage();
             this.ButtonRechercherAd = new System.Windows.Forms.Button();
             this.EtatEmprunt = new System.Windows.Forms.ComboBox();
             this.MoisEmprunt = new System.Windows.Forms.ComboBox();
@@ -45,6 +44,7 @@
             this.IdAdherent = new System.Windows.Forms.Label();
             this.BouttonEnregistrer = new System.Windows.Forms.Button();
             this.SearchBar = new System.Windows.Forms.TextBox();
+            this.tabPageEmprunt = new System.Windows.Forms.TabPage();
             this.Supprimer_Emprunt = new System.Windows.Forms.Button();
             this.Ajouter_emprunt = new System.Windows.Forms.Button();
             this.Annee_RetourPrevu = new System.Windows.Forms.ComboBox();
@@ -68,11 +68,11 @@
             this.ButtonRechercherLivre = new System.Windows.Forms.Button();
             this.SearchBarBook = new System.Windows.Forms.TextBox();
             this.listBox1 = new System.Windows.Forms.ListBox();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.listBoxAdherent = new System.Windows.Forms.ListBox();
             this.TabEmprunt.SuspendLayout();
             this.tabPageAdherentEmprunt.SuspendLayout();
-            this.tabPageEmprunt.SuspendLayout();
             this.InfosAdhérents.SuspendLayout();
+            this.tabPageEmprunt.SuspendLayout();
             this.PanelinfoAdherent.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -91,7 +91,7 @@
             // 
             // tabPageAdherentEmprunt
             // 
-            this.tabPageAdherentEmprunt.Controls.Add(this.comboBox1);
+            this.tabPageAdherentEmprunt.Controls.Add(this.listBoxAdherent);
             this.tabPageAdherentEmprunt.Controls.Add(this.ButtonRechercherAd);
             this.tabPageAdherentEmprunt.Controls.Add(this.EtatEmprunt);
             this.tabPageAdherentEmprunt.Controls.Add(this.MoisEmprunt);
@@ -108,35 +108,6 @@
             this.tabPageAdherentEmprunt.TabIndex = 0;
             this.tabPageAdherentEmprunt.Text = "Gerer Emprunt";
             this.tabPageAdherentEmprunt.UseVisualStyleBackColor = true;
-            // 
-            // tabPageEmprunt
-            // 
-            this.tabPageEmprunt.Controls.Add(this.Supprimer_Emprunt);
-            this.tabPageEmprunt.Controls.Add(this.Ajouter_emprunt);
-            this.tabPageEmprunt.Controls.Add(this.Annee_RetourPrevu);
-            this.tabPageEmprunt.Controls.Add(this.Mois_RetourPrevu);
-            this.tabPageEmprunt.Controls.Add(this.Jour_RetourPrevu);
-            this.tabPageEmprunt.Controls.Add(this.label2);
-            this.tabPageEmprunt.Controls.Add(this.Mois_Emprunt);
-            this.tabPageEmprunt.Controls.Add(this.Annee_Emprunt);
-            this.tabPageEmprunt.Controls.Add(this.Jour_Emprunt);
-            this.tabPageEmprunt.Controls.Add(this.label1);
-            this.tabPageEmprunt.Controls.Add(this.BouttonEnregistrerAjoutEmprunt);
-            this.tabPageEmprunt.Controls.Add(this.Liste_Livre_Emprunt);
-            this.tabPageEmprunt.Controls.Add(this.PanelinfoAdherent);
-            this.tabPageEmprunt.Controls.Add(this.ListeAdherentGererEmprunt);
-            this.tabPageEmprunt.Controls.Add(this.SearchBarAdGererEmprunt);
-            this.tabPageEmprunt.Controls.Add(this.RechercherAdherent);
-            this.tabPageEmprunt.Controls.Add(this.ButtonRechercherLivre);
-            this.tabPageEmprunt.Controls.Add(this.SearchBarBook);
-            this.tabPageEmprunt.Controls.Add(this.listBox1);
-            this.tabPageEmprunt.Location = new System.Drawing.Point(4, 22);
-            this.tabPageEmprunt.Name = "tabPageEmprunt";
-            this.tabPageEmprunt.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPageEmprunt.Size = new System.Drawing.Size(847, 566);
-            this.tabPageEmprunt.TabIndex = 1;
-            this.tabPageEmprunt.Text = "Emprunt";
-            this.tabPageEmprunt.UseVisualStyleBackColor = true;
             // 
             // ButtonRechercherAd
             // 
@@ -279,6 +250,35 @@
             this.SearchBar.Name = "SearchBar";
             this.SearchBar.Size = new System.Drawing.Size(205, 25);
             this.SearchBar.TabIndex = 11;
+            // 
+            // tabPageEmprunt
+            // 
+            this.tabPageEmprunt.Controls.Add(this.Supprimer_Emprunt);
+            this.tabPageEmprunt.Controls.Add(this.Ajouter_emprunt);
+            this.tabPageEmprunt.Controls.Add(this.Annee_RetourPrevu);
+            this.tabPageEmprunt.Controls.Add(this.Mois_RetourPrevu);
+            this.tabPageEmprunt.Controls.Add(this.Jour_RetourPrevu);
+            this.tabPageEmprunt.Controls.Add(this.label2);
+            this.tabPageEmprunt.Controls.Add(this.Mois_Emprunt);
+            this.tabPageEmprunt.Controls.Add(this.Annee_Emprunt);
+            this.tabPageEmprunt.Controls.Add(this.Jour_Emprunt);
+            this.tabPageEmprunt.Controls.Add(this.label1);
+            this.tabPageEmprunt.Controls.Add(this.BouttonEnregistrerAjoutEmprunt);
+            this.tabPageEmprunt.Controls.Add(this.Liste_Livre_Emprunt);
+            this.tabPageEmprunt.Controls.Add(this.PanelinfoAdherent);
+            this.tabPageEmprunt.Controls.Add(this.ListeAdherentGererEmprunt);
+            this.tabPageEmprunt.Controls.Add(this.SearchBarAdGererEmprunt);
+            this.tabPageEmprunt.Controls.Add(this.RechercherAdherent);
+            this.tabPageEmprunt.Controls.Add(this.ButtonRechercherLivre);
+            this.tabPageEmprunt.Controls.Add(this.SearchBarBook);
+            this.tabPageEmprunt.Controls.Add(this.listBox1);
+            this.tabPageEmprunt.Location = new System.Drawing.Point(4, 22);
+            this.tabPageEmprunt.Name = "tabPageEmprunt";
+            this.tabPageEmprunt.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPageEmprunt.Size = new System.Drawing.Size(847, 566);
+            this.tabPageEmprunt.TabIndex = 1;
+            this.tabPageEmprunt.Text = "Emprunt";
+            this.tabPageEmprunt.UseVisualStyleBackColor = true;
             // 
             // Supprimer_Emprunt
             // 
@@ -512,20 +512,15 @@
             this.listBox1.Size = new System.Drawing.Size(303, 480);
             this.listBox1.TabIndex = 27;
             // 
-            // comboBox1
+            // listBoxAdherent
             // 
-            this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Items.AddRange(new object[] {
-            "teste",
-            "dz",
-            "dz",
-            "d",
-            "olllllll"});
-            this.comboBox1.Location = new System.Drawing.Point(8, 49);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(303, 21);
-            this.comboBox1.TabIndex = 20;
+            this.listBoxAdherent.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.listBoxAdherent.FormattingEnabled = true;
+            this.listBoxAdherent.ItemHeight = 17;
+            this.listBoxAdherent.Location = new System.Drawing.Point(8, 49);
+            this.listBoxAdherent.Name = "listBoxAdherent";
+            this.listBoxAdherent.Size = new System.Drawing.Size(303, 480);
+            this.listBoxAdherent.TabIndex = 28;
             // 
             // Regroupement_Emprunt
             // 
@@ -539,10 +534,10 @@
             this.TabEmprunt.ResumeLayout(false);
             this.tabPageAdherentEmprunt.ResumeLayout(false);
             this.tabPageAdherentEmprunt.PerformLayout();
-            this.tabPageEmprunt.ResumeLayout(false);
-            this.tabPageEmprunt.PerformLayout();
             this.InfosAdhérents.ResumeLayout(false);
             this.InfosAdhérents.PerformLayout();
+            this.tabPageEmprunt.ResumeLayout(false);
+            this.tabPageEmprunt.PerformLayout();
             this.PanelinfoAdherent.ResumeLayout(false);
             this.PanelinfoAdherent.PerformLayout();
             this.ResumeLayout(false);
@@ -591,6 +586,6 @@
         private System.Windows.Forms.Button ButtonRechercherLivre;
         private System.Windows.Forms.TextBox SearchBarBook;
         private System.Windows.Forms.ListBox listBox1;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ListBox listBoxAdherent;
     }
 }
