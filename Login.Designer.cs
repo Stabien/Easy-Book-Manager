@@ -46,7 +46,7 @@
             this.ButtonValider.Margin = new System.Windows.Forms.Padding(2);
             this.ButtonValider.Name = "ButtonValider";
             this.ButtonValider.Size = new System.Drawing.Size(98, 32);
-            this.ButtonValider.TabIndex = 5;
+            this.ButtonValider.TabIndex = 3;
             this.ButtonValider.Text = "Valider";
             this.ButtonValider.UseVisualStyleBackColor = true;
             this.ButtonValider.Click += new System.EventHandler(this.ButtonValider_Click);
@@ -59,7 +59,7 @@
             this.buttonAnnuler.Margin = new System.Windows.Forms.Padding(2);
             this.buttonAnnuler.Name = "buttonAnnuler";
             this.buttonAnnuler.Size = new System.Drawing.Size(98, 32);
-            this.buttonAnnuler.TabIndex = 6;
+            this.buttonAnnuler.TabIndex = 4;
             this.buttonAnnuler.Text = "Annuler";
             this.buttonAnnuler.UseVisualStyleBackColor = true;
             this.buttonAnnuler.Click += new System.EventHandler(this.buttonAnnuler_Click);
@@ -106,7 +106,7 @@
             this.textBoxMDP.Margin = new System.Windows.Forms.Padding(2);
             this.textBoxMDP.Name = "textBoxMDP";
             this.textBoxMDP.Size = new System.Drawing.Size(166, 26);
-            this.textBoxMDP.TabIndex = 6;
+            this.textBoxMDP.TabIndex = 2;
             this.textBoxMDP.UseSystemPasswordChar = true;
             // 
             // textBoxNom
@@ -116,7 +116,7 @@
             this.textBoxNom.Margin = new System.Windows.Forms.Padding(2);
             this.textBoxNom.Name = "textBoxNom";
             this.textBoxNom.Size = new System.Drawing.Size(166, 26);
-            this.textBoxNom.TabIndex = 5;
+            this.textBoxNom.TabIndex = 1;
             // 
             // Login
             // 
