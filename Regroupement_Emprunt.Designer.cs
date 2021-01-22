@@ -30,6 +30,7 @@
         {
             this.TabEmprunt = new System.Windows.Forms.TabControl();
             this.tabPageAdherentEmprunt = new System.Windows.Forms.TabPage();
+            this.listBoxAdherent = new System.Windows.Forms.ListBox();
             this.ButtonRechercherAd = new System.Windows.Forms.Button();
             this.EtatEmprunt = new System.Windows.Forms.ComboBox();
             this.MoisEmprunt = new System.Windows.Forms.ComboBox();
@@ -68,7 +69,6 @@
             this.ButtonRechercherLivre = new System.Windows.Forms.Button();
             this.SearchBarBook = new System.Windows.Forms.TextBox();
             this.listBox1 = new System.Windows.Forms.ListBox();
-            this.listBoxAdherent = new System.Windows.Forms.ListBox();
             this.TabEmprunt.SuspendLayout();
             this.tabPageAdherentEmprunt.SuspendLayout();
             this.InfosAdhérents.SuspendLayout();
@@ -108,6 +108,16 @@
             this.tabPageAdherentEmprunt.TabIndex = 0;
             this.tabPageAdherentEmprunt.Text = "Gerer Emprunt";
             this.tabPageAdherentEmprunt.UseVisualStyleBackColor = true;
+            // 
+            // listBoxAdherent
+            // 
+            this.listBoxAdherent.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.listBoxAdherent.FormattingEnabled = true;
+            this.listBoxAdherent.ItemHeight = 17;
+            this.listBoxAdherent.Location = new System.Drawing.Point(8, 49);
+            this.listBoxAdherent.Name = "listBoxAdherent";
+            this.listBoxAdherent.Size = new System.Drawing.Size(303, 480);
+            this.listBoxAdherent.TabIndex = 28;
             // 
             // ButtonRechercherAd
             // 
@@ -511,16 +521,6 @@
             this.listBox1.Name = "listBox1";
             this.listBox1.Size = new System.Drawing.Size(303, 480);
             this.listBox1.TabIndex = 27;
-            // 
-            // listBoxAdherent
-            // 
-            this.listBoxAdherent.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.listBoxAdherent.FormattingEnabled = true;
-            this.listBoxAdherent.ItemHeight = 17;
-            this.listBoxAdherent.Location = new System.Drawing.Point(8, 49);
-            this.listBoxAdherent.Name = "listBoxAdherent";
-            this.listBoxAdherent.Size = new System.Drawing.Size(303, 480);
-            this.listBoxAdherent.TabIndex = 28;
             // 
             // Regroupement_Emprunt
             // 
