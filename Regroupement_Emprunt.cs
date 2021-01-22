@@ -10,20 +10,11 @@ using System.Windows.Forms;
 
 namespace Easy_Book_Manager
 {
-    public partial class Main : Form
+    public partial class Regroupement_Emprunt : Form
     {
-        public Main()
+        public Regroupement_Emprunt()
         {
             InitializeComponent();
-        }
-
-        private void Main_Load(object sender, EventArgs e)
-        {
-            Login dlg = new Login();
-            dlg.ShowDialog();
-
-
-
         }
     }
 }

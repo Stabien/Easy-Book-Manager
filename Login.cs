@@ -17,34 +17,28 @@ namespace Easy_Book_Manager
             InitializeComponent();
         }
 
-        private void Form1_Load(object sender, EventArgs e)
+        private void ButtonValider_Click(object sender, EventArgs e)
         {
-
+            if ((textBoxNom.Text == "admin") && (textBoxMDP.Text == "1234"))
+            {
+                Close();
+            }
+            else
+            {
+                MessageBox.Show("Identifiants invalides !", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
-        private void textBox1_TextChanged(object sender, EventArgs e)
+        private void buttonAnnuler_Click(object sender, EventArgs e)
         {
-
+            DialogResult res = MessageBox.Show("Voulez vous vraiment quitter ?",
+                "Avertissement", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (res == DialogResult.Yes)
+                Application.Exit();
+  
         }
 
-        private void label2_Click(object sender, EventArgs e)
-        {
 
-        }
 
-        private void label3_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void Valider_Click(object sender, EventArgs e)
-        {
-
-        }
     }
 }
