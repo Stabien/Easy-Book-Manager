@@ -44,9 +44,9 @@
             this.labelEditionAjouter = new System.Windows.Forms.Label();
             this.labelTitreAjouter = new System.Windows.Forms.Label();
             this.textBoxAuteurAjouter = new System.Windows.Forms.TextBox();
-            this.textBoxEditionAjouter = new System.Windows.Forms.TextBox();
             this.textBoxTitreAjouter = new System.Windows.Forms.TextBox();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.comboBoxGenreModifier = new System.Windows.Forms.ComboBox();
             this.labelModifierPanel = new System.Windows.Forms.Label();
             this.buttonEnregisterModifier = new System.Windows.Forms.Button();
             this.labelAuteurModifier = new System.Windows.Forms.Label();
@@ -58,7 +58,7 @@
             this.textBoxStatusModifier = new System.Windows.Forms.TextBox();
             this.textBoxEditionModifier = new System.Windows.Forms.TextBox();
             this.textBoxTitreModifier = new System.Windows.Forms.TextBox();
-            this.comboBoxGenreModifier = new System.Windows.Forms.ComboBox();
+            this.comboBoxEditionAjouter = new System.Windows.Forms.ComboBox();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
             this.SuspendLayout();
@@ -140,6 +140,7 @@
             // panel2
             // 
             this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel2.Controls.Add(this.comboBoxEditionAjouter);
             this.panel2.Controls.Add(this.comboBoxGenreAjouter);
             this.panel2.Controls.Add(this.labelAjouterPanel);
             this.panel2.Controls.Add(this.buttonEnregisterAjouter);
@@ -148,7 +149,6 @@
             this.panel2.Controls.Add(this.labelEditionAjouter);
             this.panel2.Controls.Add(this.labelTitreAjouter);
             this.panel2.Controls.Add(this.textBoxAuteurAjouter);
-            this.panel2.Controls.Add(this.textBoxEditionAjouter);
             this.panel2.Controls.Add(this.textBoxTitreAjouter);
             this.panel2.Location = new System.Drawing.Point(0, 0);
             this.panel2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -161,7 +161,7 @@
             this.comboBoxGenreAjouter.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.comboBoxGenreAjouter.FormattingEnabled = true;
             this.comboBoxGenreAjouter.Location = new System.Drawing.Point(91, 327);
-            this.comboBoxGenreAjouter.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.comboBoxGenreAjouter.Margin = new System.Windows.Forms.Padding(4);
             this.comboBoxGenreAjouter.Name = "comboBoxGenreAjouter";
             this.comboBoxGenreAjouter.Size = new System.Drawing.Size(287, 36);
             this.comboBoxGenreAjouter.TabIndex = 12;
@@ -237,15 +237,6 @@
             this.textBoxAuteurAjouter.Size = new System.Drawing.Size(287, 34);
             this.textBoxAuteurAjouter.TabIndex = 4;
             // 
-            // textBoxEditionAjouter
-            // 
-            this.textBoxEditionAjouter.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBoxEditionAjouter.Location = new System.Drawing.Point(91, 418);
-            this.textBoxEditionAjouter.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.textBoxEditionAjouter.Name = "textBoxEditionAjouter";
-            this.textBoxEditionAjouter.Size = new System.Drawing.Size(287, 34);
-            this.textBoxEditionAjouter.TabIndex = 1;
-            // 
             // textBoxTitreAjouter
             // 
             this.textBoxTitreAjouter.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -275,6 +266,16 @@
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(469, 609);
             this.panel3.TabIndex = 11;
+            // 
+            // comboBoxGenreModifier
+            // 
+            this.comboBoxGenreModifier.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.comboBoxGenreModifier.FormattingEnabled = true;
+            this.comboBoxGenreModifier.Location = new System.Drawing.Point(93, 284);
+            this.comboBoxGenreModifier.Margin = new System.Windows.Forms.Padding(4);
+            this.comboBoxGenreModifier.Name = "comboBoxGenreModifier";
+            this.comboBoxGenreModifier.Size = new System.Drawing.Size(287, 36);
+            this.comboBoxGenreModifier.TabIndex = 13;
             // 
             // labelModifierPanel
             // 
@@ -384,15 +385,15 @@
             this.textBoxTitreModifier.Size = new System.Drawing.Size(287, 34);
             this.textBoxTitreModifier.TabIndex = 0;
             // 
-            // comboBoxGenreModifier
+            // comboBoxEditionAjouter
             // 
-            this.comboBoxGenreModifier.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.comboBoxGenreModifier.FormattingEnabled = true;
-            this.comboBoxGenreModifier.Location = new System.Drawing.Point(93, 284);
-            this.comboBoxGenreModifier.Margin = new System.Windows.Forms.Padding(4);
-            this.comboBoxGenreModifier.Name = "comboBoxGenreModifier";
-            this.comboBoxGenreModifier.Size = new System.Drawing.Size(287, 36);
-            this.comboBoxGenreModifier.TabIndex = 13;
+            this.comboBoxEditionAjouter.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.comboBoxEditionAjouter.FormattingEnabled = true;
+            this.comboBoxEditionAjouter.Location = new System.Drawing.Point(91, 420);
+            this.comboBoxEditionAjouter.Margin = new System.Windows.Forms.Padding(4);
+            this.comboBoxEditionAjouter.Name = "comboBoxEditionAjouter";
+            this.comboBoxEditionAjouter.Size = new System.Drawing.Size(287, 36);
+            this.comboBoxEditionAjouter.TabIndex = 13;
             // 
             // Main
             // 
@@ -441,7 +442,6 @@
         private System.Windows.Forms.Label labelEditionAjouter;
         private System.Windows.Forms.Label labelTitreAjouter;
         private System.Windows.Forms.TextBox textBoxAuteurAjouter;
-        private System.Windows.Forms.TextBox textBoxEditionAjouter;
         private System.Windows.Forms.TextBox textBoxTitreAjouter;
         private System.Windows.Forms.ComboBox comboBoxGenreAjouter;
         private System.Windows.Forms.Panel panel3;
@@ -457,5 +457,6 @@
         private System.Windows.Forms.TextBox textBoxEditionModifier;
         private System.Windows.Forms.TextBox textBoxTitreModifier;
         private System.Windows.Forms.ComboBox comboBoxGenreModifier;
+        private System.Windows.Forms.ComboBox comboBoxEditionAjouter;
     }
 }
