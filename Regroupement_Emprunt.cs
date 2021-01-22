@@ -18,6 +18,8 @@ namespace Easy_Book_Manager
             InitializeComponent();
             string connStr = @"Data Source=MSI\SQLEXPRESS;Initial Catalog=Gestion_Biblio;Integrated Security=True";
             SqlConnection dbConn = new SqlConnection(connStr);
+
+
         }
         
 
