@@ -71,9 +71,9 @@
             this.groupBoxAuthentification.Controls.Add(this.textBoxMDP);
             this.groupBoxAuthentification.Controls.Add(this.textBoxNom);
             this.groupBoxAuthentification.Location = new System.Drawing.Point(20, 15);
-            this.groupBoxAuthentification.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBoxAuthentification.Margin = new System.Windows.Forms.Padding(4);
             this.groupBoxAuthentification.Name = "groupBoxAuthentification";
-            this.groupBoxAuthentification.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBoxAuthentification.Padding = new System.Windows.Forms.Padding(4);
             this.groupBoxAuthentification.Size = new System.Drawing.Size(404, 137);
             this.groupBoxAuthentification.TabIndex = 7;
             this.groupBoxAuthentification.TabStop = false;
@@ -124,7 +124,6 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CausesValidation = false;
             this.ClientSize = new System.Drawing.Size(445, 228);
-            this.ControlBox = false;
             this.Controls.Add(this.groupBoxAuthentification);
             this.Controls.Add(this.buttonAnnuler);
             this.Controls.Add(this.buttonValider);
