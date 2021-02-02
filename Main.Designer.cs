@@ -81,6 +81,7 @@
             this.textBoxRecherche.Name = "textBoxRecherche";
             this.textBoxRecherche.Size = new System.Drawing.Size(368, 39);
             this.textBoxRecherche.TabIndex = 1;
+            this.textBoxRecherche.Text = "Recherche de Livres";
             // 
             // buttonRechercher
             // 
@@ -103,6 +104,7 @@
             this.buttonEmprunts.TabIndex = 3;
             this.buttonEmprunts.Text = "Voir les emprunts";
             this.buttonEmprunts.UseVisualStyleBackColor = true;
+            this.buttonEmprunts.Click += new System.EventHandler(this.buttonEmprunts_Click);
             // 
             // buttonAjouter
             // 
@@ -155,6 +157,7 @@
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(469, 609);
             this.panel2.TabIndex = 12;
+            this.panel2.Paint += new System.Windows.Forms.PaintEventHandler(this.panel2_Paint);
             // 
             // comboBoxGenreAjouter
             // 
