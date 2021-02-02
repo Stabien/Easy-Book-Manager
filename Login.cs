@@ -22,28 +22,25 @@ namespace Easy_Book_Manager
         {
             string connString = @"Data Source=.\SQLEXPRESS;Initial Catalog=Gestion_Biblio;Integrated Security=True";
             try {
-                // DB connexion
+                // Db connection
                 SqlConnection conn = new SqlConnection(connString);
                 conn.Open();
 
-                // Création de la requête
+                // Create request
                 SqlCommand command = new SqlCommand($"SELECT id FROM Employes WHERE Login = '{textBoxNom.Text}' AND Password = '{textBoxMDP.Text}'", conn);
                 
-                //Exécution et lecture de la requête 
+                // Execute request 
                 SqlDataReader dataReader = command.ExecuteReader();
 
-                if (dataReader.Read()) {
+                // Check data and close if exist
+                if (dataReader.Read()) 
                     Close();
-                }
-                MessageBox.Show("Identifiants invalides !", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                else 
+                    MessageBox.Show("Identifiants invalides !", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);   
             }
             catch {
                 MessageBox.Show("Erreur"); 
             }
-        }
-        private static void ReadSingleRow(IDataRecord record)
-        {
-            Console.WriteLine(String.Format("{0}, {1}", record[0], record[1]));
         }
         private void buttonAnnuler_Click(object sender, EventArgs e)
         {
