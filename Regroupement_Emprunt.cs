@@ -16,10 +16,47 @@ namespace Easy_Book_Manager
         public Regroupement_Emprunt()
         {
             InitializeComponent();
-            string connStr = @"Data Source=MSI\SQLEXPRESS;Initial Catalog=Gestion_Biblio;Integrated Security=True";
-            SqlConnection dbConn = new SqlConnection(connStr);
+            SqlDataReader reader = null;
+            SqlConnection dbConn = null;
+            SqlCommand Lecture = null;
+            try
+            {
+                string connStr = @"Data Source=MSI\SQLEXPRESS;Initial Catalog=Gestion_Biblio;Integrated Security=True";
+                dbConn = new SqlConnection(connStr);
+                dbConn.Open();
+                Lecture = new SqlCommand
+                    (
+                        "Select Titre from Livres", dbConn
+                    );
+
+                reader = Lecture.ExecuteReader();
+                MessageBox.Show("teste");
+                while (reader.Read())
+                {
+                    listBoxAdherent.Items.Add(reader["Titre"]);
+                }
+            }
+            catch(SqlException ex)
+            {
+                MessageBox.Show(ex.Message);
+          
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+
+            }
+            finally
+            {
+                if (reader != null)
+                    reader.Close();
+                if (dbConn != null)
+                    dbConn.Close();
+            }
 
 
+
+            
         }
         
 
