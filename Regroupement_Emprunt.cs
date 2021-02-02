@@ -19,6 +19,7 @@ namespace Easy_Book_Manager
             SqlDataReader reader = null;
             SqlConnection dbConn = null;
             SqlCommand Lecture = null;
+            SqlCommand AdherentCommand = null;
             try
             {
                 string connStr = @"Data Source=MSI\SQLEXPRESS;Initial Catalog=Gestion_Biblio;Integrated Security=True";
@@ -28,12 +29,22 @@ namespace Easy_Book_Manager
                     (
                         "Select Titre from Livres", dbConn
                     );
+                AdherentCommand = new SqlCommand
+                  (
+                        "Select Nom from Adherents", dbConn
+                   );
 
                 reader = Lecture.ExecuteReader();
-                MessageBox.Show("teste");
                 while (reader.Read())
                 {
-                    listBoxAdherent.Items.Add(reader["Titre"]);
+                    ListeLivre.Items.Add(reader["Titre"]);
+                }
+                if (reader != null)
+                    reader.Close();
+                reader = AdherentCommand.ExecuteReader();
+                while (reader.Read())
+                {
+                    listBoxAdherent.Items.Add(reader["Nom"]);
                 }
             }
             catch(SqlException ex)
