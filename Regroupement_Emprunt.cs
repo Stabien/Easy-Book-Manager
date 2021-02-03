@@ -31,7 +31,7 @@ namespace Easy_Book_Manager
                     );
                 AdherentCommand = new SqlCommand
                   (
-                        "Select Nom from Adherents", dbConn
+                        "Select Nom, Prenom from Adherents", dbConn
                    );
 
                 reader = Lecture.ExecuteReader();
@@ -65,11 +65,15 @@ namespace Easy_Book_Manager
                     dbConn.Close();
             }
 
-
-
             
-        }
-        
 
-    }
-}
+
+
+        }
+                
+
+       }
+ }
+    
+
+
