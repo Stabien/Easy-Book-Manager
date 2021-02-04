@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.SqlClient;
 using System.Data.Sql;
+using System.Security.Cryptography;
 
 namespace Easy_Book_Manager
 {
@@ -26,8 +27,10 @@ namespace Easy_Book_Manager
                 SqlConnection conn = new SqlConnection(connString);
                 conn.Open();
 
+                // Hashing password width sha256 
+                string hashedPassword = this.hashPassword(textBoxMDP.Text);
                 // Create request
-                SqlCommand command = new SqlCommand($"SELECT id FROM Employes WHERE Login = '{textBoxNom.Text}' AND Password = '{textBoxMDP.Text}'", conn);
+                SqlCommand command = new SqlCommand($"SELECT id FROM Employes WHERE Login = '{textBoxNom.Text}' AND Password = '{hashedPassword}'", conn);
                 
                 // Execute request 
                 SqlDataReader dataReader = command.ExecuteReader();
@@ -38,7 +41,7 @@ namespace Easy_Book_Manager
                     this.closeApp = false;
                     Close();
                 }
-                else 
+                else
                     MessageBox.Show("Identifiants invalides !", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);   
             }
             catch {
@@ -58,7 +61,15 @@ namespace Easy_Book_Manager
             if (this.closeApp)
                 Application.Exit();
         }
-
+        private string hashPassword(string password)
+        {
+            using (SHA256 hash = SHA256Managed.Create())
+            {
+                return string.Concat(hash
+                  .ComputeHash(Encoding.UTF8.GetBytes(password))
+                  .Select(item => item.ToString("x2")));
+            }
+        }
         // Check closing event
         private bool closeApp = true;
     }
