@@ -33,8 +33,11 @@ namespace Easy_Book_Manager
                 SqlDataReader dataReader = command.ExecuteReader();
 
                 // Check data and close if exist
-                if (dataReader.Read()) 
+                if (dataReader.Read())
+                {
+                    this.closeApp = false;
                     Close();
+                }
                 else 
                     MessageBox.Show("Identifiants invalides !", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);   
             }
@@ -46,8 +49,15 @@ namespace Easy_Book_Manager
         {
             DialogResult res = MessageBox.Show("Voulez vous vraiment quitter ?",
             "Avertissement", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            
             if (res == DialogResult.Yes)
                 Application.Exit();
         }
+        private void Login_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (this.closeApp)
+                Application.Exit();
+        }
+        private bool closeApp = true;
     }
 }

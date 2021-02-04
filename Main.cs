@@ -21,9 +21,6 @@ namespace Easy_Book_Manager
         {
             Login dlg = new Login();
             dlg.ShowDialog();
-
-
-
         }
     }
 }
