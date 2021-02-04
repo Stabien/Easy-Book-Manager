@@ -58,6 +58,8 @@ namespace Easy_Book_Manager
             if (this.closeApp)
                 Application.Exit();
         }
+
+        // Check closing event
         private bool closeApp = true;
     }
 }
