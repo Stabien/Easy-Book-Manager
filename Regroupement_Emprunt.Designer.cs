@@ -31,7 +31,6 @@
             this.TabEmprunt = new System.Windows.Forms.TabControl();
             this.tabPageAdherentEmprunt = new System.Windows.Forms.TabPage();
             this.listBoxAdherent = new System.Windows.Forms.ListBox();
-            this.ButtonRechercherAd = new System.Windows.Forms.Button();
             this.EtatEmprunt = new System.Windows.Forms.ComboBox();
             this.MoisEmprunt = new System.Windows.Forms.ComboBox();
             this.AnneeEmprunt = new System.Windows.Forms.ComboBox();
@@ -92,7 +91,6 @@
             // tabPageAdherentEmprunt
             // 
             this.tabPageAdherentEmprunt.Controls.Add(this.listBoxAdherent);
-            this.tabPageAdherentEmprunt.Controls.Add(this.ButtonRechercherAd);
             this.tabPageAdherentEmprunt.Controls.Add(this.EtatEmprunt);
             this.tabPageAdherentEmprunt.Controls.Add(this.MoisEmprunt);
             this.tabPageAdherentEmprunt.Controls.Add(this.AnneeEmprunt);
@@ -118,17 +116,6 @@
             this.listBoxAdherent.Name = "listBoxAdherent";
             this.listBoxAdherent.Size = new System.Drawing.Size(303, 480);
             this.listBoxAdherent.TabIndex = 28;
-            // 
-            // ButtonRechercherAd
-            // 
-            this.ButtonRechercherAd.BackColor = System.Drawing.SystemColors.ButtonFace;
-            this.ButtonRechercherAd.Font = new System.Drawing.Font("Segoe UI", 9.75F);
-            this.ButtonRechercherAd.Location = new System.Drawing.Point(219, 10);
-            this.ButtonRechercherAd.Name = "ButtonRechercherAd";
-            this.ButtonRechercherAd.Size = new System.Drawing.Size(92, 25);
-            this.ButtonRechercherAd.TabIndex = 19;
-            this.ButtonRechercherAd.Text = "Rechercher";
-            this.ButtonRechercherAd.UseVisualStyleBackColor = false;
             // 
             // EtatEmprunt
             // 
@@ -258,8 +245,10 @@
             this.SearchBar.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.SearchBar.Location = new System.Drawing.Point(8, 10);
             this.SearchBar.Name = "SearchBar";
-            this.SearchBar.Size = new System.Drawing.Size(205, 25);
+            this.SearchBar.Size = new System.Drawing.Size(303, 25);
             this.SearchBar.TabIndex = 11;
+            this.SearchBar.Tag = "";
+            this.SearchBar.TextChanged += new System.EventHandler(this.SearchBar_TextChanged);
             // 
             // tabPageEmprunt
             // 
@@ -549,7 +538,6 @@
         private System.Windows.Forms.TabControl TabEmprunt;
         private System.Windows.Forms.TabPage tabPageAdherentEmprunt;
         private System.Windows.Forms.TabPage tabPageEmprunt;
-        private System.Windows.Forms.Button ButtonRechercherAd;
         private System.Windows.Forms.ComboBox EtatEmprunt;
         private System.Windows.Forms.ComboBox MoisEmprunt;
         private System.Windows.Forms.ComboBox AnneeEmprunt;
