@@ -34,19 +34,31 @@ namespace Easy_Book_Manager
                 if (textBoxAdresseAd.Text.Length < 5)
                     checkFields = false;
 
-                // Db connection
-                // SqlConnection conn = new SqlConnection(connString);
-                // conn.Open();
+                // If checkFields is true, execute request
+                if (checkFields)
+                {
+                    int ageAd = int.Parse(textBoxAgeAd.Text);
 
-                // Create request
-                // SqlCommand command = new SqlCommand();
+                    Console.WriteLine(ageAd);
+                    // Db connection
+                    SqlConnection conn = new SqlConnection(connString);
+                    conn.Open();
 
-                // Execute request 
-                // SqlDataReader dataReader = command.ExecuteReader();
-                Console.WriteLine(checkFields);
+                    // Create request and execute request
+                    SqlCommand command = new SqlCommand($"INSERT INTO Adherents (Nom, Prenom, Adresse, Telephone, Age) VALUES (@nom, @prenom, @adresse, @telephone, @age)", conn);
+                    command.Parameters.AddWithValue("@nom", textBoxNomAd.Text);
+                    command.Parameters.AddWithValue("@prenom", textBoxPrenomAd.Text);
+                    command.Parameters.AddWithValue("@adresse", textBoxAdresseAd.Text);
+                    command.Parameters.AddWithValue("@telephone", textBoxTelAd.Text);
+                    command.Parameters.AddWithValue("@age", ageAd);
+                    command.ExecuteNonQuery();
+                    MessageBox.Show("Nouvel adhérent ajouté !");
+                }
+                else
+                    MessageBox.Show("Erreur lors de la saisie du formulaire");
             }
-            catch {
-                MessageBox.Show("Erreur");
+            catch (Exception erreur) {
+                MessageBox.Show(erreur.Message);
             }
         }
         private void button_Annuler_ad_Click(object sender, EventArgs e)

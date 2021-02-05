@@ -30,20 +30,27 @@ namespace Easy_Book_Manager
                 // Hashing password width SHA256 
                 string hashedPassword = this.hashPassword(textBoxMDP.Text);
                 
-                // Create request
+                // Create and execute request
                 SqlCommand command = new SqlCommand($"SELECT id FROM Employes WHERE Login = '{textBoxNom.Text}' AND Password = '{hashedPassword}'", conn);
                 
-                // Execute request 
+                // Read response 
                 SqlDataReader dataReader = command.ExecuteReader();
 
                 // Check data and close if exist
                 if (dataReader.Read())
                 {
                     this.closeApp = false;
+                    dataReader.Close();
+                    conn.Close();
                     Close();
                 }
                 else
-                    MessageBox.Show("Identifiants invalides !", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);   
+                { 
+                    dataReader.Close();
+                    conn.Close();
+                    MessageBox.Show("Identifiants invalides !", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                      
             }
             catch {
                 MessageBox.Show("Erreur"); 
