@@ -30,6 +30,7 @@
         {
             this.TabEmprunt = new System.Windows.Forms.TabControl();
             this.tabPageAdherentEmprunt = new System.Windows.Forms.TabPage();
+            this.buttonTESTE = new System.Windows.Forms.Button();
             this.listBoxAdherent = new System.Windows.Forms.ListBox();
             this.EtatEmprunt = new System.Windows.Forms.ComboBox();
             this.MoisEmprunt = new System.Windows.Forms.ComboBox();
@@ -90,6 +91,7 @@
             // 
             // tabPageAdherentEmprunt
             // 
+            this.tabPageAdherentEmprunt.Controls.Add(this.buttonTESTE);
             this.tabPageAdherentEmprunt.Controls.Add(this.listBoxAdherent);
             this.tabPageAdherentEmprunt.Controls.Add(this.EtatEmprunt);
             this.tabPageAdherentEmprunt.Controls.Add(this.MoisEmprunt);
@@ -107,6 +109,15 @@
             this.tabPageAdherentEmprunt.Text = "Gerer Emprunt";
             this.tabPageAdherentEmprunt.UseVisualStyleBackColor = true;
             // 
+            // buttonTESTE
+            // 
+            this.buttonTESTE.Location = new System.Drawing.Point(356, 385);
+            this.buttonTESTE.Name = "buttonTESTE";
+            this.buttonTESTE.Size = new System.Drawing.Size(75, 23);
+            this.buttonTESTE.TabIndex = 14;
+            this.buttonTESTE.Text = "button1";
+            this.buttonTESTE.UseVisualStyleBackColor = true;
+            // 
             // listBoxAdherent
             // 
             this.listBoxAdherent.Font = new System.Drawing.Font("Segoe UI", 10F);
@@ -115,16 +126,18 @@
             this.listBoxAdherent.Location = new System.Drawing.Point(8, 49);
             this.listBoxAdherent.Name = "listBoxAdherent";
             this.listBoxAdherent.Size = new System.Drawing.Size(303, 480);
-            this.listBoxAdherent.TabIndex = 28;
+            this.listBoxAdherent.TabIndex = 2;
+            this.listBoxAdherent.SelectedIndexChanged += new System.EventHandler(this.listBoxAdherent_SelectedIndexChanged);
             // 
             // EtatEmprunt
             // 
             this.EtatEmprunt.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.EtatEmprunt.FormattingEnabled = true;
+            this.EtatEmprunt.ItemHeight = 17;
             this.EtatEmprunt.Location = new System.Drawing.Point(533, 385);
             this.EtatEmprunt.Name = "EtatEmprunt";
             this.EtatEmprunt.Size = new System.Drawing.Size(121, 25);
-            this.EtatEmprunt.TabIndex = 18;
+            this.EtatEmprunt.TabIndex = 7;
             this.EtatEmprunt.Text = "Etat";
             // 
             // MoisEmprunt
@@ -134,7 +147,7 @@
             this.MoisEmprunt.Location = new System.Drawing.Point(533, 289);
             this.MoisEmprunt.Name = "MoisEmprunt";
             this.MoisEmprunt.Size = new System.Drawing.Size(121, 25);
-            this.MoisEmprunt.TabIndex = 17;
+            this.MoisEmprunt.TabIndex = 5;
             this.MoisEmprunt.Text = "Mois";
             // 
             // AnneeEmprunt
@@ -144,7 +157,7 @@
             this.AnneeEmprunt.Location = new System.Drawing.Point(680, 289);
             this.AnneeEmprunt.Name = "AnneeEmprunt";
             this.AnneeEmprunt.Size = new System.Drawing.Size(121, 25);
-            this.AnneeEmprunt.TabIndex = 16;
+            this.AnneeEmprunt.TabIndex = 6;
             this.AnneeEmprunt.Text = "Année";
             // 
             // JourEmprunt
@@ -154,7 +167,7 @@
             this.JourEmprunt.Location = new System.Drawing.Point(386, 289);
             this.JourEmprunt.Name = "JourEmprunt";
             this.JourEmprunt.Size = new System.Drawing.Size(121, 25);
-            this.JourEmprunt.TabIndex = 15;
+            this.JourEmprunt.TabIndex = 4;
             this.JourEmprunt.Text = "Jour";
             // 
             // ListeLivre
@@ -165,7 +178,7 @@
             this.ListeLivre.Location = new System.Drawing.Point(386, 144);
             this.ListeLivre.Name = "ListeLivre";
             this.ListeLivre.Size = new System.Drawing.Size(415, 89);
-            this.ListeLivre.TabIndex = 14;
+            this.ListeLivre.TabIndex = 3;
             // 
             // InfosAdhérents
             // 
@@ -236,7 +249,7 @@
             this.BouttonEnregistrer.Location = new System.Drawing.Point(549, 513);
             this.BouttonEnregistrer.Name = "BouttonEnregistrer";
             this.BouttonEnregistrer.Size = new System.Drawing.Size(90, 33);
-            this.BouttonEnregistrer.TabIndex = 12;
+            this.BouttonEnregistrer.TabIndex = 8;
             this.BouttonEnregistrer.Text = "Enregistrer";
             this.BouttonEnregistrer.UseVisualStyleBackColor = false;
             // 
@@ -246,7 +259,7 @@
             this.SearchBar.Location = new System.Drawing.Point(8, 10);
             this.SearchBar.Name = "SearchBar";
             this.SearchBar.Size = new System.Drawing.Size(303, 25);
-            this.SearchBar.TabIndex = 11;
+            this.SearchBar.TabIndex = 1;
             this.SearchBar.Tag = "";
             this.SearchBar.TextChanged += new System.EventHandler(this.SearchBar_TextChanged);
             // 
@@ -575,5 +588,6 @@
         private System.Windows.Forms.TextBox SearchBarBook;
         private System.Windows.Forms.ListBox listBox1;
         private System.Windows.Forms.ListBox listBoxAdherent;
+        private System.Windows.Forms.Button buttonTESTE;
     }
 }

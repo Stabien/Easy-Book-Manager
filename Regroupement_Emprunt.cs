@@ -21,21 +21,22 @@ namespace Easy_Book_Manager
         //Future Commande SQL
         SqlCommand Lecture = null;
         SqlCommand AdherentCommand = null;
+        SqlCommand COMMANDTESTE = null;
         List<string> listeNom = new List<string>();
-
-
+        List<object> ListeTeste = new List<object>();
+        List<string> ListeTesteNom = new List<string>();
+        string ObjetSelectionner;
         public Regroupement_Emprunt()
         {
             InitializeComponent();
-            Base();          
-
+            Base();
+            Remplissage();
 
 
         }
         private void Base()
         {
 
-            object[] Dynamique = { };
             
             try
             {
@@ -56,7 +57,7 @@ namespace Easy_Book_Manager
                     );
                 AdherentCommand = new SqlCommand
                   (
-                        "Select Nom from Adherents", dbConn
+                        "Select Nom, id from Adherents", dbConn
                    );
                 //Demarre le Lecture des requete SQL
 
@@ -83,7 +84,7 @@ namespace Easy_Book_Manager
                 {
                     //Remplis la liste des adhérents
 
-                    listBoxAdherent.Items.Add(reader["Nom"]);
+                    listBoxAdherent.Items.Add(reader["Nom"] + reader["id"].ToString());
                     listeNom.Add(reader["Nom"].ToString());
                 }
             }
@@ -107,19 +108,28 @@ namespace Easy_Book_Manager
                 if (dbConn != null)
                     dbConn.Close();
             }
+            string TESTE = listBoxAdherent.GetItemText(listBoxAdherent.SelectedItem);
         }
 
+
+        //--------------------Barre de recherche--------------------//
         private void SearchBar_TextChanged(object sender, EventArgs e)
         {
+            //Stock dans une string ce qui est mis dans la barre de recherche
             string filtre = SearchBar.Text;
+            //Nettoie la listeBox à chaque fois que la barre de recherche change
             listBoxAdherent.Items.Clear();
+            //Fait le tour de la list
             foreach (string str in listeNom)
             {
+                //Fait une vérification de la longueur de la recherche
                 if (filtre.Length <= str.Length)
                 {
                     string deb = str.Substring(0, filtre.Length);
+                    //Vérifie que les données de la list correspondent à la barre de recherche + met tout en minuscule
                     if (deb.ToLower() == filtre.ToLower())
                     {
+                        //Si la barre de recherche correspond à un bon nom, l'affiche dans la Listbox
                         listBoxAdherent.Items.Add(str);
                     }
                 }
@@ -127,10 +137,46 @@ namespace Easy_Book_Manager
             }
 
 
-
         }
 
+        private void Remplissage()
+        {
+            string connStr = @"Data Source=MSI\SQLEXPRESS;Initial Catalog=Gestion_Biblio;Integrated Security=True";
+            dbConn = new SqlConnection(connStr);
+            dbConn.Open();
 
+
+            COMMANDTESTE = new SqlCommand
+            (
+                 "Select id, Nom from Adherents", dbConn
+            );
+            reader = COMMANDTESTE.ExecuteReader();
+
+
+            while (reader.Read())
+            {
+                //Recupère le nom + l'id
+                ListeTeste.Add(reader["id"]);
+                ListeTesteNom.Add(reader["Nom"].ToString());
+
+            }
+            if (reader != null)
+                reader.Close();
+            if (dbConn != null)
+                dbConn.Close();
+        }
+        //--------------------S'active dès qu'un élément est séléctionner dans la ListboxAdherent--------------------//
+        private void listBoxAdherent_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string ObjetSelectionner = listBoxAdherent.GetItemText(listBoxAdherent.SelectedItem);
+            int Resultat = 0;
+
+
+
+
+
+
+        }
 
 
 
