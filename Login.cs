@@ -27,8 +27,9 @@ namespace Easy_Book_Manager
                 SqlConnection conn = new SqlConnection(connString);
                 conn.Open();
 
-                // Hashing password width sha256 
+                // Hashing password width SHA256 
                 string hashedPassword = this.hashPassword(textBoxMDP.Text);
+                
                 // Create request
                 SqlCommand command = new SqlCommand($"SELECT id FROM Employes WHERE Login = '{textBoxNom.Text}' AND Password = '{hashedPassword}'", conn);
                 
