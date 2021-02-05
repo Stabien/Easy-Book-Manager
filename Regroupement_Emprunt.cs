@@ -21,16 +21,17 @@ namespace Easy_Book_Manager
         //Future Commande SQL
         SqlCommand Lecture = null;
         SqlCommand AdherentCommand = null;
-        SqlCommand COMMANDTESTE = null;
+        SqlCommand RecuperationDonnees = null;
         List<string> listeNom = new List<string>();
         List<object> ListeTeste = new List<object>();
         List<string> ListeTesteNom = new List<string>();
         string ObjetSelectionner;
+        string Taillede;
         public Regroupement_Emprunt()
         {
             InitializeComponent();
             Base();
-            Remplissage();
+
 
 
         }
@@ -84,8 +85,8 @@ namespace Easy_Book_Manager
                 {
                     //Remplis la liste des adhérents
 
-                    listBoxAdherent.Items.Add(reader["Nom"] + " " +  reader["id"].ToString());
-                    listeNom.Add(reader["Nom"].ToString());
+                    listBoxAdherent.Items.Add(reader["id"] + " " + reader["Nom"]);
+                    listeNom.Add(reader["id"] + " " + reader["Nom"]);
                 }
             }
             //Récupere les erreurs
@@ -108,7 +109,7 @@ namespace Easy_Book_Manager
                 if (dbConn != null)
                     dbConn.Close();
             }
-            string TESTE = listBoxAdherent.GetItemText(listBoxAdherent.SelectedItem);
+
         }
 
 
@@ -119,6 +120,7 @@ namespace Easy_Book_Manager
             string filtre = SearchBar.Text;
             //Nettoie la listeBox à chaque fois que la barre de recherche change
             listBoxAdherent.Items.Clear();
+            Taillede = Longueur(ObjetSelectionner);
             //Fait le tour de la list
             foreach (string str in listeNom)
             {
@@ -133,53 +135,40 @@ namespace Easy_Book_Manager
                         listBoxAdherent.Items.Add(str);
                     }
                 }
-                
             }
 
 
         }
 
-        private void Remplissage()
-        {
-            string connStr = @"Data Source=MSI\SQLEXPRESS;Initial Catalog=Gestion_Biblio;Integrated Security=True";
-            dbConn = new SqlConnection(connStr);
-            dbConn.Open();
-
-
-            COMMANDTESTE = new SqlCommand
-            (
-                 "Select id, Nom from Adherents", dbConn
-            );
-            reader = COMMANDTESTE.ExecuteReader();
-
-
-            while (reader.Read())
-            {
-                //Recupère le nom + l'id
-                ListeTeste.Add(reader["id"]);
-                ListeTesteNom.Add(reader["Nom"].ToString());
-
-            }
-            if (reader != null)
-                reader.Close();
-            if (dbConn != null)
-                dbConn.Close();
-        }
         //--------------------S'active dès qu'un élément est séléctionner dans la ListboxAdherent--------------------//
         private void listBoxAdherent_SelectedIndexChanged(object sender, EventArgs e)
         {
-            //NETTOYAGE DE TOUT LES ELEMENTS 
+            //Remet tout les éléments au texte de base// 
+            IdAdherent.Text = "ID";
+            NomAdherent.Text = "Nom Adhérent";
+            AdresseAdherent.Text = "Adresse";
+            PrenomAdherent.Text = "Prénom Adhérent";
+            TelephoneAdherent.Text = "Telephone Adhérent";
 
+            try
+            {
+                //Permet de récuperer l'item séléctionner dans la ListboxAdhérent//
+                ObjetSelectionner = listBoxAdherent.GetItemText(listBoxAdherent.SelectedItem);
+                //Fait appel à la fonction isNumeric qui permet de récuperer 
+                string Resultat = isNumeric(ObjetSelectionner);
+                IdAdherent.Text = Resultat;
+                dbConn.Open();
+                RecuperationDonnees = new SqlCommand
+                    (
+                    $"Select * from Adherents where id = {Resultat}"
 
-
-
-
-
-
-            string ObjetSelectionner = listBoxAdherent.GetItemText(listBoxAdherent.SelectedItem);
-            string Resultat = isNumeric(ObjetSelectionner);
-            MessageBox.Show(Resultat);
-
+                    );
+                dbConn.Close();
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
 
 
 
@@ -187,6 +176,18 @@ namespace Easy_Book_Manager
         }
         //--------------------Permet de récuperer l'id dans le nom des adhérents--------------------//
         private string isNumeric(string value)
+        {
+            string res = "";
+            foreach (char element in value)
+            {
+                if (Char.IsDigit(element) == true)
+                {
+                    res += element;
+                }
+            }
+            return res;
+        }
+        private string Longueur(string value)
         {
             string res = "";
             foreach (char element in value)

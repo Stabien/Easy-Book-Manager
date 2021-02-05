@@ -31,7 +31,6 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Regroupement_Emprunt));
             this.TabEmprunt = new System.Windows.Forms.TabControl();
             this.tabPageAdherentEmprunt = new System.Windows.Forms.TabPage();
-            this.buttonTESTE = new System.Windows.Forms.Button();
             this.listBoxAdherent = new System.Windows.Forms.ListBox();
             this.EtatEmprunt = new System.Windows.Forms.ComboBox();
             this.MoisEmprunt = new System.Windows.Forms.ComboBox();
@@ -92,7 +91,6 @@
             // 
             // tabPageAdherentEmprunt
             // 
-            this.tabPageAdherentEmprunt.Controls.Add(this.buttonTESTE);
             this.tabPageAdherentEmprunt.Controls.Add(this.listBoxAdherent);
             this.tabPageAdherentEmprunt.Controls.Add(this.EtatEmprunt);
             this.tabPageAdherentEmprunt.Controls.Add(this.MoisEmprunt);
@@ -109,15 +107,6 @@
             this.tabPageAdherentEmprunt.TabIndex = 0;
             this.tabPageAdherentEmprunt.Text = "Gerer Emprunt";
             this.tabPageAdherentEmprunt.UseVisualStyleBackColor = true;
-            // 
-            // buttonTESTE
-            // 
-            this.buttonTESTE.Location = new System.Drawing.Point(356, 385);
-            this.buttonTESTE.Name = "buttonTESTE";
-            this.buttonTESTE.Size = new System.Drawing.Size(75, 23);
-            this.buttonTESTE.TabIndex = 14;
-            this.buttonTESTE.Text = "button1";
-            this.buttonTESTE.UseVisualStyleBackColor = true;
             // 
             // listBoxAdherent
             // 
@@ -590,6 +579,5 @@
         private System.Windows.Forms.TextBox SearchBarBook;
         private System.Windows.Forms.ListBox listBox1;
         private System.Windows.Forms.ListBox listBoxAdherent;
-        private System.Windows.Forms.Button buttonTESTE;
     }
 }
