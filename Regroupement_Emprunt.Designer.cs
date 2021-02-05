@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Regroupement_Emprunt));
             this.TabEmprunt = new System.Windows.Forms.TabControl();
             this.tabPageAdherentEmprunt = new System.Windows.Forms.TabPage();
             this.buttonTESTE = new System.Windows.Forms.Button();
@@ -530,6 +531,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(854, 592);
             this.Controls.Add(this.TabEmprunt);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Regroupement_Emprunt";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Regroupementform";

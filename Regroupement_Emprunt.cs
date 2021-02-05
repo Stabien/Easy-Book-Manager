@@ -84,7 +84,7 @@ namespace Easy_Book_Manager
                 {
                     //Remplis la liste des adhérents
 
-                    listBoxAdherent.Items.Add(reader["Nom"] + reader["id"].ToString());
+                    listBoxAdherent.Items.Add(reader["Nom"] + " " +  reader["id"].ToString());
                     listeNom.Add(reader["Nom"].ToString());
                 }
             }
@@ -168,17 +168,36 @@ namespace Easy_Book_Manager
         //--------------------S'active dès qu'un élément est séléctionner dans la ListboxAdherent--------------------//
         private void listBoxAdherent_SelectedIndexChanged(object sender, EventArgs e)
         {
-            string ObjetSelectionner = listBoxAdherent.GetItemText(listBoxAdherent.SelectedItem);
-            int Resultat = 0;
+            //NETTOYAGE DE TOUT LES ELEMENTS 
 
+
+
+
+
+
+
+            string ObjetSelectionner = listBoxAdherent.GetItemText(listBoxAdherent.SelectedItem);
+            string Resultat = isNumeric(ObjetSelectionner);
+            MessageBox.Show(Resultat);
 
 
 
 
 
         }
-
-
+        //--------------------Permet de récuperer l'id dans le nom des adhérents--------------------//
+        private string isNumeric(string value)
+        {
+            string res = "";
+            foreach (char element in value)
+            {
+                if (Char.IsDigit(element) == true)
+                {
+                    res += element;
+                }
+            }
+            return res;
+        }
 
 
 
