@@ -86,19 +86,22 @@ namespace Easy_Book_Manager
                 {
                     //Remplis la liste des adhérents
 
-                    listBoxAdherent.Items.Add(reader["Nom"] + " " + reader["id"]);
-                    listeNom.Add(reader["Nom"] + " " + reader["id"]);
+                    listBoxAdherent.Items.Add(reader["id"] + " " + reader["Nom"]);
+                    listeNom.Add(reader["id"] + " " + reader["Nom"]);
                     //reader["id"]  reader["Nom"]
                 }
 
-                
-                
-                
-                
-               /* if (MoisEmprunt.Items.ToString() == "Fevrier")
-                {
 
-                }*/
+                //Remplis la liste jour pas défault
+                for (int i = 0; i < 32; i++)
+                {
+                    JourEmprunt.Items.Add(i);
+                }
+
+                /* if (MoisEmprunt.Items.ToString() == "Fevrier")
+                 {
+
+                 }*/
 
             }//JourEmprunt
             //Récupere les erreurs
@@ -228,21 +231,78 @@ namespace Easy_Book_Manager
         {
 
             //Permet de récuperer le mois séléctionner de la comboBox
-            Mois = MoisEmprunt.GetItemText(MoisEmprunt.SelectedItem);
 
-            List<int> FevrierJour = new List<int>();
-            for (int i = 0; i < 30; i++)
-            {
-                FevrierJour[i] = i;
-            }
-            
+            Mois = MoisEmprunt.GetItemText(MoisEmprunt.SelectedItem);
+            //Remplis le nombre de jour dans la comboBox jour en fonction du mois
             switch (Mois)
             {
+                
                 case "Fevrier":
-                    ;
+                    //Permet d'enlever le texte de la combo box jour au cas ou l'utilisateur aurait rentrer le jour avant le mois
+                    JourEmprunt.Text = "Jour";
+                    //Nettoie la comboBox jour pour ne pas remplir avec des nombre déjà existant
+                    JourEmprunt.Items.Clear();
+                    //Remplis la combBox jour en fonction du mois séléctionner
+                    for (int i = 0; i < 29; i++)
+                        {
+                        JourEmprunt.Items.Add(i);
+                        }
                     break;
+                case "Avril":
+                    //Permet d'enlever le texte de la combo box jour au cas ou l'utilisateur aurait rentrer le jour avant le mois
+                    JourEmprunt.Text = "Jour";
+                    //Nettoie la comboBox jour pour ne pas remplir avec des nombre déjà existant
+                    JourEmprunt.Items.Clear();
+                    //Remplis la combBox jour en fonction du mois séléctionner
+                    for (int i = 0; i < 31; i++)
+                    {
+                        JourEmprunt.Items.Add(i);
+                    }
+                    break;
+                case "Juin":
+                    //Permet d'enlever le texte de la combo box jour au cas ou l'utilisateur aurait rentrer le jour avant le mois
+                    JourEmprunt.Text = "Jour";
+                    //Nettoie la comboBox jour pour ne pas remplir avec des nombre déjà existant
+                    JourEmprunt.Items.Clear();
+                    //Remplis la combBox jour en fonction du mois séléctionner
+                    for (int i = 0; i < 31; i++)
+                    {
+                        JourEmprunt.Items.Add(i);
+                    }
+                    break;
+                case "Septembre":
+                    //Permet d'enlever le texte de la combo box jour au cas ou l'utilisateur aurait rentrer le jour avant le mois
+                    JourEmprunt.Text = "Jour";
+                    //Nettoie la comboBox jour pour ne pas remplir avec des nombre déjà existant
+                    JourEmprunt.Items.Clear();
+                    //Remplis la combBox jour en fonction du mois séléctionner
+                    for (int i = 0; i < 31; i++)
+                    {
+                        JourEmprunt.Items.Add(i);
+                    }
+                    break;
+                case "Novembre":
+                    //Permet d'enlever le texte de la combo box jour au cas ou l'utilisateur aurait rentrer le jour avant le mois
+                    JourEmprunt.Text = "Jour";
+                    //Nettoie la comboBox jour pour ne pas remplir avec des nombre déjà existant
+                    JourEmprunt.Items.Clear();
+                    //Remplis la combBox jour en fonction du mois séléctionner
+                    for (int i = 0; i < 31; i++)
+                    {
+                        JourEmprunt.Items.Add(i);
+                    }
+                    break;
+
                 default:
-                    MessageBox.Show("Aucun séléctionner");
+                    //Permet d'enlever le texte de la combo box jour au cas ou l'utilisateur aurait rentrer le jour avant le mois
+                    JourEmprunt.Text = "Jour";
+                    //Nettoie la comboBox jour pour ne pas remplir avec des nombre déjà existant
+                    JourEmprunt.Items.Clear();
+                    //Remplis la combBox jour en fonction du mois séléctionner
+                    for (int i = 0; i < 32; i++)
+                    {
+                        JourEmprunt.Items.Add(i);
+                    }
                     break;
 
 
@@ -250,29 +310,6 @@ namespace Easy_Book_Manager
             }
             
         }
-
-
-
-
-
-
-        /*
-        private void ButtonRechercherAd_Click(object sender, EventArgs e)
-        {
-            SqlConnection dbConn = null;
-            string connStr = @"Data Source=MSI\SQLEXPRESS;Initial Catalog=Gestion_Biblio;Integrated Security=True";
-            dbConn = new SqlConnection(connStr);
-            SqlCommand Lecture = null;
-            dbConn.Open();
-
-                Lecture = new SqlCommand
-                 (
-                       $"Select Nom from Adherents where Nom like '{SearchBar.Text}%'", dbConn
-                 );
-            //Nettoie toute la liste pour ensuite afficher le résultat de la recherche 
-            listBoxAdherent.Items.Clear();
-            
-        }*/
     }
  }
     

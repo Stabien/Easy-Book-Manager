@@ -136,7 +136,17 @@
             this.MoisEmprunt.FormattingEnabled = true;
             this.MoisEmprunt.Items.AddRange(new object[] {
             "Janvier",
-            "Fevrier"});
+            "Fevrier",
+            "Mars",
+            "Avril",
+            "Mai",
+            "Juin",
+            "Juillet",
+            "Aout",
+            "Septembre",
+            "Octobre",
+            "Novembre",
+            "Décembre"});
             this.MoisEmprunt.Location = new System.Drawing.Point(533, 289);
             this.MoisEmprunt.Name = "MoisEmprunt";
             this.MoisEmprunt.Size = new System.Drawing.Size(121, 25);
@@ -148,6 +158,11 @@
             // 
             this.AnneeEmprunt.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.AnneeEmprunt.FormattingEnabled = true;
+            this.AnneeEmprunt.Items.AddRange(new object[] {
+            "2021",
+            "2022",
+            "2023",
+            "2024"});
             this.AnneeEmprunt.Location = new System.Drawing.Point(680, 289);
             this.AnneeEmprunt.Name = "AnneeEmprunt";
             this.AnneeEmprunt.Size = new System.Drawing.Size(121, 25);
