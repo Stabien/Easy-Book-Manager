@@ -16,6 +16,7 @@ namespace Easy_Book_Manager
     {
         //Future lecture données
         SqlDataReader reader = null;
+        SqlDataReader InfoUtilisateur = null;
         //Future connexion
         SqlConnection dbConn = null;
         //Future Commande SQL
@@ -26,7 +27,7 @@ namespace Easy_Book_Manager
         List<object> ListeTeste = new List<object>();
         List<string> ListeTesteNom = new List<string>();
         string ObjetSelectionner;
-        string Taillede;
+        string Mois;
         public Regroupement_Emprunt()
         {
             InitializeComponent();
@@ -85,10 +86,21 @@ namespace Easy_Book_Manager
                 {
                     //Remplis la liste des adhérents
 
-                    listBoxAdherent.Items.Add(reader["id"] + " " + reader["Nom"]);
-                    listeNom.Add(reader["id"] + " " + reader["Nom"]);
+                    listBoxAdherent.Items.Add(reader["Nom"] + " " + reader["id"]);
+                    listeNom.Add(reader["Nom"] + " " + reader["id"]);
+                    //reader["id"]  reader["Nom"]
                 }
-            }
+
+                
+                
+                
+                
+               /* if (MoisEmprunt.Items.ToString() == "Fevrier")
+                {
+
+                }*/
+
+            }//JourEmprunt
             //Récupere les erreurs
             catch (SqlException ex)
             {
@@ -117,21 +129,29 @@ namespace Easy_Book_Manager
         private void SearchBar_TextChanged(object sender, EventArgs e)
         {
             //Stock dans une string ce qui est mis dans la barre de recherche
+
             string filtre = SearchBar.Text;
+
             //Nettoie la listeBox à chaque fois que la barre de recherche change
+
             listBoxAdherent.Items.Clear();
-            Taillede = Longueur(ObjetSelectionner);
+
             //Fait le tour de la list
+
             foreach (string str in listeNom)
             {
                 //Fait une vérification de la longueur de la recherche
+
                 if (filtre.Length <= str.Length)
                 {
                     string deb = str.Substring(0, filtre.Length);
+
                     //Vérifie que les données de la list correspondent à la barre de recherche + met tout en minuscule
+
                     if (deb.ToLower() == filtre.ToLower())
                     {
                         //Si la barre de recherche correspond à un bon nom, l'affiche dans la Listbox
+
                         listBoxAdherent.Items.Add(str);
                     }
                 }
@@ -150,19 +170,35 @@ namespace Easy_Book_Manager
             PrenomAdherent.Text = "Prénom Adhérent";
             TelephoneAdherent.Text = "Telephone Adhérent";
 
+
             try
             {
                 //Permet de récuperer l'item séléctionner dans la ListboxAdhérent//
+
                 ObjetSelectionner = listBoxAdherent.GetItemText(listBoxAdherent.SelectedItem);
-                //Fait appel à la fonction isNumeric qui permet de récuperer 
+
+                //Fait appel à la fonction isNumeric qui permet de récuperer l'id du nom selectionner//
+
                 string Resultat = isNumeric(ObjetSelectionner);
+
                 IdAdherent.Text = Resultat;
                 dbConn.Open();
                 RecuperationDonnees = new SqlCommand
                     (
-                    $"Select * from Adherents where id = {Resultat}"
+                    $"Select * from Adherents where id = {Resultat}", dbConn
 
                     );
+
+                InfoUtilisateur = RecuperationDonnees.ExecuteReader();
+                while (InfoUtilisateur.Read())
+                {
+                    NomAdherent.Text = InfoUtilisateur["Nom"].ToString();
+                    AdresseAdherent.Text = InfoUtilisateur["Adresse"].ToString();
+                    PrenomAdherent.Text = InfoUtilisateur["Prenom"].ToString();
+                    TelephoneAdherent.Text = InfoUtilisateur["Telephone"].ToString();
+                }
+                InfoUtilisateur.Close();
+
                 dbConn.Close();
             }
             catch(Exception ex)
@@ -187,20 +223,33 @@ namespace Easy_Book_Manager
             }
             return res;
         }
-        private string Longueur(string value)
+
+        private void MoisEmprunt_SelectedIndexChanged(object sender, EventArgs e)
         {
-            string res = "";
-            foreach (char element in value)
+
+            //Permet de récuperer le mois séléctionner de la comboBox
+            Mois = MoisEmprunt.GetItemText(MoisEmprunt.SelectedItem);
+
+            List<int> FevrierJour = new List<int>();
+            for (int i = 0; i < 30; i++)
             {
-                if (Char.IsDigit(element) == true)
-                {
-                    res += element;
-                }
+                FevrierJour[i] = i;
             }
-            return res;
+            
+            switch (Mois)
+            {
+                case "Fevrier":
+                    ;
+                    break;
+                default:
+                    MessageBox.Show("Aucun séléctionner");
+                    break;
+
+
+
+            }
+            
         }
-
-
 
 
 

@@ -134,11 +134,15 @@
             // 
             this.MoisEmprunt.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.MoisEmprunt.FormattingEnabled = true;
+            this.MoisEmprunt.Items.AddRange(new object[] {
+            "Janvier",
+            "Fevrier"});
             this.MoisEmprunt.Location = new System.Drawing.Point(533, 289);
             this.MoisEmprunt.Name = "MoisEmprunt";
             this.MoisEmprunt.Size = new System.Drawing.Size(121, 25);
             this.MoisEmprunt.TabIndex = 5;
             this.MoisEmprunt.Text = "Mois";
+            this.MoisEmprunt.SelectedIndexChanged += new System.EventHandler(this.MoisEmprunt_SelectedIndexChanged);
             // 
             // AnneeEmprunt
             // 
