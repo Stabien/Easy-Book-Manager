@@ -59,7 +59,7 @@ namespace Easy_Book_Manager
                     );
                 AdherentCommand = new SqlCommand
                   (
-                        "Select Nom, id from Adherents", dbConn
+                        "Select Nom, id, Prenom from Adherents", dbConn
                    );
                 //Demarre le Lecture des requete SQL
 
@@ -71,8 +71,8 @@ namespace Easy_Book_Manager
                 {
                     //Remplis la liste des Livres
 
-                    ListeLivre.Items.Add(reader["Titre"]);
-                    
+                    ListeLivreEmprunter.Items.Add(reader["Titre"]);
+
                 }
                 //Vérifie si le reader est ouvert ou fermer puis le ferme²
 
@@ -86,7 +86,7 @@ namespace Easy_Book_Manager
                 {
                     //Remplis la liste des adhérents
 
-                    listBoxAdherent.Items.Add(reader["id"] + " " + reader["Nom"]);
+                    listBoxAdherent.Items.Add(reader["id"] + " " + reader["Nom"] + " " + reader["Prenom"]);
                     listeNom.Add(reader["id"] + " " + reader["Nom"]);
                     //reader["id"]  reader["Nom"]
                 }
@@ -162,6 +162,12 @@ namespace Easy_Book_Manager
 
 
         }
+        //----------------------------------------------------------//
+
+
+
+
+
 
         //--------------------S'active dès qu'un élément est séléctionner dans la ListboxAdherent--------------------//
         private void listBoxAdherent_SelectedIndexChanged(object sender, EventArgs e)
@@ -188,11 +194,13 @@ namespace Easy_Book_Manager
                 dbConn.Open();
                 RecuperationDonnees = new SqlCommand
                     (
+                    //Récupère les info d'un utilisateur en fonction de l'id selectionner dans la ListBox Adherent
                     $"Select * from Adherents where id = {Resultat}", dbConn
 
                     );
 
                 InfoUtilisateur = RecuperationDonnees.ExecuteReader();
+                //Affiche le information de l'adhérent selectionner 
                 while (InfoUtilisateur.Read())
                 {
                     NomAdherent.Text = InfoUtilisateur["Nom"].ToString();
@@ -209,10 +217,14 @@ namespace Easy_Book_Manager
                 MessageBox.Show(ex.Message);
             }
 
-
-
-
         }
+        //-----------------------------------------------------------------------------------------------------------//
+
+
+
+
+
+
         //--------------------Permet de récuperer l'id dans le nom des adhérents--------------------//
         private string isNumeric(string value)
         {
@@ -226,7 +238,14 @@ namespace Easy_Book_Manager
             }
             return res;
         }
+        //-----------------------------------------------------------------------------------------//
 
+
+
+
+
+
+        //--------------------Change les jours de la ComboBox jour en fonction du mois selectionner--------------------//
         private void MoisEmprunt_SelectedIndexChanged(object sender, EventArgs e)
         {
 
@@ -242,7 +261,7 @@ namespace Easy_Book_Manager
                     JourEmprunt.Text = "Jour";
                     //Nettoie la comboBox jour pour ne pas remplir avec des nombre déjà existant
                     JourEmprunt.Items.Clear();
-                    //Remplis la combBox jour en fonction du mois séléctionner
+                    //Remplis la combBox jour en fonction du mois selectionner
                     for (int i = 0; i < 29; i++)
                         {
                         JourEmprunt.Items.Add(i);
@@ -253,7 +272,7 @@ namespace Easy_Book_Manager
                     JourEmprunt.Text = "Jour";
                     //Nettoie la comboBox jour pour ne pas remplir avec des nombre déjà existant
                     JourEmprunt.Items.Clear();
-                    //Remplis la combBox jour en fonction du mois séléctionner
+                    //Remplis la combBox jour en fonction du mois selectionner
                     for (int i = 0; i < 31; i++)
                     {
                         JourEmprunt.Items.Add(i);
@@ -264,7 +283,7 @@ namespace Easy_Book_Manager
                     JourEmprunt.Text = "Jour";
                     //Nettoie la comboBox jour pour ne pas remplir avec des nombre déjà existant
                     JourEmprunt.Items.Clear();
-                    //Remplis la combBox jour en fonction du mois séléctionner
+                    //Remplis la combBox jour en fonction du mois selectionner
                     for (int i = 0; i < 31; i++)
                     {
                         JourEmprunt.Items.Add(i);
@@ -275,7 +294,7 @@ namespace Easy_Book_Manager
                     JourEmprunt.Text = "Jour";
                     //Nettoie la comboBox jour pour ne pas remplir avec des nombre déjà existant
                     JourEmprunt.Items.Clear();
-                    //Remplis la combBox jour en fonction du mois séléctionner
+                    //Remplis la combBox jour en fonction du mois selectionner
                     for (int i = 0; i < 31; i++)
                     {
                         JourEmprunt.Items.Add(i);
@@ -286,7 +305,7 @@ namespace Easy_Book_Manager
                     JourEmprunt.Text = "Jour";
                     //Nettoie la comboBox jour pour ne pas remplir avec des nombre déjà existant
                     JourEmprunt.Items.Clear();
-                    //Remplis la combBox jour en fonction du mois séléctionner
+                    //Remplis la combBox jour en fonction du mois selectionner
                     for (int i = 0; i < 31; i++)
                     {
                         JourEmprunt.Items.Add(i);
@@ -298,7 +317,7 @@ namespace Easy_Book_Manager
                     JourEmprunt.Text = "Jour";
                     //Nettoie la comboBox jour pour ne pas remplir avec des nombre déjà existant
                     JourEmprunt.Items.Clear();
-                    //Remplis la combBox jour en fonction du mois séléctionner
+                    //Remplis la combBox jour en fonction du mois selectionner
                     for (int i = 0; i < 32; i++)
                     {
                         JourEmprunt.Items.Add(i);
@@ -310,8 +329,14 @@ namespace Easy_Book_Manager
             }
             
         }
+        //-------------------------------------------------------------------------------------------------------------//
     }
- }
+}
     
 //² Si le reader n'est pas fermer il ne pourra pas remplir la deuxième liste
 
+
+
+
+//Rajouter Date de rendu prévue
+//Rajouter date ou le livre a été emprunter

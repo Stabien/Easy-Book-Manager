@@ -36,7 +36,6 @@
             this.MoisEmprunt = new System.Windows.Forms.ComboBox();
             this.AnneeEmprunt = new System.Windows.Forms.ComboBox();
             this.JourEmprunt = new System.Windows.Forms.ComboBox();
-            this.ListeLivre = new System.Windows.Forms.ListBox();
             this.InfosAdhérents = new System.Windows.Forms.Panel();
             this.AdresseAdherent = new System.Windows.Forms.Label();
             this.TelephoneAdherent = new System.Windows.Forms.Label();
@@ -69,6 +68,11 @@
             this.ButtonRechercherLivre = new System.Windows.Forms.Button();
             this.SearchBarBook = new System.Windows.Forms.TextBox();
             this.listBox1 = new System.Windows.Forms.ListBox();
+            this.ListeLivreEmprunter = new System.Windows.Forms.CheckedListBox();
+            this.DateEmprunt = new System.Windows.Forms.Label();
+            this.DateRendu = new System.Windows.Forms.Label();
+            this.labelDateEmprunt = new System.Windows.Forms.Label();
+            this.labelDateRetourPrevue = new System.Windows.Forms.Label();
             this.TabEmprunt.SuspendLayout();
             this.tabPageAdherentEmprunt.SuspendLayout();
             this.InfosAdhérents.SuspendLayout();
@@ -91,12 +95,16 @@
             // 
             // tabPageAdherentEmprunt
             // 
+            this.tabPageAdherentEmprunt.Controls.Add(this.labelDateRetourPrevue);
+            this.tabPageAdherentEmprunt.Controls.Add(this.labelDateEmprunt);
+            this.tabPageAdherentEmprunt.Controls.Add(this.DateRendu);
+            this.tabPageAdherentEmprunt.Controls.Add(this.DateEmprunt);
+            this.tabPageAdherentEmprunt.Controls.Add(this.ListeLivreEmprunter);
             this.tabPageAdherentEmprunt.Controls.Add(this.listBoxAdherent);
             this.tabPageAdherentEmprunt.Controls.Add(this.EtatEmprunt);
             this.tabPageAdherentEmprunt.Controls.Add(this.MoisEmprunt);
             this.tabPageAdherentEmprunt.Controls.Add(this.AnneeEmprunt);
             this.tabPageAdherentEmprunt.Controls.Add(this.JourEmprunt);
-            this.tabPageAdherentEmprunt.Controls.Add(this.ListeLivre);
             this.tabPageAdherentEmprunt.Controls.Add(this.InfosAdhérents);
             this.tabPageAdherentEmprunt.Controls.Add(this.BouttonEnregistrer);
             this.tabPageAdherentEmprunt.Controls.Add(this.SearchBar);
@@ -147,7 +155,7 @@
             "Octobre",
             "Novembre",
             "Décembre"});
-            this.MoisEmprunt.Location = new System.Drawing.Point(533, 289);
+            this.MoisEmprunt.Location = new System.Drawing.Point(533, 292);
             this.MoisEmprunt.Name = "MoisEmprunt";
             this.MoisEmprunt.Size = new System.Drawing.Size(121, 25);
             this.MoisEmprunt.TabIndex = 5;
@@ -163,7 +171,7 @@
             "2022",
             "2023",
             "2024"});
-            this.AnneeEmprunt.Location = new System.Drawing.Point(680, 289);
+            this.AnneeEmprunt.Location = new System.Drawing.Point(680, 292);
             this.AnneeEmprunt.Name = "AnneeEmprunt";
             this.AnneeEmprunt.Size = new System.Drawing.Size(121, 25);
             this.AnneeEmprunt.TabIndex = 6;
@@ -173,24 +181,15 @@
             // 
             this.JourEmprunt.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.JourEmprunt.FormattingEnabled = true;
-            this.JourEmprunt.Location = new System.Drawing.Point(386, 289);
+            this.JourEmprunt.Location = new System.Drawing.Point(386, 292);
             this.JourEmprunt.Name = "JourEmprunt";
             this.JourEmprunt.Size = new System.Drawing.Size(121, 25);
             this.JourEmprunt.TabIndex = 4;
             this.JourEmprunt.Text = "Jour";
             // 
-            // ListeLivre
-            // 
-            this.ListeLivre.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ListeLivre.FormattingEnabled = true;
-            this.ListeLivre.ItemHeight = 17;
-            this.ListeLivre.Location = new System.Drawing.Point(386, 144);
-            this.ListeLivre.Name = "ListeLivre";
-            this.ListeLivre.Size = new System.Drawing.Size(415, 89);
-            this.ListeLivre.TabIndex = 3;
-            // 
             // InfosAdhérents
             // 
+            this.InfosAdhérents.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.InfosAdhérents.Controls.Add(this.AdresseAdherent);
             this.InfosAdhérents.Controls.Add(this.TelephoneAdherent);
             this.InfosAdhérents.Controls.Add(this.NomAdherent);
@@ -533,6 +532,55 @@
             this.listBox1.Size = new System.Drawing.Size(303, 480);
             this.listBox1.TabIndex = 27;
             // 
+            // ListeLivreEmprunter
+            // 
+            this.ListeLivreEmprunter.Font = new System.Drawing.Font("Segoe UI", 9.75F);
+            this.ListeLivreEmprunter.FormattingEnabled = true;
+            this.ListeLivreEmprunter.Location = new System.Drawing.Point(386, 123);
+            this.ListeLivreEmprunter.Name = "ListeLivreEmprunter";
+            this.ListeLivreEmprunter.Size = new System.Drawing.Size(415, 84);
+            this.ListeLivreEmprunter.TabIndex = 14;
+            // 
+            // DateEmprunt
+            // 
+            this.DateEmprunt.AutoSize = true;
+            this.DateEmprunt.Font = new System.Drawing.Font("Segoe UI", 9.75F);
+            this.DateEmprunt.Location = new System.Drawing.Point(383, 243);
+            this.DateEmprunt.Name = "DateEmprunt";
+            this.DateEmprunt.Size = new System.Drawing.Size(106, 17);
+            this.DateEmprunt.TabIndex = 15;
+            this.DateEmprunt.Text = "Date d\'emprunt :";
+            // 
+            // DateRendu
+            // 
+            this.DateRendu.AutoSize = true;
+            this.DateRendu.Font = new System.Drawing.Font("Segoe UI", 9.75F);
+            this.DateRendu.Location = new System.Drawing.Point(600, 243);
+            this.DateRendu.Name = "DateRendu";
+            this.DateRendu.Size = new System.Drawing.Size(126, 17);
+            this.DateRendu.TabIndex = 16;
+            this.DateRendu.Text = "Date retour prévue :";
+            // 
+            // labelDateEmprunt
+            // 
+            this.labelDateEmprunt.AutoSize = true;
+            this.labelDateEmprunt.Font = new System.Drawing.Font("Segoe UI", 9.75F);
+            this.labelDateEmprunt.Location = new System.Drawing.Point(488, 243);
+            this.labelDateEmprunt.Name = "labelDateEmprunt";
+            this.labelDateEmprunt.Size = new System.Drawing.Size(74, 17);
+            this.labelDateEmprunt.TabIndex = 17;
+            this.labelDateEmprunt.Text = "00/00/0000";
+            // 
+            // labelDateRetourPrevue
+            // 
+            this.labelDateRetourPrevue.AutoSize = true;
+            this.labelDateRetourPrevue.Font = new System.Drawing.Font("Segoe UI", 9.75F);
+            this.labelDateRetourPrevue.Location = new System.Drawing.Point(727, 243);
+            this.labelDateRetourPrevue.Name = "labelDateRetourPrevue";
+            this.labelDateRetourPrevue.Size = new System.Drawing.Size(74, 17);
+            this.labelDateRetourPrevue.TabIndex = 18;
+            this.labelDateRetourPrevue.Text = "00/00/0000";
+            // 
             // Regroupement_Emprunt
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -565,7 +613,6 @@
         private System.Windows.Forms.ComboBox MoisEmprunt;
         private System.Windows.Forms.ComboBox AnneeEmprunt;
         private System.Windows.Forms.ComboBox JourEmprunt;
-        private System.Windows.Forms.ListBox ListeLivre;
         private System.Windows.Forms.Panel InfosAdhérents;
         private System.Windows.Forms.Label AdresseAdherent;
         private System.Windows.Forms.Label TelephoneAdherent;
@@ -598,5 +645,10 @@
         private System.Windows.Forms.TextBox SearchBarBook;
         private System.Windows.Forms.ListBox listBox1;
         private System.Windows.Forms.ListBox listBoxAdherent;
+        private System.Windows.Forms.CheckedListBox ListeLivreEmprunter;
+        private System.Windows.Forms.Label DateEmprunt;
+        private System.Windows.Forms.Label labelDateRetourPrevue;
+        private System.Windows.Forms.Label labelDateEmprunt;
+        private System.Windows.Forms.Label DateRendu;
     }
 }
