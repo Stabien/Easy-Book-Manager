@@ -28,6 +28,14 @@ namespace Easy_Book_Manager
         List<string> ListeTesteNom = new List<string>();
         string ObjetSelectionner;
         string Mois;
+
+
+
+        //VARIABLE TESTE
+
+        DateTime dateRetourPrevuComp;
+
+
         public Regroupement_Emprunt()
         {
             InitializeComponent();
@@ -39,9 +47,12 @@ namespace Easy_Book_Manager
         private void Base()
         {
 
-            
+
             try
             {
+
+
+
                 //Permet la connexion à la bdd
 
                 string connStr = @"Data Source=MSI\SQLEXPRESS;Initial Catalog=Gestion_Biblio;Integrated Security=True";
@@ -53,27 +64,11 @@ namespace Easy_Book_Manager
 
                 //Création des requete SQL
 
-                Lecture = new SqlCommand
-                    (
-                        "Select Titre from Livres", dbConn
-                    );
                 AdherentCommand = new SqlCommand
                   (
                         "Select Nom, id, Prenom from Adherents", dbConn
                    );
-                //Demarre le Lecture des requete SQL
 
-                reader = Lecture.ExecuteReader();
-
-                //Boucle qui tourne tant qu'il reste des éléments dans la bdd
-
-                while (reader.Read())
-                {
-                    //Remplis la liste des Livres
-
-                    ListeLivreEmprunter.Items.Add(reader["Titre"]);
-
-                }
                 //Vérifie si le reader est ouvert ou fermer puis le ferme²
 
                 if (reader != null)
@@ -131,6 +126,7 @@ namespace Easy_Book_Manager
         //--------------------Barre de recherche--------------------//
         private void SearchBar_TextChanged(object sender, EventArgs e)
         {
+
             //Stock dans une string ce qui est mis dans la barre de recherche
 
             string filtre = SearchBar.Text;
@@ -178,6 +174,7 @@ namespace Easy_Book_Manager
             AdresseAdherent.Text = "Adresse";
             PrenomAdherent.Text = "Prénom Adhérent";
             TelephoneAdherent.Text = "Telephone Adhérent";
+            labelDateRetourPrevue.ForeColor = System.Drawing.Color.Black;
 
 
             try
@@ -208,15 +205,56 @@ namespace Easy_Book_Manager
                     PrenomAdherent.Text = InfoUtilisateur["Prenom"].ToString();
                     TelephoneAdherent.Text = InfoUtilisateur["Telephone"].ToString();
                 }
+                if (InfoUtilisateur != null)
                 InfoUtilisateur.Close();
 
+
+
+
+                //Permet d'afficher les livres emprunter par l'utilisateur dans la CheckBoxlist
+                Lecture = new SqlCommand
+                 (
+                     $"select * from Emprunt where ID_Adherents = {Resultat}", dbConn
+                  );
+                
+                //stock dans une variable dateRetourPrevuComp la date de retour prévue qui servira de comparaison dans une autre boucle
+                InfoUtilisateur = Lecture.ExecuteReader();
+                while (InfoUtilisateur.Read())
+                {
+                    //GetDateTime est sur 2 pour dire que c'est la 3ème colonne de la bdd (écrire le nom de la colonne ne fonctionne pas)
+                    dateRetourPrevuComp = InfoUtilisateur.GetDateTime(2);
+                }
+                InfoUtilisateur.Close();
+                //Permet de comparer la date d'aujourd'hui avec la date de retour prévue et de stocker tout dans un int, si int = -1 tout va bien sinon retour en retard
+                    DateTime DateAujourdhui = DateTime.Today;
+                    int comparaison = DateTime.Compare(DateAujourdhui, dateRetourPrevuComp);
+
+                InfoUtilisateur = Lecture.ExecuteReader();
+                while(InfoUtilisateur.Read())
+                {
+                    //Remplis toute les autres info telle que la date de retour prévue + la date ou l'adhérent à emprunter ces livres
+                    labelDateEmprunt.Text = InfoUtilisateur["Date_emprunt"].ToString();
+
+                    //Vérifie si la date de retour n'est pas dépasser, si la date est dépasser elle s'affichera en rouge sinon normalement
+                    if (comparaison == -1)
+                    {
+                        labelDateRetourPrevue.Text = InfoUtilisateur["Date_retour_prevu"].ToString();
+                    }
+                    else
+                    {
+                        labelDateRetourPrevue.Text = InfoUtilisateur["Date_retour_prevu"].ToString();
+                        labelDateRetourPrevue.ForeColor = System.Drawing.Color.Red;
+                    }
+                }
+                
+                if(InfoUtilisateur != null)
+                InfoUtilisateur.Close();
                 dbConn.Close();
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
-
         }
         //-----------------------------------------------------------------------------------------------------------//
 
@@ -255,7 +293,7 @@ namespace Easy_Book_Manager
             //Remplis le nombre de jour dans la comboBox jour en fonction du mois
             switch (Mois)
             {
-                
+
                 case "Fevrier":
                     //Permet d'enlever le texte de la combo box jour au cas ou l'utilisateur aurait rentrer le jour avant le mois
                     JourEmprunt.Text = "Jour";
@@ -263,9 +301,9 @@ namespace Easy_Book_Manager
                     JourEmprunt.Items.Clear();
                     //Remplis la combBox jour en fonction du mois selectionner
                     for (int i = 0; i < 29; i++)
-                        {
+                    {
                         JourEmprunt.Items.Add(i);
-                        }
+                    }
                     break;
                 case "Avril":
                     //Permet d'enlever le texte de la combo box jour au cas ou l'utilisateur aurait rentrer le jour avant le mois
@@ -327,9 +365,17 @@ namespace Easy_Book_Manager
 
 
             }
-            
+
         }
         //-------------------------------------------------------------------------------------------------------------//
+
+
+
+
+       /* DateTime DateAujourdhui = DateTime.Today;
+        int comparaison = DateTime.Compare(DateAujourdhui, )*/
+
+
     }
 }
     

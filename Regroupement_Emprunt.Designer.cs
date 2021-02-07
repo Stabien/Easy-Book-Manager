@@ -31,6 +31,11 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Regroupement_Emprunt));
             this.TabEmprunt = new System.Windows.Forms.TabControl();
             this.tabPageAdherentEmprunt = new System.Windows.Forms.TabPage();
+            this.labelDateRetourPrevue = new System.Windows.Forms.Label();
+            this.labelDateEmprunt = new System.Windows.Forms.Label();
+            this.DateRendu = new System.Windows.Forms.Label();
+            this.DateEmprunt = new System.Windows.Forms.Label();
+            this.ListeLivreEmprunter = new System.Windows.Forms.CheckedListBox();
             this.listBoxAdherent = new System.Windows.Forms.ListBox();
             this.EtatEmprunt = new System.Windows.Forms.ComboBox();
             this.MoisEmprunt = new System.Windows.Forms.ComboBox();
@@ -68,11 +73,6 @@
             this.ButtonRechercherLivre = new System.Windows.Forms.Button();
             this.SearchBarBook = new System.Windows.Forms.TextBox();
             this.listBox1 = new System.Windows.Forms.ListBox();
-            this.ListeLivreEmprunter = new System.Windows.Forms.CheckedListBox();
-            this.DateEmprunt = new System.Windows.Forms.Label();
-            this.DateRendu = new System.Windows.Forms.Label();
-            this.labelDateEmprunt = new System.Windows.Forms.Label();
-            this.labelDateRetourPrevue = new System.Windows.Forms.Label();
             this.TabEmprunt.SuspendLayout();
             this.tabPageAdherentEmprunt.SuspendLayout();
             this.InfosAdhérents.SuspendLayout();
@@ -116,6 +116,56 @@
             this.tabPageAdherentEmprunt.Text = "Gerer Emprunt";
             this.tabPageAdherentEmprunt.UseVisualStyleBackColor = true;
             // 
+            // labelDateRetourPrevue
+            // 
+            this.labelDateRetourPrevue.AutoSize = true;
+            this.labelDateRetourPrevue.Font = new System.Drawing.Font("Segoe UI", 9.75F);
+            this.labelDateRetourPrevue.ForeColor = System.Drawing.Color.Black;
+            this.labelDateRetourPrevue.Location = new System.Drawing.Point(516, 290);
+            this.labelDateRetourPrevue.Name = "labelDateRetourPrevue";
+            this.labelDateRetourPrevue.Size = new System.Drawing.Size(74, 17);
+            this.labelDateRetourPrevue.TabIndex = 18;
+            this.labelDateRetourPrevue.Text = "00/00/0000";
+            // 
+            // labelDateEmprunt
+            // 
+            this.labelDateEmprunt.AutoSize = true;
+            this.labelDateEmprunt.Font = new System.Drawing.Font("Segoe UI", 9.75F);
+            this.labelDateEmprunt.Location = new System.Drawing.Point(495, 243);
+            this.labelDateEmprunt.Name = "labelDateEmprunt";
+            this.labelDateEmprunt.Size = new System.Drawing.Size(74, 17);
+            this.labelDateEmprunt.TabIndex = 17;
+            this.labelDateEmprunt.Text = "00/00/0000";
+            // 
+            // DateRendu
+            // 
+            this.DateRendu.AutoSize = true;
+            this.DateRendu.Font = new System.Drawing.Font("Segoe UI", 9.75F);
+            this.DateRendu.Location = new System.Drawing.Point(384, 290);
+            this.DateRendu.Name = "DateRendu";
+            this.DateRendu.Size = new System.Drawing.Size(126, 17);
+            this.DateRendu.TabIndex = 16;
+            this.DateRendu.Text = "Date retour prévue :";
+            // 
+            // DateEmprunt
+            // 
+            this.DateEmprunt.AutoSize = true;
+            this.DateEmprunt.Font = new System.Drawing.Font("Segoe UI", 9.75F);
+            this.DateEmprunt.Location = new System.Drawing.Point(383, 243);
+            this.DateEmprunt.Name = "DateEmprunt";
+            this.DateEmprunt.Size = new System.Drawing.Size(106, 17);
+            this.DateEmprunt.TabIndex = 15;
+            this.DateEmprunt.Text = "Date d\'emprunt :";
+            // 
+            // ListeLivreEmprunter
+            // 
+            this.ListeLivreEmprunter.Font = new System.Drawing.Font("Segoe UI", 9.75F);
+            this.ListeLivreEmprunter.FormattingEnabled = true;
+            this.ListeLivreEmprunter.Location = new System.Drawing.Point(386, 123);
+            this.ListeLivreEmprunter.Name = "ListeLivreEmprunter";
+            this.ListeLivreEmprunter.Size = new System.Drawing.Size(415, 84);
+            this.ListeLivreEmprunter.TabIndex = 14;
+            // 
             // listBoxAdherent
             // 
             this.listBoxAdherent.Font = new System.Drawing.Font("Segoe UI", 10F);
@@ -132,7 +182,7 @@
             this.EtatEmprunt.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.EtatEmprunt.FormattingEnabled = true;
             this.EtatEmprunt.ItemHeight = 17;
-            this.EtatEmprunt.Location = new System.Drawing.Point(533, 385);
+            this.EtatEmprunt.Location = new System.Drawing.Point(533, 415);
             this.EtatEmprunt.Name = "EtatEmprunt";
             this.EtatEmprunt.Size = new System.Drawing.Size(121, 25);
             this.EtatEmprunt.TabIndex = 7;
@@ -155,7 +205,7 @@
             "Octobre",
             "Novembre",
             "Décembre"});
-            this.MoisEmprunt.Location = new System.Drawing.Point(533, 292);
+            this.MoisEmprunt.Location = new System.Drawing.Point(533, 341);
             this.MoisEmprunt.Name = "MoisEmprunt";
             this.MoisEmprunt.Size = new System.Drawing.Size(121, 25);
             this.MoisEmprunt.TabIndex = 5;
@@ -171,7 +221,7 @@
             "2022",
             "2023",
             "2024"});
-            this.AnneeEmprunt.Location = new System.Drawing.Point(680, 292);
+            this.AnneeEmprunt.Location = new System.Drawing.Point(680, 341);
             this.AnneeEmprunt.Name = "AnneeEmprunt";
             this.AnneeEmprunt.Size = new System.Drawing.Size(121, 25);
             this.AnneeEmprunt.TabIndex = 6;
@@ -181,7 +231,7 @@
             // 
             this.JourEmprunt.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.JourEmprunt.FormattingEnabled = true;
-            this.JourEmprunt.Location = new System.Drawing.Point(386, 292);
+            this.JourEmprunt.Location = new System.Drawing.Point(386, 341);
             this.JourEmprunt.Name = "JourEmprunt";
             this.JourEmprunt.Size = new System.Drawing.Size(121, 25);
             this.JourEmprunt.TabIndex = 4;
@@ -531,55 +581,6 @@
             this.listBox1.Name = "listBox1";
             this.listBox1.Size = new System.Drawing.Size(303, 480);
             this.listBox1.TabIndex = 27;
-            // 
-            // ListeLivreEmprunter
-            // 
-            this.ListeLivreEmprunter.Font = new System.Drawing.Font("Segoe UI", 9.75F);
-            this.ListeLivreEmprunter.FormattingEnabled = true;
-            this.ListeLivreEmprunter.Location = new System.Drawing.Point(386, 123);
-            this.ListeLivreEmprunter.Name = "ListeLivreEmprunter";
-            this.ListeLivreEmprunter.Size = new System.Drawing.Size(415, 84);
-            this.ListeLivreEmprunter.TabIndex = 14;
-            // 
-            // DateEmprunt
-            // 
-            this.DateEmprunt.AutoSize = true;
-            this.DateEmprunt.Font = new System.Drawing.Font("Segoe UI", 9.75F);
-            this.DateEmprunt.Location = new System.Drawing.Point(383, 243);
-            this.DateEmprunt.Name = "DateEmprunt";
-            this.DateEmprunt.Size = new System.Drawing.Size(106, 17);
-            this.DateEmprunt.TabIndex = 15;
-            this.DateEmprunt.Text = "Date d\'emprunt :";
-            // 
-            // DateRendu
-            // 
-            this.DateRendu.AutoSize = true;
-            this.DateRendu.Font = new System.Drawing.Font("Segoe UI", 9.75F);
-            this.DateRendu.Location = new System.Drawing.Point(600, 243);
-            this.DateRendu.Name = "DateRendu";
-            this.DateRendu.Size = new System.Drawing.Size(126, 17);
-            this.DateRendu.TabIndex = 16;
-            this.DateRendu.Text = "Date retour prévue :";
-            // 
-            // labelDateEmprunt
-            // 
-            this.labelDateEmprunt.AutoSize = true;
-            this.labelDateEmprunt.Font = new System.Drawing.Font("Segoe UI", 9.75F);
-            this.labelDateEmprunt.Location = new System.Drawing.Point(488, 243);
-            this.labelDateEmprunt.Name = "labelDateEmprunt";
-            this.labelDateEmprunt.Size = new System.Drawing.Size(74, 17);
-            this.labelDateEmprunt.TabIndex = 17;
-            this.labelDateEmprunt.Text = "00/00/0000";
-            // 
-            // labelDateRetourPrevue
-            // 
-            this.labelDateRetourPrevue.AutoSize = true;
-            this.labelDateRetourPrevue.Font = new System.Drawing.Font("Segoe UI", 9.75F);
-            this.labelDateRetourPrevue.Location = new System.Drawing.Point(727, 243);
-            this.labelDateRetourPrevue.Name = "labelDateRetourPrevue";
-            this.labelDateRetourPrevue.Size = new System.Drawing.Size(74, 17);
-            this.labelDateRetourPrevue.TabIndex = 18;
-            this.labelDateRetourPrevue.Text = "00/00/0000";
             // 
             // Regroupement_Emprunt
             // 
