@@ -279,7 +279,8 @@ namespace Easy_Book_Manager
 
                     Lecture = new SqlCommand
                              (
-                                  $"Select * from Emprunt where ID_Adherents = {Resultat}", dbConn
+                                  //Permet de récupérer L'emprunt de l'utilisateur selectionner pour afficher plus tard les livres ET vérifie que l'on ne prenne un ancienne emprunt
+                                  $"Select ID from Emprunt where Date_de_rendu IS NULL and ID_Adherents = {Resultat}", dbConn
                              );
 
                     InfoUtilisateur = Lecture.ExecuteReader();
@@ -292,24 +293,6 @@ namespace Easy_Book_Manager
                     //Permet de récuperer l'ID dans la table emprunt // Int32 permet de convertir une string en int
                     EnvoieDeLid = Int32.Parse(RecuperationidDemprunt);
 
-                    if (InfoUtilisateur != null)
-                        InfoUtilisateur.Close();
-
-
-
-
-                    Lecture = new SqlCommand
-                         (
-                                //On se sert de l'id récupérer précédement et on vérifie qu'il ne sagit pas d'un ancienne emprunt 
-                                 $"Select ID from Emprunt where Date_de_rendu IS NULL and ID_Adherents = {EnvoieDeLid}", dbConn
-                         );
-
-                    InfoUtilisateur = Lecture.ExecuteReader();
-
-                    while(InfoUtilisateur.Read())
-                    {
-                        RecuperationidDemprunt = InfoUtilisateur["ID"].ToString();
-                    }
                     if (InfoUtilisateur != null)
                         InfoUtilisateur.Close();
 
