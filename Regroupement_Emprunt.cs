@@ -34,6 +34,8 @@ namespace Easy_Book_Manager
         //VARIABLE TESTE
 
         DateTime dateRetourPrevuComp;
+        string RecuperationidDemprunt = null;
+        int EnvoieDeLid = 0;
 
 
         public Regroupement_Emprunt()
@@ -66,7 +68,7 @@ namespace Easy_Book_Manager
 
                 AdherentCommand = new SqlCommand
                   (
-                        "Select Nom, id, Prenom from Adherents", dbConn
+                        "Select Nom, id, Prenom from Adherents where Emprunt_en_cours = 1", dbConn
                    );
 
                 //Vérifie si le reader est ouvert ou fermer puis le ferme²
@@ -173,8 +175,13 @@ namespace Easy_Book_Manager
             NomAdherent.Text = "Nom Adhérent";
             AdresseAdherent.Text = "Adresse";
             PrenomAdherent.Text = "Prénom Adhérent";
-            TelephoneAdherent.Text = "Telephone Adhérent";
+            TelephoneAdherent.Text = "Telephone Adhérent";           
             labelDateRetourPrevue.ForeColor = System.Drawing.Color.Black;
+
+
+            //Remet la listBox des livre emprunter par défault
+
+            ListeLivreEmprunter.Items.Clear();
 
 
             try
@@ -184,72 +191,148 @@ namespace Easy_Book_Manager
                 ObjetSelectionner = listBoxAdherent.GetItemText(listBoxAdherent.SelectedItem);
 
                 //Fait appel à la fonction isNumeric qui permet de récuperer l'id du nom selectionner//
-
-                string Resultat = isNumeric(ObjetSelectionner);
-
+                string Resultat = null;
+                Resultat = isNumeric(ObjetSelectionner);
                 IdAdherent.Text = Resultat;
-                dbConn.Open();
-                RecuperationDonnees = new SqlCommand
-                    (
-                    //Récupère les info d'un utilisateur en fonction de l'id selectionner dans la ListBox Adherent
-                    $"Select * from Adherents where id = {Resultat}", dbConn
-
-                    );
-
-                InfoUtilisateur = RecuperationDonnees.ExecuteReader();
-                //Affiche le information de l'adhérent selectionner 
-                while (InfoUtilisateur.Read())
+                //Empeche l'utilisateur de ne cliquer sur aucun élément et de faire buger la page 
+                if (Resultat.Length <= 0)
                 {
-                    NomAdherent.Text = InfoUtilisateur["Nom"].ToString();
-                    AdresseAdherent.Text = InfoUtilisateur["Adresse"].ToString();
-                    PrenomAdherent.Text = InfoUtilisateur["Prenom"].ToString();
-                    TelephoneAdherent.Text = InfoUtilisateur["Telephone"].ToString();
+                    IdAdherent.Text = "ID";
+                    NomAdherent.Text = "Nom Adhérent";
+                    AdresseAdherent.Text = "Adresse";
+                    PrenomAdherent.Text = "Prénom Adhérent";
+                    TelephoneAdherent.Text = "Telephone Adhérent";
+                    labelDateRetourPrevue.ForeColor = System.Drawing.Color.Black;
                 }
-                if (InfoUtilisateur != null)
-                InfoUtilisateur.Close();
-
-
-
-
-                //Permet d'afficher les livres emprunter par l'utilisateur dans la CheckBoxlist
-                Lecture = new SqlCommand
-                 (
-                     $"select * from Emprunt where ID_Adherents = {Resultat}", dbConn
-                  );
-                
-                //stock dans une variable dateRetourPrevuComp la date de retour prévue qui servira de comparaison dans une autre boucle
-                InfoUtilisateur = Lecture.ExecuteReader();
-                while (InfoUtilisateur.Read())
+                else
                 {
-                    //GetDateTime est sur 2 pour dire que c'est la 3ème colonne de la bdd (écrire le nom de la colonne ne fonctionne pas)
-                    dateRetourPrevuComp = InfoUtilisateur.GetDateTime(2);
-                }
-                InfoUtilisateur.Close();
-                //Permet de comparer la date d'aujourd'hui avec la date de retour prévue et de stocker tout dans un int, si int = -1 tout va bien sinon retour en retard
+
+
+                    dbConn.Open();
+                    RecuperationDonnees = new SqlCommand
+                        (
+                        //Récupère les info d'un utilisateur en fonction de l'id selectionner dans la ListBox Adherent
+                        $"Select * from Adherents where id = {Resultat}", dbConn
+
+                        );
+
+                    InfoUtilisateur = RecuperationDonnees.ExecuteReader();
+                    //Affiche le information de l'adhérent selectionner 
+                    while (InfoUtilisateur.Read())
+                    {
+                        NomAdherent.Text = InfoUtilisateur["Nom"].ToString();
+                        AdresseAdherent.Text = InfoUtilisateur["Adresse"].ToString();
+                        PrenomAdherent.Text = InfoUtilisateur["Prenom"].ToString();
+                        TelephoneAdherent.Text = InfoUtilisateur["Telephone"].ToString();
+                    }
+                    if (InfoUtilisateur != null)
+                        InfoUtilisateur.Close();
+
+
+
+
+                    //Permet d'afficher les livres emprunter par l'utilisateur dans la CheckBoxlist
+                    Lecture = new SqlCommand
+                     (
+                         $"select * from Emprunt where ID_Adherents = {Resultat}", dbConn
+                      );
+
+                    //stock dans une variable dateRetourPrevuComp la date de retour prévue qui servira de comparaison dans une autre boucle
+                    InfoUtilisateur = Lecture.ExecuteReader();
+                    while (InfoUtilisateur.Read())
+                    {
+                        //GetDateTime est sur 2 pour dire que c'est la 3ème colonne de la bdd (écrire le nom de la colonne ne fonctionne pas)
+                        dateRetourPrevuComp = InfoUtilisateur.GetDateTime(2);
+                    }
+                    InfoUtilisateur.Close();
+                    //Permet de comparer la date d'aujourd'hui avec la date de retour prévue et de stocker tout dans un int, si int = -1 tout va bien sinon retour en retard
                     DateTime DateAujourdhui = DateTime.Today;
                     int comparaison = DateTime.Compare(DateAujourdhui, dateRetourPrevuComp);
 
-                InfoUtilisateur = Lecture.ExecuteReader();
-                while(InfoUtilisateur.Read())
-                {
-                    //Remplis toute les autres info telle que la date de retour prévue + la date ou l'adhérent à emprunter ces livres
-                    labelDateEmprunt.Text = InfoUtilisateur["Date_emprunt"].ToString();
 
-                    //Vérifie si la date de retour n'est pas dépasser, si la date est dépasser elle s'affichera en rouge sinon normalement
-                    if (comparaison == -1)
+
+
+                    InfoUtilisateur = Lecture.ExecuteReader();
+                    while (InfoUtilisateur.Read())
                     {
-                        labelDateRetourPrevue.Text = InfoUtilisateur["Date_retour_prevu"].ToString();
+                        //Remplis toute les autres info telle que la date de retour prévue + la date ou l'adhérent à emprunter ces livres
+                        labelDateEmprunt.Text = InfoUtilisateur["Date_emprunt"].ToString();
+
+                        //Vérifie si la date de retour n'est pas dépasser, si la date est dépasser elle s'affichera en rouge sinon normalement
+                        if (comparaison == -1)
+                        {
+                            labelDateRetourPrevue.Text = InfoUtilisateur["Date_retour_prevu"].ToString();
+                        }
+                        else
+                        {
+                            labelDateRetourPrevue.Text = InfoUtilisateur["Date_retour_prevu"].ToString();
+                            labelDateRetourPrevue.ForeColor = System.Drawing.Color.Red;
+                        }
                     }
-                    else
+
+                    if (InfoUtilisateur != null)
+                        InfoUtilisateur.Close();
+
+
+
+
+
+                    Lecture = new SqlCommand
+                             (
+                                  $"Select * from Emprunt where ID_Adherents = {Resultat}", dbConn
+                             );
+
+                    InfoUtilisateur = Lecture.ExecuteReader();
+
+                    while(InfoUtilisateur.Read())
                     {
-                        labelDateRetourPrevue.Text = InfoUtilisateur["Date_retour_prevu"].ToString();
-                        labelDateRetourPrevue.ForeColor = System.Drawing.Color.Red;
+                        RecuperationidDemprunt = InfoUtilisateur["Id"].ToString();
                     }
+
+                    //Permet de récuperer l'ID dans la table emprunt // Int32 permet de convertir une string en int
+                    EnvoieDeLid = Int32.Parse(RecuperationidDemprunt);
+
+                    if (InfoUtilisateur != null)
+                        InfoUtilisateur.Close();
+
+
+
+
+                    Lecture = new SqlCommand
+                         (
+                                //On se sert de l'id récupérer précédement et on vérifie qu'il ne sagit pas d'un ancienne emprunt 
+                                 $"Select ID from Emprunt where Date_de_rendu IS NULL and ID_Adherents = {EnvoieDeLid}", dbConn
+                         );
+
+                    InfoUtilisateur = Lecture.ExecuteReader();
+
+                    while(InfoUtilisateur.Read())
+                    {
+                        RecuperationidDemprunt = InfoUtilisateur["ID"].ToString();
+                    }
+                    if (InfoUtilisateur != null)
+                        InfoUtilisateur.Close();
+
+                    EnvoieDeLid = Int32.Parse(RecuperationidDemprunt);
+
+
+                    //Requete Sql qui permet de récupérer les livres emprunter par l'utilisateur selectionner
+                    Lecture = new SqlCommand
+                        (
+                            $"select * from Livres where ID_Emprunt = {EnvoieDeLid}", dbConn
+                        );
+
+                    InfoUtilisateur = Lecture.ExecuteReader();
+
+                    while (InfoUtilisateur.Read())
+                    {
+                        ListeLivreEmprunter.Items.Add(InfoUtilisateur["Titre"]);
+                    }
+
+                    if (InfoUtilisateur != null)
+                        InfoUtilisateur.Close();
+                    dbConn.Close();
                 }
-                
-                if(InfoUtilisateur != null)
-                InfoUtilisateur.Close();
-                dbConn.Close();
             }
             catch (Exception ex)
             {
@@ -367,13 +450,15 @@ namespace Easy_Book_Manager
             }
 
         }
+
+
         //-------------------------------------------------------------------------------------------------------------//
 
 
 
 
-       /* DateTime DateAujourdhui = DateTime.Today;
-        int comparaison = DateTime.Compare(DateAujourdhui, )*/
+        /* DateTime DateAujourdhui = DateTime.Today;
+         int comparaison = DateTime.Compare(DateAujourdhui, )*/
 
 
     }
