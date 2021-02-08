@@ -279,7 +279,7 @@ namespace Easy_Book_Manager
 
                     Lecture = new SqlCommand
                              (
-                                  //Permet de récupérer L'emprunt de l'utilisateur selectionner pour afficher plus tard les livres ET vérifie que l'on ne prenne un ancienne emprunt
+                                  //Permet de récupérer L'emprunt de l'utilisateur selectionner pour afficher plus tard les livres ET vérifie que l'on ne prenne un ancien emprunt
                                   $"Select ID from Emprunt where Date_de_rendu IS NULL and ID_Adherents = {Resultat}", dbConn
                              );
 
