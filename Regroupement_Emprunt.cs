@@ -50,6 +50,8 @@ namespace Easy_Book_Manager
             try
             {
 
+
+
                 //Permet la connexion à la bdd
 
                 string connStr = @"Data Source=MSI\SQLEXPRESS;Initial Catalog=Gestion_Biblio;Integrated Security=True";
@@ -121,6 +123,41 @@ namespace Easy_Book_Manager
         private void SearchBar_TextChanged(object sender, EventArgs e)
         {
 
+            // je prend la longueur du mot j'enleve 3 sa permet de trouver la longueur de bonjour
+            string teste = "136516 HamoutHabibi";
+           // int taille = 0;
+            int a = teste.Length;
+            //string rus = null;
+            int b = teste.IndexOf(" ", 0, a);
+            // b est égale a l'emplacement de l'espace
+            //taille = a - b - 1;
+            // rajouter + 1 a b
+            //taille est égale à l'emplacement du mot rechercher
+            //rus = teste.Substring(b + 1, taille);
+            int i = 0;
+
+            string MotRechercher = null;
+            List<string> recuperation = new List<string>();
+            foreach (string recup in listeNom)
+            {
+                // rus est le résultat finale qui servira a remplir la list (recuperation)
+                string rus = null;
+                //récupère le premier mot de la listNom
+                MotRechercher = recup;
+                int taille = 0;
+                //Récupère toute la taille du mot (id et espace compris)
+                int LongMot = MotRechercher.Length;
+                //Récupère l'emplacement de l'espace dans EmplacementEspace
+                int EmplacementEspace = MotRechercher.IndexOf(" ", 0, LongMot);
+                //Rècupère uniquement la taille du mot rechercher 
+                taille = LongMot - EmplacementEspace - 1;
+                //Permet de stocker dans rus uniquemet le mot rechercher grace à Emplacement 
+                rus = MotRechercher.Substring(EmplacementEspace + 1, taille);
+
+                recuperation.Add(rus);
+
+            }
+            
             //Stock dans une string ce qui est mis dans la barre de recherche
 
             string filtre = SearchBar.Text;
@@ -149,7 +186,7 @@ namespace Easy_Book_Manager
                     }
                 }
             }
-
+            
 
         }
         //----------------------------------------------------------//
