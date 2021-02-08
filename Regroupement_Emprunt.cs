@@ -28,14 +28,11 @@ namespace Easy_Book_Manager
         List<string> ListeTesteNom = new List<string>();
         string ObjetSelectionner;
         string Mois;
-
-
-
-        //VARIABLE TESTE
-
-        DateTime dateRetourPrevuComp;
         string RecuperationidDemprunt = null;
         int EnvoieDeLid = 0;
+        DateTime dateRetourPrevuComp;
+
+
 
 
         public Regroupement_Emprunt()
@@ -52,8 +49,6 @@ namespace Easy_Book_Manager
 
             try
             {
-
-
 
                 //Permet la connexion à la bdd
 
@@ -95,12 +90,9 @@ namespace Easy_Book_Manager
                     JourEmprunt.Items.Add(i);
                 }
 
-                /* if (MoisEmprunt.Items.ToString() == "Fevrier")
-                 {
 
-                 }*/
+            }
 
-            }//JourEmprunt
             //Récupere les erreurs
             catch (SqlException ex)
             {
@@ -421,7 +413,7 @@ namespace Easy_Book_Manager
                     JourEmprunt.Text = "Jour";
                     //Nettoie la comboBox jour pour ne pas remplir avec des nombre déjà existant
                     JourEmprunt.Items.Clear();
-                    //Remplis la combBox jour en fonction du mois selectionner
+                    //Remplis la combBox jour par defaut
                     for (int i = 0; i < 32; i++)
                     {
                         JourEmprunt.Items.Add(i);
@@ -440,17 +432,9 @@ namespace Easy_Book_Manager
 
 
 
-        /* DateTime DateAujourdhui = DateTime.Today;
-         int comparaison = DateTime.Compare(DateAujourdhui, )*/
-
-
     }
 }
     
 //² Si le reader n'est pas fermer il ne pourra pas remplir la deuxième liste
 
 
-
-
-//Rajouter Date de rendu prévue
-//Rajouter date ou le livre a été emprunter
