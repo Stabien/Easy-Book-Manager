@@ -134,7 +134,6 @@ namespace Easy_Book_Manager
             // rajouter + 1 a b
             //taille est égale à l'emplacement du mot rechercher
             //rus = teste.Substring(b + 1, taille);
-            int i = 0;
 
             string MotRechercher = null;
             List<string> recuperation = new List<string>();
@@ -157,36 +156,29 @@ namespace Easy_Book_Manager
                 recuperation.Add(rus);
 
             }
-            
+
             //Stock dans une string ce qui est mis dans la barre de recherche
-
             string filtre = SearchBar.Text;
-
             //Nettoie la listeBox à chaque fois que la barre de recherche change
-
             listBoxAdherent.Items.Clear();
-
             //Fait le tour de la list
-
             foreach (string str in listeNom)
             {
                 //Fait une vérification de la longueur de la recherche
-
                 if (filtre.Length <= str.Length)
                 {
                     string deb = str.Substring(0, filtre.Length);
-
                     //Vérifie que les données de la list correspondent à la barre de recherche + met tout en minuscule
-
                     if (deb.ToLower() == filtre.ToLower())
                     {
                         //Si la barre de recherche correspond à un bon nom, l'affiche dans la Listbox
-
                         listBoxAdherent.Items.Add(str);
                     }
                 }
+
             }
-            
+
+
 
         }
         //----------------------------------------------------------//
