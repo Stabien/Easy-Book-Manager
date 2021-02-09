@@ -436,9 +436,73 @@ namespace Easy_Book_Manager
             }
 
         }
-
-
         //-------------------------------------------------------------------------------------------------------------//
+
+
+        //--------------------Permet de "Rafraichir" la list des adherents--------------------//
+        private void ButtonRefresh_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                //Nettoie tout la list pour tout afficher de nouveau
+                listBoxAdherent.Items.Clear();
+
+
+                //Ouverture de la bdd
+
+                dbConn.Open();
+
+                //Création des requete SQL
+
+                AdherentCommand = new SqlCommand
+                  (
+                        "Select Nom, id, Prenom from Adherents where Emprunt_en_cours = 1", dbConn
+                   );
+
+                //Demarre le Lecture des requete SQL
+
+                reader = AdherentCommand.ExecuteReader();
+                while (reader.Read())
+                {
+                    //Remplis la liste des adhérents
+
+                    listBoxAdherent.Items.Add(reader["id"] + " " + reader["Nom"] + " " + reader["Prenom"]);
+                    //reader["id"]  reader["Nom"]
+                }
+
+                //Enleve les éléments dans la barre de recherche
+
+                SearchBar.Text = null;
+
+                //Vérifie si le reader est ouvert ou fermer puis le ferme²
+
+                if (reader != null)
+                    reader.Close();
+                if (dbConn != null)
+                    dbConn.Close();
+
+                IdAdherent.Text = "ID";
+                NomAdherent.Text = "Nom Adhérent";
+                AdresseAdherent.Text = "Adresse";
+                PrenomAdherent.Text = "Prénom Adhérent";
+                TelephoneAdherent.Text = "Telephone Adhérent";
+                labelDateRetourPrevue.Text = "00/00/0000";
+                labelDateEmprunt.Text = "00/00/0000";
+                labelDateRetourPrevue.ForeColor = System.Drawing.Color.Black;
+
+                ListeLivreEmprunter.Items.Clear();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Une erreur est survenu :" + ex.Message);
+            }
+
+
+
+        }
+
+
+        //-------------------------------------------------------------------------------------//
 
 
 

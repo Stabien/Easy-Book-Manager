@@ -31,6 +31,8 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Regroupement_Emprunt));
             this.TabEmprunt = new System.Windows.Forms.TabControl();
             this.tabPageAdherentEmprunt = new System.Windows.Forms.TabPage();
+            this.ButtonRefresh = new System.Windows.Forms.Button();
+            this.checkBoxRendreLivre = new System.Windows.Forms.CheckBox();
             this.labelDateRetourPrevue = new System.Windows.Forms.Label();
             this.labelDateEmprunt = new System.Windows.Forms.Label();
             this.DateRendu = new System.Windows.Forms.Label();
@@ -72,7 +74,6 @@
             this.ButtonRechercherLivre = new System.Windows.Forms.Button();
             this.SearchBarBook = new System.Windows.Forms.TextBox();
             this.listBox1 = new System.Windows.Forms.ListBox();
-            this.checkBoxRendreLivre = new System.Windows.Forms.CheckBox();
             this.TabEmprunt.SuspendLayout();
             this.tabPageAdherentEmprunt.SuspendLayout();
             this.InfosAdhérents.SuspendLayout();
@@ -95,6 +96,7 @@
             // 
             // tabPageAdherentEmprunt
             // 
+            this.tabPageAdherentEmprunt.Controls.Add(this.ButtonRefresh);
             this.tabPageAdherentEmprunt.Controls.Add(this.checkBoxRendreLivre);
             this.tabPageAdherentEmprunt.Controls.Add(this.labelDateRetourPrevue);
             this.tabPageAdherentEmprunt.Controls.Add(this.labelDateEmprunt);
@@ -115,6 +117,31 @@
             this.tabPageAdherentEmprunt.TabIndex = 0;
             this.tabPageAdherentEmprunt.Text = "Gerer Emprunt";
             this.tabPageAdherentEmprunt.UseVisualStyleBackColor = true;
+            // 
+            // ButtonRefresh
+            // 
+            this.ButtonRefresh.BackColor = System.Drawing.Color.White;
+            this.ButtonRefresh.CausesValidation = false;
+            this.ButtonRefresh.FlatAppearance.BorderSize = 0;
+            this.ButtonRefresh.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.ButtonRefresh.Image = ((System.Drawing.Image)(resources.GetObject("ButtonRefresh.Image")));
+            this.ButtonRefresh.Location = new System.Drawing.Point(8, 530);
+            this.ButtonRefresh.Name = "ButtonRefresh";
+            this.ButtonRefresh.Size = new System.Drawing.Size(36, 36);
+            this.ButtonRefresh.TabIndex = 20;
+            this.ButtonRefresh.UseVisualStyleBackColor = false;
+            this.ButtonRefresh.Click += new System.EventHandler(this.ButtonRefresh_Click);
+            // 
+            // checkBoxRendreLivre
+            // 
+            this.checkBoxRendreLivre.AutoSize = true;
+            this.checkBoxRendreLivre.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.checkBoxRendreLivre.Location = new System.Drawing.Point(387, 442);
+            this.checkBoxRendreLivre.Name = "checkBoxRendreLivre";
+            this.checkBoxRendreLivre.Size = new System.Drawing.Size(124, 23);
+            this.checkBoxRendreLivre.TabIndex = 19;
+            this.checkBoxRendreLivre.Text = "Bonjour je teste";
+            this.checkBoxRendreLivre.UseVisualStyleBackColor = true;
             // 
             // labelDateRetourPrevue
             // 
@@ -571,17 +598,6 @@
             this.listBox1.Size = new System.Drawing.Size(303, 480);
             this.listBox1.TabIndex = 27;
             // 
-            // checkBoxRendreLivre
-            // 
-            this.checkBoxRendreLivre.AutoSize = true;
-            this.checkBoxRendreLivre.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.checkBoxRendreLivre.Location = new System.Drawing.Point(387, 442);
-            this.checkBoxRendreLivre.Name = "checkBoxRendreLivre";
-            this.checkBoxRendreLivre.Size = new System.Drawing.Size(124, 23);
-            this.checkBoxRendreLivre.TabIndex = 19;
-            this.checkBoxRendreLivre.Text = "Bonjour je teste";
-            this.checkBoxRendreLivre.UseVisualStyleBackColor = true;
-            // 
             // Regroupement_Emprunt
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -651,5 +667,6 @@
         private System.Windows.Forms.Label labelDateEmprunt;
         private System.Windows.Forms.Label DateRendu;
         private System.Windows.Forms.CheckBox checkBoxRendreLivre;
+        private System.Windows.Forms.Button ButtonRefresh;
     }
 }
