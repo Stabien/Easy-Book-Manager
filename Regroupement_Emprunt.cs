@@ -81,7 +81,7 @@ namespace Easy_Book_Manager
                     //Remplis la liste des adhérents
 
                     listBoxAdherent.Items.Add(reader["id"] + " " + reader["Nom"] + " " + reader["Prenom"]);
-                    listeNom.Add(reader["id"] + " " + reader["Nom"]);
+                    listeNom.Add(reader["id"] + " " + reader["Nom"] + " " + reader["Prenom"]);
                     //reader["id"]  reader["Nom"]
                 }
 
@@ -123,60 +123,42 @@ namespace Easy_Book_Manager
         private void SearchBar_TextChanged(object sender, EventArgs e)
         {
 
-            // je prend la longueur du mot j'enleve 3 sa permet de trouver la longueur de bonjour
-            string teste = "136516 HamoutHabibi";
-           // int taille = 0;
-            int a = teste.Length;
-            //string rus = null;
-            int b = teste.IndexOf(" ", 0, a);
-            // b est égale a l'emplacement de l'espace
-            //taille = a - b - 1;
-            // rajouter + 1 a b
-            //taille est égale à l'emplacement du mot rechercher
-            //rus = teste.Substring(b + 1, taille);
-
-            string MotRechercher = null;
-            List<string> recuperation = new List<string>();
-            foreach (string recup in listeNom)
-            {
-                // rus est le résultat finale qui servira a remplir la list (recuperation)
-                string rus = null;
-                //récupère le premier mot de la listNom
-                MotRechercher = recup;
-                int taille = 0;
-                //Récupère toute la taille du mot (id et espace compris)
-                int LongMot = MotRechercher.Length;
-                //Récupère l'emplacement de l'espace dans EmplacementEspace
-                int EmplacementEspace = MotRechercher.IndexOf(" ", 0, LongMot);
-                //Rècupère uniquement la taille du mot rechercher 
-                taille = LongMot - EmplacementEspace - 1;
-                //Permet de stocker dans rus uniquemet le mot rechercher grace à Emplacement 
-                rus = MotRechercher.Substring(EmplacementEspace + 1, taille);
-
-                recuperation.Add(rus);
-
-            }
-
+            try { 
             //Stock dans une string ce qui est mis dans la barre de recherche
+
             string filtre = SearchBar.Text;
+
             //Nettoie la listeBox à chaque fois que la barre de recherche change
+
             listBoxAdherent.Items.Clear();
-            //Fait le tour de la list
-            foreach (string str in listeNom)
-            {
-                //Fait une vérification de la longueur de la recherche
-                if (filtre.Length <= str.Length)
+                //Fait le tour de la list
+                foreach (string str in listeNom)
                 {
-                    string deb = str.Substring(0, filtre.Length);
-                    //Vérifie que les données de la list correspondent à la barre de recherche + met tout en minuscule
-                    if (deb.ToLower() == filtre.ToLower())
+                    //Endroit ou il faut commencer à chercher selon le mot
+                    int reco = str.IndexOf(" ", 0, str.Length);
+                    reco = reco + 1;
+
+                    //Fait une vérification de la longueur de la recherche
+                    if (filtre.Length <= str.Length)
                     {
-                        //Si la barre de recherche correspond à un bon nom, l'affiche dans la Listbox
-                        listBoxAdherent.Items.Add(str);
+                        string deb = str.Substring(reco, filtre.Length);
+                        //Vérifie que les données de la list correspondent à la barre de recherche + met tout en minuscule
+                        if (deb.ToLower() == filtre.ToLower())
+                        {
+                            //Si la barre de recherche correspond à un bon nom, l'affiche dans la Listbox
+                            listBoxAdherent.Items.Add(str);
+                        }
                     }
                 }
-
+               
             }
+            catch (Exception ex)
+            {
+                
+            }
+            
+            
+
 
 
 

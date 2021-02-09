@@ -37,7 +37,6 @@
             this.DateEmprunt = new System.Windows.Forms.Label();
             this.ListeLivreEmprunter = new System.Windows.Forms.CheckedListBox();
             this.listBoxAdherent = new System.Windows.Forms.ListBox();
-            this.EtatEmprunt = new System.Windows.Forms.ComboBox();
             this.MoisEmprunt = new System.Windows.Forms.ComboBox();
             this.AnneeEmprunt = new System.Windows.Forms.ComboBox();
             this.JourEmprunt = new System.Windows.Forms.ComboBox();
@@ -73,6 +72,7 @@
             this.ButtonRechercherLivre = new System.Windows.Forms.Button();
             this.SearchBarBook = new System.Windows.Forms.TextBox();
             this.listBox1 = new System.Windows.Forms.ListBox();
+            this.checkBoxRendreLivre = new System.Windows.Forms.CheckBox();
             this.TabEmprunt.SuspendLayout();
             this.tabPageAdherentEmprunt.SuspendLayout();
             this.InfosAdhérents.SuspendLayout();
@@ -95,13 +95,13 @@
             // 
             // tabPageAdherentEmprunt
             // 
+            this.tabPageAdherentEmprunt.Controls.Add(this.checkBoxRendreLivre);
             this.tabPageAdherentEmprunt.Controls.Add(this.labelDateRetourPrevue);
             this.tabPageAdherentEmprunt.Controls.Add(this.labelDateEmprunt);
             this.tabPageAdherentEmprunt.Controls.Add(this.DateRendu);
             this.tabPageAdherentEmprunt.Controls.Add(this.DateEmprunt);
             this.tabPageAdherentEmprunt.Controls.Add(this.ListeLivreEmprunter);
             this.tabPageAdherentEmprunt.Controls.Add(this.listBoxAdherent);
-            this.tabPageAdherentEmprunt.Controls.Add(this.EtatEmprunt);
             this.tabPageAdherentEmprunt.Controls.Add(this.MoisEmprunt);
             this.tabPageAdherentEmprunt.Controls.Add(this.AnneeEmprunt);
             this.tabPageAdherentEmprunt.Controls.Add(this.JourEmprunt);
@@ -176,17 +176,6 @@
             this.listBoxAdherent.Size = new System.Drawing.Size(303, 480);
             this.listBoxAdherent.TabIndex = 2;
             this.listBoxAdherent.SelectedIndexChanged += new System.EventHandler(this.listBoxAdherent_SelectedIndexChanged);
-            // 
-            // EtatEmprunt
-            // 
-            this.EtatEmprunt.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.EtatEmprunt.FormattingEnabled = true;
-            this.EtatEmprunt.ItemHeight = 17;
-            this.EtatEmprunt.Location = new System.Drawing.Point(533, 415);
-            this.EtatEmprunt.Name = "EtatEmprunt";
-            this.EtatEmprunt.Size = new System.Drawing.Size(121, 25);
-            this.EtatEmprunt.TabIndex = 7;
-            this.EtatEmprunt.Text = "Etat";
             // 
             // MoisEmprunt
             // 
@@ -582,6 +571,17 @@
             this.listBox1.Size = new System.Drawing.Size(303, 480);
             this.listBox1.TabIndex = 27;
             // 
+            // checkBoxRendreLivre
+            // 
+            this.checkBoxRendreLivre.AutoSize = true;
+            this.checkBoxRendreLivre.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.checkBoxRendreLivre.Location = new System.Drawing.Point(387, 442);
+            this.checkBoxRendreLivre.Name = "checkBoxRendreLivre";
+            this.checkBoxRendreLivre.Size = new System.Drawing.Size(124, 23);
+            this.checkBoxRendreLivre.TabIndex = 19;
+            this.checkBoxRendreLivre.Text = "Bonjour je teste";
+            this.checkBoxRendreLivre.UseVisualStyleBackColor = true;
+            // 
             // Regroupement_Emprunt
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -610,7 +610,6 @@
         private System.Windows.Forms.TabControl TabEmprunt;
         private System.Windows.Forms.TabPage tabPageAdherentEmprunt;
         private System.Windows.Forms.TabPage tabPageEmprunt;
-        private System.Windows.Forms.ComboBox EtatEmprunt;
         private System.Windows.Forms.ComboBox MoisEmprunt;
         private System.Windows.Forms.ComboBox AnneeEmprunt;
         private System.Windows.Forms.ComboBox JourEmprunt;
@@ -651,5 +650,6 @@
         private System.Windows.Forms.Label labelDateRetourPrevue;
         private System.Windows.Forms.Label labelDateEmprunt;
         private System.Windows.Forms.Label DateRendu;
+        private System.Windows.Forms.CheckBox checkBoxRendreLivre;
     }
 }
