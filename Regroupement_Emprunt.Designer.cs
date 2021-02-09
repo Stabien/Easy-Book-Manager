@@ -125,7 +125,7 @@
             this.ButtonRefresh.FlatAppearance.BorderSize = 0;
             this.ButtonRefresh.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ButtonRefresh.Image = ((System.Drawing.Image)(resources.GetObject("ButtonRefresh.Image")));
-            this.ButtonRefresh.Location = new System.Drawing.Point(8, 530);
+            this.ButtonRefresh.Location = new System.Drawing.Point(811, 530);
             this.ButtonRefresh.Name = "ButtonRefresh";
             this.ButtonRefresh.Size = new System.Drawing.Size(36, 36);
             this.ButtonRefresh.TabIndex = 20;
@@ -331,6 +331,7 @@
             // 
             this.SearchBar.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.SearchBar.Location = new System.Drawing.Point(8, 10);
+            this.SearchBar.MaxLength = 40;
             this.SearchBar.Name = "SearchBar";
             this.SearchBar.Size = new System.Drawing.Size(303, 25);
             this.SearchBar.TabIndex = 1;

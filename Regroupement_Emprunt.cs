@@ -152,7 +152,7 @@ namespace Easy_Book_Manager
                 }
                
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 
             }
@@ -446,6 +446,7 @@ namespace Easy_Book_Manager
             {
                 //Nettoie tout la list pour tout afficher de nouveau
                 listBoxAdherent.Items.Clear();
+                listeNom.Clear();
 
 
                 //Ouverture de la bdd
@@ -467,6 +468,7 @@ namespace Easy_Book_Manager
                     //Remplis la liste des adhérents
 
                     listBoxAdherent.Items.Add(reader["id"] + " " + reader["Nom"] + " " + reader["Prenom"]);
+                    listeNom.Add(reader["id"] + " " + reader["Nom"] + " " + reader["Prenom"]);
                     //reader["id"]  reader["Nom"]
                 }
 
