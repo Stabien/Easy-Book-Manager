@@ -53,12 +53,19 @@ namespace Easy_Book_Manager
                     command.Parameters.AddWithValue("@age", ageAd);
                     command.ExecuteNonQuery();
                     MessageBox.Show("Nouvel adhérent ajouté !");
+
+                    // Clear fields
+                    textBoxNomAd.Text = "";
+                    textBoxPrenomAd.Text = "";
+                    textBoxAgeAd.Text = "";
+                    textBoxTelAd.Text = "";
+                    textBoxAdresseAd.Text = "";
                 }
                 else
                     MessageBox.Show("Erreur lors de la saisie du formulaire");
             }
-            catch (Exception erreur) {
-                MessageBox.Show(erreur.Message);
+            catch (Exception ex) {
+                MessageBox.Show(ex.Message);
             }
         }
         private void button_Annuler_ad_Click(object sender, EventArgs e)
