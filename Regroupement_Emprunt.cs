@@ -87,7 +87,7 @@ namespace Easy_Book_Manager
 
 
                 //Remplis la liste jour pas défault
-                for (int i = 0; i < 32; i++)
+                for (int i = 1; i < 32; i++)
                 {
                     JourEmprunt.Items.Add(i);
                 }
@@ -369,7 +369,7 @@ namespace Easy_Book_Manager
                     //Nettoie la comboBox jour pour ne pas remplir avec des nombre déjà existant
                     JourEmprunt.Items.Clear();
                     //Remplis la combBox jour en fonction du mois selectionner
-                    for (int i = 0; i < 29; i++)
+                    for (int i = 1; i < 29; i++)
                     {
                         JourEmprunt.Items.Add(i);
                     }
@@ -380,7 +380,7 @@ namespace Easy_Book_Manager
                     //Nettoie la comboBox jour pour ne pas remplir avec des nombre déjà existant
                     JourEmprunt.Items.Clear();
                     //Remplis la combBox jour en fonction du mois selectionner
-                    for (int i = 0; i < 31; i++)
+                    for (int i = 1; i < 31; i++)
                     {
                         JourEmprunt.Items.Add(i);
                     }
@@ -391,7 +391,7 @@ namespace Easy_Book_Manager
                     //Nettoie la comboBox jour pour ne pas remplir avec des nombre déjà existant
                     JourEmprunt.Items.Clear();
                     //Remplis la combBox jour en fonction du mois selectionner
-                    for (int i = 0; i < 31; i++)
+                    for (int i = 1; i < 31; i++)
                     {
                         JourEmprunt.Items.Add(i);
                     }
@@ -402,7 +402,7 @@ namespace Easy_Book_Manager
                     //Nettoie la comboBox jour pour ne pas remplir avec des nombre déjà existant
                     JourEmprunt.Items.Clear();
                     //Remplis la combBox jour en fonction du mois selectionner
-                    for (int i = 0; i < 31; i++)
+                    for (int i = 1; i < 31; i++)
                     {
                         JourEmprunt.Items.Add(i);
                     }
@@ -413,7 +413,7 @@ namespace Easy_Book_Manager
                     //Nettoie la comboBox jour pour ne pas remplir avec des nombre déjà existant
                     JourEmprunt.Items.Clear();
                     //Remplis la combBox jour en fonction du mois selectionner
-                    for (int i = 0; i < 31; i++)
+                    for (int i = 1; i < 31; i++)
                     {
                         JourEmprunt.Items.Add(i);
                     }
@@ -425,7 +425,7 @@ namespace Easy_Book_Manager
                     //Nettoie la comboBox jour pour ne pas remplir avec des nombre déjà existant
                     JourEmprunt.Items.Clear();
                     //Remplis la combBox jour par defaut
-                    for (int i = 0; i < 32; i++)
+                    for (int i = 1; i < 32; i++)
                     {
                         JourEmprunt.Items.Add(i);
                     }
