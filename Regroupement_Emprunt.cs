@@ -456,6 +456,8 @@ namespace Easy_Book_Manager
                 labelDateRetourPrevue.ForeColor = System.Drawing.Color.Black;
 
                 ListeLivreEmprunter.Items.Clear();
+
+                initializeComboBox();
             }
             catch (Exception ex)
             {
