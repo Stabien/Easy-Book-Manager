@@ -43,11 +43,14 @@
             this.AnneeEmprunt = new System.Windows.Forms.ComboBox();
             this.JourEmprunt = new System.Windows.Forms.ComboBox();
             this.InfosAdhérents = new System.Windows.Forms.Panel();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
             this.AdresseAdherent = new System.Windows.Forms.Label();
             this.TelephoneAdherent = new System.Windows.Forms.Label();
             this.NomAdherent = new System.Windows.Forms.Label();
             this.PrenomAdherent = new System.Windows.Forms.Label();
-            this.IdAdherent = new System.Windows.Forms.Label();
             this.BouttonEnregistrer = new System.Windows.Forms.Button();
             this.SearchBar = new System.Windows.Forms.TextBox();
             this.tabPageEmprunt = new System.Windows.Forms.TabPage();
@@ -122,25 +125,27 @@
             // 
             this.ButtonRefresh.BackColor = System.Drawing.Color.White;
             this.ButtonRefresh.CausesValidation = false;
+            this.ButtonRefresh.Cursor = System.Windows.Forms.Cursors.Hand;
             this.ButtonRefresh.FlatAppearance.BorderSize = 0;
             this.ButtonRefresh.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ButtonRefresh.Image = ((System.Drawing.Image)(resources.GetObject("ButtonRefresh.Image")));
-            this.ButtonRefresh.Location = new System.Drawing.Point(811, 530);
+            this.ButtonRefresh.Location = new System.Drawing.Point(317, 7);
             this.ButtonRefresh.Name = "ButtonRefresh";
-            this.ButtonRefresh.Size = new System.Drawing.Size(36, 36);
-            this.ButtonRefresh.TabIndex = 20;
+            this.ButtonRefresh.Size = new System.Drawing.Size(27, 31);
+            this.ButtonRefresh.TabIndex = 22;
             this.ButtonRefresh.UseVisualStyleBackColor = false;
-            this.ButtonRefresh.Click += new System.EventHandler(this.ButtonRefresh_Click);
+            this.ButtonRefresh.Click += new System.EventHandler(this.ButtonRefresh_Click_1);
             // 
             // checkBoxRendreLivre
             // 
             this.checkBoxRendreLivre.AutoSize = true;
+            this.checkBoxRendreLivre.Cursor = System.Windows.Forms.Cursors.Hand;
             this.checkBoxRendreLivre.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.checkBoxRendreLivre.Location = new System.Drawing.Point(387, 442);
             this.checkBoxRendreLivre.Name = "checkBoxRendreLivre";
-            this.checkBoxRendreLivre.Size = new System.Drawing.Size(124, 23);
+            this.checkBoxRendreLivre.Size = new System.Drawing.Size(268, 23);
             this.checkBoxRendreLivre.TabIndex = 19;
-            this.checkBoxRendreLivre.Text = "Bonjour je teste";
+            this.checkBoxRendreLivre.Text = "Les livres sélectionnés sont bien rendus";
             this.checkBoxRendreLivre.UseVisualStyleBackColor = true;
             // 
             // labelDateRetourPrevue
@@ -195,6 +200,7 @@
             // 
             // listBoxAdherent
             // 
+            this.listBoxAdherent.Cursor = System.Windows.Forms.Cursors.Default;
             this.listBoxAdherent.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.listBoxAdherent.FormattingEnabled = true;
             this.listBoxAdherent.ItemHeight = 17;
@@ -256,69 +262,103 @@
             // InfosAdhérents
             // 
             this.InfosAdhérents.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.InfosAdhérents.Controls.Add(this.label6);
+            this.InfosAdhérents.Controls.Add(this.label5);
+            this.InfosAdhérents.Controls.Add(this.label4);
+            this.InfosAdhérents.Controls.Add(this.label3);
             this.InfosAdhérents.Controls.Add(this.AdresseAdherent);
             this.InfosAdhérents.Controls.Add(this.TelephoneAdherent);
             this.InfosAdhérents.Controls.Add(this.NomAdherent);
             this.InfosAdhérents.Controls.Add(this.PrenomAdherent);
-            this.InfosAdhérents.Controls.Add(this.IdAdherent);
             this.InfosAdhérents.Location = new System.Drawing.Point(386, 10);
             this.InfosAdhérents.Name = "InfosAdhérents";
             this.InfosAdhérents.Size = new System.Drawing.Size(415, 96);
             this.InfosAdhérents.TabIndex = 13;
             // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Segoe UI", 9.75F);
+            this.label6.Location = new System.Drawing.Point(15, 68);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(75, 17);
+            this.label6.TabIndex = 24;
+            this.label6.Text = "Téléphone :";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Segoe UI", 9.75F);
+            this.label5.Location = new System.Drawing.Point(15, 38);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(62, 17);
+            this.label5.TabIndex = 23;
+            this.label5.Text = "Adresse :";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Segoe UI", 9.75F);
+            this.label4.Location = new System.Drawing.Point(208, 11);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(60, 17);
+            this.label4.TabIndex = 22;
+            this.label4.Text = "Prénom :";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Segoe UI", 9.75F);
+            this.label3.Location = new System.Drawing.Point(15, 11);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(44, 17);
+            this.label3.TabIndex = 21;
+            this.label3.Text = "Nom :";
+            // 
             // AdresseAdherent
             // 
             this.AdresseAdherent.AutoSize = true;
             this.AdresseAdherent.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.AdresseAdherent.Location = new System.Drawing.Point(13, 39);
+            this.AdresseAdherent.Location = new System.Drawing.Point(73, 38);
             this.AdresseAdherent.Name = "AdresseAdherent";
-            this.AdresseAdherent.Size = new System.Drawing.Size(55, 17);
+            this.AdresseAdherent.Size = new System.Drawing.Size(193, 17);
             this.AdresseAdherent.TabIndex = 9;
-            this.AdresseAdherent.Text = "Adresse";
+            this.AdresseAdherent.Text = "_____________________________________";
             // 
             // TelephoneAdherent
             // 
             this.TelephoneAdherent.AutoSize = true;
             this.TelephoneAdherent.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TelephoneAdherent.Location = new System.Drawing.Point(197, 67);
+            this.TelephoneAdherent.Location = new System.Drawing.Point(73, 68);
             this.TelephoneAdherent.Name = "TelephoneAdherent";
-            this.TelephoneAdherent.Size = new System.Drawing.Size(125, 17);
+            this.TelephoneAdherent.Size = new System.Drawing.Size(108, 17);
             this.TelephoneAdherent.TabIndex = 5;
-            this.TelephoneAdherent.Text = "Telephone Adhérent";
+            this.TelephoneAdherent.Text = "____________________";
             // 
             // NomAdherent
             // 
             this.NomAdherent.AutoSize = true;
             this.NomAdherent.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.NomAdherent.Location = new System.Drawing.Point(197, 13);
+            this.NomAdherent.Location = new System.Drawing.Point(56, 11);
             this.NomAdherent.Name = "NomAdherent";
-            this.NomAdherent.Size = new System.Drawing.Size(94, 17);
+            this.NomAdherent.Size = new System.Drawing.Size(108, 17);
             this.NomAdherent.TabIndex = 4;
-            this.NomAdherent.Text = "Nom Adhérent";
+            this.NomAdherent.Text = "____________________";
             // 
             // PrenomAdherent
             // 
             this.PrenomAdherent.AutoSize = true;
             this.PrenomAdherent.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.PrenomAdherent.Location = new System.Drawing.Point(13, 67);
+            this.PrenomAdherent.Location = new System.Drawing.Point(265, 11);
             this.PrenomAdherent.Name = "PrenomAdherent";
-            this.PrenomAdherent.Size = new System.Drawing.Size(110, 17);
+            this.PrenomAdherent.Size = new System.Drawing.Size(108, 17);
             this.PrenomAdherent.TabIndex = 4;
-            this.PrenomAdherent.Text = "Prénom Adhérent";
-            // 
-            // IdAdherent
-            // 
-            this.IdAdherent.AutoSize = true;
-            this.IdAdherent.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.IdAdherent.Location = new System.Drawing.Point(13, 13);
-            this.IdAdherent.Name = "IdAdherent";
-            this.IdAdherent.Size = new System.Drawing.Size(20, 17);
-            this.IdAdherent.TabIndex = 0;
-            this.IdAdherent.Text = "ID";
+            this.PrenomAdherent.Text = "____________________";
             // 
             // BouttonEnregistrer
             // 
             this.BouttonEnregistrer.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.BouttonEnregistrer.Cursor = System.Windows.Forms.Cursors.Hand;
             this.BouttonEnregistrer.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.BouttonEnregistrer.Location = new System.Drawing.Point(549, 513);
             this.BouttonEnregistrer.Name = "BouttonEnregistrer";
@@ -635,7 +675,6 @@
         private System.Windows.Forms.Label TelephoneAdherent;
         private System.Windows.Forms.Label NomAdherent;
         private System.Windows.Forms.Label PrenomAdherent;
-        private System.Windows.Forms.Label IdAdherent;
         private System.Windows.Forms.Button BouttonEnregistrer;
         private System.Windows.Forms.TextBox SearchBar;
         private System.Windows.Forms.Button Supprimer_Emprunt;
@@ -668,6 +707,10 @@
         private System.Windows.Forms.Label labelDateEmprunt;
         private System.Windows.Forms.Label DateRendu;
         private System.Windows.Forms.CheckBox checkBoxRendreLivre;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Button ButtonRefresh;
     }
 }

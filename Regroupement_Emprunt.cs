@@ -49,8 +49,10 @@ namespace Easy_Book_Manager
 
             try
             {
-
-
+                NomAdherent.Text = "";
+                AdresseAdherent.Text = "";
+                PrenomAdherent.Text = "";
+                TelephoneAdherent.Text = "";
 
                 //Permet la connexion à la bdd
 
@@ -157,11 +159,6 @@ namespace Easy_Book_Manager
                 
             }
             
-            
-
-
-
-
         }
         //----------------------------------------------------------//
 
@@ -174,11 +171,10 @@ namespace Easy_Book_Manager
         private void listBoxAdherent_SelectedIndexChanged(object sender, EventArgs e)
         {
             //Remet tout les éléments au texte de base// 
-            IdAdherent.Text = "ID";
-            NomAdherent.Text = "Nom Adhérent";
-            AdresseAdherent.Text = "Adresse";
-            PrenomAdherent.Text = "Prénom Adhérent";
-            TelephoneAdherent.Text = "Telephone Adhérent";           
+            NomAdherent.Text = "";
+            AdresseAdherent.Text = "";
+            PrenomAdherent.Text = "";
+            TelephoneAdherent.Text = "";           
             labelDateRetourPrevue.ForeColor = System.Drawing.Color.Black;
 
 
@@ -196,15 +192,13 @@ namespace Easy_Book_Manager
                 //Fait appel à la fonction isNumeric qui permet de récuperer l'id du nom selectionner//
                 string Resultat = null;
                 Resultat = isNumeric(ObjetSelectionner);
-                IdAdherent.Text = Resultat;
                 //Empeche l'utilisateur de ne cliquer sur aucun élément et de faire buger la page 
                 if (Resultat.Length <= 0)
                 {
-                    IdAdherent.Text = "ID";
-                    NomAdherent.Text = "Nom Adhérent";
-                    AdresseAdherent.Text = "Adresse";
-                    PrenomAdherent.Text = "Prénom Adhérent";
-                    TelephoneAdherent.Text = "Telephone Adhérent";
+                    NomAdherent.Text = "";
+                    AdresseAdherent.Text = "";
+                    PrenomAdherent.Text = "";
+                    TelephoneAdherent.Text = "";
                     labelDateRetourPrevue.ForeColor = System.Drawing.Color.Black;
                 }
                 else
@@ -251,8 +245,6 @@ namespace Easy_Book_Manager
                     //Permet de comparer la date d'aujourd'hui avec la date de retour prévue et de stocker tout dans un int, si int = -1 tout va bien sinon retour en retard
                     DateTime DateAujourdhui = DateTime.Today;
                     int comparaison = DateTime.Compare(DateAujourdhui, dateRetourPrevuComp);
-
-
 
 
                     InfoUtilisateur = Lecture.ExecuteReader();
@@ -440,7 +432,7 @@ namespace Easy_Book_Manager
 
 
         //--------------------Permet de "Rafraichir" la list des adherents--------------------//
-        private void ButtonRefresh_Click(object sender, EventArgs e)
+        private void ButtonRefresh_Click_1(object sender, EventArgs e)
         {
             try
             {
@@ -483,11 +475,11 @@ namespace Easy_Book_Manager
                 if (dbConn != null)
                     dbConn.Close();
 
-                IdAdherent.Text = "ID";
-                NomAdherent.Text = "Nom Adhérent";
-                AdresseAdherent.Text = "Adresse";
-                PrenomAdherent.Text = "Prénom Adhérent";
-                TelephoneAdherent.Text = "Telephone Adhérent";
+
+                NomAdherent.Text = "";
+                AdresseAdherent.Text = "";
+                PrenomAdherent.Text = "";
+                TelephoneAdherent.Text = "";
                 labelDateRetourPrevue.Text = "00/00/0000";
                 labelDateEmprunt.Text = "00/00/0000";
                 labelDateRetourPrevue.ForeColor = System.Drawing.Color.Black;
@@ -499,10 +491,7 @@ namespace Easy_Book_Manager
                 MessageBox.Show("Une erreur est survenu :" + ex.Message);
             }
 
-
-
         }
-
 
         //-------------------------------------------------------------------------------------//
 
