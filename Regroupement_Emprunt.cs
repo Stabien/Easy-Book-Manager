@@ -29,24 +29,18 @@ namespace Easy_Book_Manager
         string ObjetSelectionner;
         string Mois;
         string RecuperationidDemprunt = null;
+        DateTime today = DateTime.Today;
         int EnvoieDeLid = 0;
         DateTime dateRetourPrevuComp;
-
-
-
-
+        
         public Regroupement_Emprunt()
         {
             InitializeComponent();
             Base();
-
-
-
+            initializeComboBox();
         }
         private void Base()
         {
-
-
             try
             {
                 NomAdherent.Text = "";
@@ -56,7 +50,7 @@ namespace Easy_Book_Manager
 
                 //Permet la connexion à la bdd
 
-                string connStr = @"Data Source=MSI\SQLEXPRESS;Initial Catalog=Gestion_Biblio;Integrated Security=True";
+                string connStr = @"Data Source=.\SQLEXPRESS;Initial Catalog=Gestion_Biblio;Integrated Security=True";
                 dbConn = new SqlConnection(connStr);
 
                 //Ouverture de la bdd
@@ -66,9 +60,9 @@ namespace Easy_Book_Manager
                 //Création des requete SQL
 
                 AdherentCommand = new SqlCommand
-                  (
-                        "Select Nom, id, Prenom from Adherents where Emprunt_en_cours = 1", dbConn
-                   );
+                (
+                   "Select Nom, id, Prenom from Adherents where Emprunt_en_cours = 1", dbConn
+                );
 
                 //Vérifie si le reader est ouvert ou fermer puis le ferme²
 
@@ -93,10 +87,7 @@ namespace Easy_Book_Manager
                 {
                     JourEmprunt.Items.Add(i);
                 }
-
-
             }
-
             //Récupere les erreurs
             catch (SqlException ex)
             {
@@ -159,13 +150,13 @@ namespace Easy_Book_Manager
                 
             }
             
+            
+
+
+
+
         }
         //----------------------------------------------------------//
-
-
-
-
-
 
         //--------------------S'active dès qu'un élément est séléctionner dans la ListboxAdherent--------------------//
         private void listBoxAdherent_SelectedIndexChanged(object sender, EventArgs e)
@@ -181,7 +172,6 @@ namespace Easy_Book_Manager
             //Remet la listBox des livre emprunter par défault
 
             ListeLivreEmprunter.Items.Clear();
-
 
             try
             {
@@ -203,8 +193,6 @@ namespace Easy_Book_Manager
                 }
                 else
                 {
-
-
                     dbConn.Open();
                     RecuperationDonnees = new SqlCommand
                         (
@@ -224,9 +212,6 @@ namespace Easy_Book_Manager
                     }
                     if (InfoUtilisateur != null)
                         InfoUtilisateur.Close();
-
-
-
 
                     //Permet d'afficher les livres emprunter par l'utilisateur dans la CheckBoxlist
                     Lecture = new SqlCommand
@@ -267,10 +252,6 @@ namespace Easy_Book_Manager
 
                     if (InfoUtilisateur != null)
                         InfoUtilisateur.Close();
-
-
-
-
 
                     Lecture = new SqlCommand
                              (
@@ -319,10 +300,14 @@ namespace Easy_Book_Manager
         }
         //-----------------------------------------------------------------------------------------------------------//
 
-
-
-
-
+        //--------------------Initialise la combobox à la date d'aujourd'hui-----------------------------------------//
+        private void initializeComboBox()
+        {
+            MoisEmprunt.SelectedIndex = this.today.Month - 1;
+            JourEmprunt.SelectedItem = this.today.Day;
+            AnneeEmprunt.SelectedItem = this.today.Year.ToString();
+        }
+        //-----------------------------------------------------------------------------------------------------------//
 
         //--------------------Permet de récuperer l'id dans le nom des adhérents--------------------//
         private string isNumeric(string value)
@@ -340,21 +325,15 @@ namespace Easy_Book_Manager
         //-----------------------------------------------------------------------------------------//
 
 
-
-
-
-
         //--------------------Change les jours de la ComboBox jour en fonction du mois selectionner--------------------//
         private void MoisEmprunt_SelectedIndexChanged(object sender, EventArgs e)
         {
-
             //Permet de récuperer le mois séléctionner de la comboBox
 
             Mois = MoisEmprunt.GetItemText(MoisEmprunt.SelectedItem);
             //Remplis le nombre de jour dans la comboBox jour en fonction du mois
             switch (Mois)
             {
-
                 case "Fevrier":
                     //Permet d'enlever le texte de la combo box jour au cas ou l'utilisateur aurait rentrer le jour avant le mois
                     JourEmprunt.Text = "Jour";
@@ -410,7 +389,6 @@ namespace Easy_Book_Manager
                         JourEmprunt.Items.Add(i);
                     }
                     break;
-
                 default:
                     //Permet d'enlever le texte de la combo box jour au cas ou l'utilisateur aurait rentrer le jour avant le mois
                     JourEmprunt.Text = "Jour";
@@ -422,14 +400,9 @@ namespace Easy_Book_Manager
                         JourEmprunt.Items.Add(i);
                     }
                     break;
-
-
-
             }
-
         }
         //-------------------------------------------------------------------------------------------------------------//
-
 
         //--------------------Permet de "Rafraichir" la list des adherents--------------------//
         private void ButtonRefresh_Click_1(object sender, EventArgs e)
@@ -440,17 +413,15 @@ namespace Easy_Book_Manager
                 listBoxAdherent.Items.Clear();
                 listeNom.Clear();
 
-
                 //Ouverture de la bdd
 
                 dbConn.Open();
-
                 //Création des requete SQL
 
                 AdherentCommand = new SqlCommand
                   (
                         "Select Nom, id, Prenom from Adherents where Emprunt_en_cours = 1", dbConn
-                   );
+                  );
 
                 //Demarre le Lecture des requete SQL
 
@@ -492,6 +463,7 @@ namespace Easy_Book_Manager
             }
 
         }
+
 
         //-------------------------------------------------------------------------------------//
 
