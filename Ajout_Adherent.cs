@@ -83,5 +83,10 @@ namespace Easy_Book_Manager
                     return false;
             return true;
         }
+
+        private void Ajout_Adherent_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

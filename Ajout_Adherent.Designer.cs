@@ -204,6 +204,7 @@
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "Ajout_Adherent";
             this.Text = "Form1";
+            this.Load += new System.EventHandler(this.Ajout_Adherent_Load);
             this.panelGlobal.ResumeLayout(false);
             this.panelGlobal.PerformLayout();
             this.ResumeLayout(false);
