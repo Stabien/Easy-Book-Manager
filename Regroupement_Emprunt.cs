@@ -29,10 +29,10 @@ namespace Easy_Book_Manager
         string ObjetSelectionner;
         string Mois;
         string RecuperationidDemprunt = null;
+        string Resultat = null;
         DateTime today = DateTime.Today;
         int EnvoieDeLid = 0;
         DateTime dateRetourPrevuComp;
-        
         public Regroupement_Emprunt()
         {
             InitializeComponent();
@@ -61,7 +61,7 @@ namespace Easy_Book_Manager
 
                 AdherentCommand = new SqlCommand
                 (
-                   "Select Nom, id, Prenom from Adherents where Emprunt_en_cours = 1", dbConn
+                   "Select Nom, id, Prenom from Adherents where Emprunt_en_cours is not null", dbConn
                 );
 
                 //Vérifie si le reader est ouvert ou fermer puis le ferme²
@@ -180,7 +180,6 @@ namespace Easy_Book_Manager
                 ObjetSelectionner = listBoxAdherent.GetItemText(listBoxAdherent.SelectedItem);
 
                 //Fait appel à la fonction isNumeric qui permet de récuperer l'id du nom selectionner//
-                string Resultat = null;
                 Resultat = isNumeric(ObjetSelectionner);
                 //Empeche l'utilisateur de ne cliquer sur aucun élément et de faire buger la page 
                 if (Resultat.Length <= 0)
@@ -420,7 +419,7 @@ namespace Easy_Book_Manager
 
                 AdherentCommand = new SqlCommand
                   (
-                        "Select Nom, id, Prenom from Adherents where Emprunt_en_cours = 1", dbConn
+                        "Select Nom, id, Prenom from Adherents where Emprunt_en_cours is not null", dbConn
                   );
 
                 //Demarre le Lecture des requete SQL
@@ -465,13 +464,187 @@ namespace Easy_Book_Manager
             }
 
         }
+        //-----------------------------------------------------------------------------------//
 
 
-        //-------------------------------------------------------------------------------------//
+        //--------------------Lance les requetes SQL pour rendre des livres--------------------//
+        private void BouttonEnregistrer_Click(object sender, EventArgs e)
+        {
+ 
+
+            try
+            {
+                //Vérifie que tout les champs sont remplis
+                if (checkBoxRendreLivre.Checked == true && JourEmprunt.SelectedItem != null && ListeLivreEmprunter.CheckedItems.Count != 0 && listBoxAdherent.SelectedItem != null)
+                {
+                    //Vérifie si l'utiliseateur a sélectionner tout les livres
+                    if (ListeLivreEmprunter.CheckedItems.Count == ListeLivreEmprunter.Items.Count)
+                    {
+                        dbConn.Open();
+                        //"Supprime" les livres emprunter
+                        foreach (string Livre in ListeLivreEmprunter.CheckedItems)
+                        {
+                            string BonLivre = Livre.Replace("'", "''");
+                            Lecture = new SqlCommand
+                        (
+                             $"UPDATE Livres SET Emprunte = 0 , ID_Emprunt = NULL WHERE Titre = '{BonLivre}'", dbConn
+                         );
+                            reader = Lecture.ExecuteReader();
+
+                            reader.Read();
+
+                            reader.Close();
+
+                        }
+                        //Retire l'emprunt de l'utilisateur
+                        Lecture = new SqlCommand
+                                                (
+                                                    $"UPDATE Adherents SET Emprunt_en_cours = NULL WHERE ID = {Resultat}", dbConn
+                                                 );
+                        reader = Lecture.ExecuteReader();
+
+                        reader.Read();
+
+                        reader.Close();
+
+                        //récupère la date de retour
+                        DateTime DateFinal = DateComplete();
+
+
+                        Lecture = new SqlCommand
+                            (
+                                $"UPDATE Emprunt SET Date_de_rendu = '{DateFinal}' WHERE ID_Adherents = {Resultat} and Date_de_rendu is null", dbConn
+                             );
+
+                        reader = Lecture.ExecuteReader();
+
+                        reader.Read();
+
+                        reader.Close();
+
+                        dbConn.Close();
+
+
+                        MessageBox.Show("Opération Validée");
+                        Nettoyage();
+
+
+                    }
+                    else
+                    {
+
+                        dbConn.Open();
+
+                        //"Supprime" les livres emprunter
+                        foreach (string Livre in ListeLivreEmprunter.CheckedItems)
+                        {
+                            string BonLivre = Livre.Replace("'", "''");
+                            Lecture = new SqlCommand
+                        (
+                             $"UPDATE Livres SET Emprunte = 0 , ID_Emprunt = NULL WHERE Titre = '{BonLivre}'", dbConn
+                         );
+                            reader = Lecture.ExecuteReader();
+
+                            reader.Read();
+
+                            reader.Close();
+
+                        }
+                        dbConn.Close();
+                        MessageBox.Show("Opération Validée");
+                        Nettoyage();
+                    }
+
+                }
+                else
+                {
+                    MessageBox.Show("Merci de bien vouloir rentrer toute les informations");
+                }
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+
+        }
+        //--------------------------------------------------------------------------------------//
 
 
 
+        //------------------------Permet de récupérer la date de rendu------------------------//
+        private DateTime DateComplete ()
+        {
+            string Jour = JourEmprunt.SelectedItem.ToString();
+            string Mois = (MoisEmprunt.SelectedIndex + 1).ToString();
+            string Annee = AnneeEmprunt.SelectedItem.ToString();
+            string datefinal = Jour + '-' + Mois+ '-' + Annee;
+            DateTime DateEnd = DateTime.Parse(datefinal);
+            return DateEnd;
+        }
+        //------------------------------------------------------------------------------------//
 
+        private void Nettoyage()
+        {
+            try
+            {
+                //Nettoie tout la list pour tout afficher de nouveau
+                listBoxAdherent.Items.Clear();
+                listeNom.Clear();
+
+                //Ouverture de la bdd
+
+                dbConn.Open();
+                //Création des requete SQL
+
+                AdherentCommand = new SqlCommand
+                  (
+                        "Select Nom, id, Prenom from Adherents where Emprunt_en_cours is not null", dbConn
+                  );
+
+                //Demarre le Lecture des requete SQL
+
+                reader = AdherentCommand.ExecuteReader();
+                while (reader.Read())
+                {
+                    //Remplis la liste des adhérents
+
+                    listBoxAdherent.Items.Add(reader["id"] + " " + reader["Nom"] + " " + reader["Prenom"]);
+                    listeNom.Add(reader["id"] + " " + reader["Nom"] + " " + reader["Prenom"]);
+                    //reader["id"]  reader["Nom"]
+                }
+
+                //Enleve les éléments dans la barre de recherche
+
+                SearchBar.Text = null;
+
+                //Vérifie si le reader est ouvert ou fermer puis le ferme²
+
+                if (reader != null)
+                    reader.Close();
+                if (dbConn != null)
+                    dbConn.Close();
+
+
+                NomAdherent.Text = "";
+                AdresseAdherent.Text = "";
+                PrenomAdherent.Text = "";
+                TelephoneAdherent.Text = "";
+                labelDateRetourPrevue.Text = "00/00/0000";
+                labelDateEmprunt.Text = "00/00/0000";
+                labelDateRetourPrevue.ForeColor = System.Drawing.Color.Black;
+
+                ListeLivreEmprunter.Items.Clear();
+
+                initializeComboBox();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Une erreur est survenu :" + ex.Message);
+            }
+            if (dbConn != null)
+            dbConn.Close();
+        }
     }
 }
     

@@ -303,7 +303,7 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Segoe UI", 9.75F);
-            this.label4.Location = new System.Drawing.Point(226, 9);
+            this.label4.Location = new System.Drawing.Point(208, 9);
             this.label4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(60, 17);
@@ -358,7 +358,7 @@
             // 
             this.PrenomAdherent.AutoSize = true;
             this.PrenomAdherent.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.PrenomAdherent.Location = new System.Drawing.Point(290, 9);
+            this.PrenomAdherent.Location = new System.Drawing.Point(272, 9);
             this.PrenomAdherent.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.PrenomAdherent.Name = "PrenomAdherent";
             this.PrenomAdherent.Size = new System.Drawing.Size(108, 17);
@@ -376,6 +376,7 @@
             this.BouttonEnregistrer.TabIndex = 8;
             this.BouttonEnregistrer.Text = "Enregistrer";
             this.BouttonEnregistrer.UseVisualStyleBackColor = false;
+            this.BouttonEnregistrer.Click += new System.EventHandler(this.BouttonEnregistrer_Click);
             // 
             // SearchBar
             // 
@@ -655,7 +656,9 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(854, 592);
             this.Controls.Add(this.TabEmprunt);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximizeBox = false;
             this.Name = "Regroupement_Emprunt";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Regroupementform";
