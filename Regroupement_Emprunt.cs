@@ -103,10 +103,7 @@ namespace Easy_Book_Manager
                 if (dbConn != null)
                     dbConn.Close();
             }
-
         }
-
-
         //--------------------Barre de recherche--------------------//
         private void SearchBar_TextChanged(object sender, EventArgs e)
         {
