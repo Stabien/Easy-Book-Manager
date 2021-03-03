@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Data.SqlClient;
 using System.Data.Sql;
 using System.Windows.Forms;
+using System.Text.RegularExpressions;
 
 namespace Easy_Book_Manager
 {
@@ -16,7 +17,7 @@ namespace Easy_Book_Manager
     {
         string connString = @"Data Source=.\SQLEXPRESS;Initial Catalog=Gestion_Biblio;Integrated Security=True";
         List<string> allAdherents = new List<string>();
-        int currentIdAdherent;
+        int currentIdAdherent = -1;
 
         public Gestion_Adherent()
         {
@@ -55,11 +56,11 @@ namespace Easy_Book_Manager
                 MessageBox.Show(ex.Message);
             }
         }
-        
+
         private void textBoxSearchAdherent_TextChanged(object sender, EventArgs e)
         {
             string research = this.textBoxSearchAdherent.Text;
-            
+
             this.listBoxAdherent.Items.Clear();
 
             foreach (string adherents in this.allAdherents)
@@ -103,56 +104,71 @@ namespace Easy_Book_Manager
 
         private void buttonValiderModifAd_Click(object sender, EventArgs e)
         {
-            try
+            if (this.currentIdAdherent != -1)
             {
-                bool checkFields = true;
-
-                // Check all fields 
-                if (textBoxModifNomAd.Text.Length < 3 || textBoxModifPrenomAd.Text.Length < 3)
-                    checkFields = false;
-                if (textBoxModifAgeAd.Text.Length < 1 || !this.isNumeric(textBoxModifAgeAd.Text))
-                    checkFields = false;
-                if (textBoxModifTelAd.Text.Length < 10 || !this.isNumeric(textBoxModifTelAd.Text))
-                    checkFields = false;
-                if (textBoxModifAdresseAd.Text.Length < 5)
-                    checkFields = false;
-
-                // If checkFields is true, execute request
-                if (checkFields)
+                try
                 {
-                    int ageAd = int.Parse(textBoxModifAgeAd.Text);
+                    bool checkFields = true;
 
-                    // Db connection
-                    SqlConnection conn = new SqlConnection(connString);
-                    conn.Open();
+                    // Check all fields 
+                    if (textBoxModifNomAd.Text.Length < 3 || textBoxModifPrenomAd.Text.Length < 3)
+                        checkFields = false;
+                    if (textBoxModifAgeAd.Text.Length < 1 || !this.isNumeric(textBoxModifAgeAd.Text))
+                        checkFields = false;
+                    if (textBoxModifTelAd.Text.Length < 10 || !this.isNumeric(textBoxModifTelAd.Text))
+                        checkFields = false;
+                    if (textBoxModifAdresseAd.Text.Length < 5)
+                        checkFields = false;
 
-                    // Create request and execute request
-                    SqlCommand updateAdherent = new SqlCommand($"UPDATE Adherents SET Nom = @nom, Prenom = @prenom, Adresse = @adresse, Telephone = @telephone, Age = @age WHERE id =" + this.currentIdAdherent, conn);
-                    updateAdherent.Parameters.AddWithValue("@nom", textBoxModifNomAd.Text);
-                    updateAdherent.Parameters.AddWithValue("@prenom", textBoxModifPrenomAd.Text);
-                    updateAdherent.Parameters.AddWithValue("@adresse", textBoxModifAdresseAd.Text);
-                    updateAdherent.Parameters.AddWithValue("@telephone", textBoxModifTelAd.Text);
-                    updateAdherent.Parameters.AddWithValue("@age", ageAd);
-                    updateAdherent.ExecuteNonQuery();
-                    
-                    MessageBox.Show("Modifications enregistrées !");
-                 
-                    this.listBoxDisplayAdherents();
-                    this.textBoxSearchAdherent.Text = "";
+                    // If checkFields is true, execute request
+                    if (checkFields)
+                    {
+                        int ageAd = int.Parse(textBoxModifAgeAd.Text);
 
+                        // Db connection
+                        SqlConnection conn = new SqlConnection(connString);
+                        conn.Open();
+
+                        // Create request and execute request
+                        SqlCommand updateAdherent = new SqlCommand($"UPDATE Adherents SET Nom = @nom, Prenom = @prenom, Adresse = @adresse, Telephone = @telephone, Age = @age WHERE id =" + this.currentIdAdherent, conn);
+                        updateAdherent.Parameters.AddWithValue("@nom", textBoxModifNomAd.Text);
+                        updateAdherent.Parameters.AddWithValue("@prenom", textBoxModifPrenomAd.Text);
+                        updateAdherent.Parameters.AddWithValue("@adresse", textBoxModifAdresseAd.Text);
+                        updateAdherent.Parameters.AddWithValue("@telephone", textBoxModifTelAd.Text);
+                        updateAdherent.Parameters.AddWithValue("@age", ageAd);
+                        updateAdherent.ExecuteNonQuery();
+
+                        MessageBox.Show("Modifications enregistrées !");
+
+                        this.listBoxDisplayAdherents();
+                        this.textBoxSearchAdherent.Text = "";
+                        this.currentIdAdherent = -1;
+
+                        // Clear fields
+                        textBoxModifNomAd.Text = "";
+                        textBoxModifPrenomAd.Text = "";
+                        textBoxModifAgeAd.Text = "";
+                        textBoxModifTelAd.Text = "";
+                        textBoxModifAdresseAd.Text = "";
+                    }
+                    else
+                        MessageBox.Show("Erreur lors de la saisie du formulaire");
                 }
-                else
-                    MessageBox.Show("Erreur lors de la saisie du formulaire");
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
             }
-            catch (Exception ex)
+            else
             {
-                MessageBox.Show(ex.Message);
+                MessageBox.Show("Veuillez sélectionner un adhérent");
             }
         }
 
         private void buttonValiderAjoutAd_Click(object sender, EventArgs e)
         {
-            try {
+            try
+            {
                 bool checkFields = true;
 
                 // Check all fields 
@@ -195,17 +211,51 @@ namespace Easy_Book_Manager
                 else
                     MessageBox.Show("Erreur lors de la saisie du formulaire");
             }
-            catch (Exception ex) {
+            catch (Exception ex)
+            {
                 MessageBox.Show(ex.Message);
             }
         }
-        private void buttonAnnulerAjoutAd_Click(object sender, EventArgs e)
-        {
-            DialogResult res = MessageBox.Show("Voulez vous vraiment annuler ?",
-            "Avertissement", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
-            if (res == DialogResult.Yes)
-                Application.Exit();
+        private void buttonDeleteAdherent_Click(object senser, EventArgs e)
+        {
+            if (this.currentIdAdherent != -1)
+            {
+                string nameAdherent = Regex.Replace(listBoxAdherent.SelectedItem.ToString(), @"\d", "");
+                DialogResult res = MessageBox.Show("Voulez-vous vraiment supprimer" + nameAdherent + " de la base de données ?",
+                "Avertissement", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+                if (res == DialogResult.Yes)
+                {
+                    SqlConnection conn = new SqlConnection(connString);
+                    conn.Open();
+
+                    SqlCommand deleteAdherent = new SqlCommand("DELETE adherents WHERE id= " + this.currentIdAdherent, conn);
+                    SqlDataReader reader = deleteAdherent.ExecuteReader();
+
+                    // Refresh page
+                    this.listBoxDisplayAdherents();
+                    this.textBoxSearchAdherent.Text = "";
+                    this.currentIdAdherent = -1;
+
+                    // Clear fields
+                    textBoxModifNomAd.Text = "";
+                    textBoxModifPrenomAd.Text = "";
+                    textBoxModifAgeAd.Text = "";
+                    textBoxModifTelAd.Text = "";
+                    textBoxModifAdresseAd.Text = "";
+
+                }
+            }
+            else
+            {
+                MessageBox.Show("Veuillez sélectionner un adhérent");
+            }
+        }
+
+        private void CloseGestionAdherent_Click(object sender, EventArgs e)
+        {
+            Close();
         }
         private bool isNumeric(string value)
         {
@@ -252,6 +302,21 @@ namespace Easy_Book_Manager
         }
 
         private void textBoxAjoutNomAd_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBoxModifTelAd_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void labelTelModifAd_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void panel2_Paint(object sender, PaintEventArgs e)
         {
 
         }
