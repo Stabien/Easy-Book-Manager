@@ -22,14 +22,28 @@ namespace Easy_Book_Manager
         //Future Commande SQL
         SqlCommand Lecture = null;
         SqlCommand AdherentCommand = null;
+        SqlCommand GerrerAdherentCommand = null;
+        SqlCommand LivresCommand = null;
         SqlCommand RecuperationDonnees = null;
+        SqlCommand ChopperID = null;
+        SqlCommand CreationEmprunt = null;
+        SqlCommand UpdateAdherent = null;
+        SqlCommand UpdateLivres = null;
+        SqlDataAdapter adapter = new SqlDataAdapter();
         List<string> listeNom = new List<string>();
+        List<string> listeLivres = new List<string>();
+        List<string> listeAdherent = new List<string>();
         List<object> ListeTeste = new List<object>();
         List<string> ListeTesteNom = new List<string>();
+        string ID_cree = null;
         string ObjetSelectionner;
+        string ObjectSelect;
         string Mois;
         string RecuperationidDemprunt = null;
         string Resultat = null;
+        string Answer = null;
+        string Livres;
+        string Adherents;
         DateTime today = DateTime.Today;
         int EnvoieDeLid = 0;
         DateTime dateRetourPrevuComp;
@@ -81,7 +95,6 @@ namespace Easy_Book_Manager
                     //reader["id"]  reader["Nom"]
                 }
 
-
                 //Remplis la liste jour pas défault
                 for (int i = 1; i < 32; i++)
                 {
@@ -109,6 +122,112 @@ namespace Easy_Book_Manager
                     dbConn.Close();
             }
 
+
+
+
+
+            //---------------try pour faire apparaitre les livres de la page emprunt --------- #Yann --------//
+            try
+            {
+                dbConn.Open();
+
+                //Creation requete SQL
+                LivresCommand = new SqlCommand
+                    (
+                        "Select ID, Titre, Auteur, Emprunte from Livres", dbConn
+                    );
+
+                //Verifie si le reader est ouvert ou fermer puis le ferme
+
+                if (reader != null)
+                    reader.Close();
+                //Demmare la lecture des requetes SQL
+
+                reader = LivresCommand.ExecuteReader();
+                while (reader.Read())
+                {
+                    //Remplis la listBoxLivres avec des livres
+
+                    listBoxLivres.Items.Add(reader["ID"] + " " + reader["Titre"] + " " + reader["Auteur"] + " " + reader["Emprunte"]);
+                    listeLivres.Add(reader["Titre"] + "  " + reader["Auteur"] + " " + reader["Emprunte"]);
+                }
+            }
+            //Recupere les erreurs
+            catch (SqlException ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+
+            //Ferme la base de donnees + le reader
+            finally
+            {
+                if (reader != null)
+                    reader.Close();
+                if (dbConn != null)
+                    dbConn.Close();
+            }
+
+            //------------try pour faire apparaitre les adherents dans la page emprunt --------- #Yann --------//
+            try
+            {
+                dbConn.Open();
+
+                GerrerAdherentCommand = new SqlCommand
+                (
+                    "Select Nom, id, Prenom from Adherents", dbConn
+                );
+
+                reader = GerrerAdherentCommand.ExecuteReader();
+                while (reader.Read())
+                {
+                    //Remplis la listbox ListeAdherentGererEmprunt des adherents
+                    ListeAdherentGererEmprunt.Items.Add(reader["id"] + " " + reader["Nom"] + " " + reader["Prenom"]);
+                    listeAdherent.Add(reader["id"] + " " + reader["Nom"] + " " + reader["Prenom"]);
+                }
+            }
+            //Recupere les erreurs
+            catch (SqlException ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+
+            //Ferme la base de donnees + le reader
+            finally
+            {
+                if (reader != null)
+                    reader.Close();
+                if (dbConn != null)
+                    dbConn.Close();
+            }
+            //attraper la date d'aujourd'hui et date retour (= date auj + 30 jours) et affecter au label date
+            try
+            {
+                
+                DateTime dateTime = DateTime.Now;
+                //afficher a d_emprunt la date d'auj sous format jour-mois-annee
+                this.d_emprunt.Text = dateTime.ToString("dd-MM-yyyy");
+                DateTime arendre = DateTime.Now;
+                DateTime datelimite = arendre.AddDays(30);
+                this.d_retour.Text = datelimite.ToString("dd-MM-yyyy");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+
+            //Ferme la base de donnees + le reader
+            finally
+            {
+
+            }
         }
 
 
@@ -116,14 +235,15 @@ namespace Easy_Book_Manager
         private void SearchBar_TextChanged(object sender, EventArgs e)
         {
 
-            try { 
-            //Stock dans une string ce qui est mis dans la barre de recherche
+            try
+            {
+                //Stock dans une string ce qui est mis dans la barre de recherche
 
-            string filtre = SearchBar.Text;
+                string filtre = SearchBar.Text;
 
-            //Nettoie la listeBox à chaque fois que la barre de recherche change
+                //Nettoie la listeBox à chaque fois que la barre de recherche change
 
-            listBoxAdherent.Items.Clear();
+                listBoxAdherent.Items.Clear();
                 //Fait le tour de la list
                 foreach (string str in listeNom)
                 {
@@ -143,14 +263,14 @@ namespace Easy_Book_Manager
                         }
                     }
                 }
-               
+
             }
             catch (Exception)
             {
-                
+
             }
-            
-            
+
+
 
 
 
@@ -165,7 +285,7 @@ namespace Easy_Book_Manager
             NomAdherent.Text = "";
             AdresseAdherent.Text = "";
             PrenomAdherent.Text = "";
-            TelephoneAdherent.Text = "";           
+            TelephoneAdherent.Text = "";
             labelDateRetourPrevue.ForeColor = System.Drawing.Color.Black;
 
 
@@ -260,7 +380,7 @@ namespace Easy_Book_Manager
 
                     InfoUtilisateur = Lecture.ExecuteReader();
 
-                    while(InfoUtilisateur.Read())
+                    while (InfoUtilisateur.Read())
                     {
                         RecuperationidDemprunt = InfoUtilisateur["Id"].ToString();
                     }
@@ -470,8 +590,6 @@ namespace Easy_Book_Manager
         //--------------------Lance les requetes SQL pour rendre des livres--------------------//
         private void BouttonEnregistrer_Click(object sender, EventArgs e)
         {
- 
-
             try
             {
                 //Vérifie que tout les champs sont remplis
@@ -573,12 +691,12 @@ namespace Easy_Book_Manager
 
 
         //------------------------Permet de récupérer la date de rendu------------------------//
-        private DateTime DateComplete ()
+        private DateTime DateComplete()
         {
             string Jour = JourEmprunt.SelectedItem.ToString();
             string Mois = (MoisEmprunt.SelectedIndex + 1).ToString();
             string Annee = AnneeEmprunt.SelectedItem.ToString();
-            string datefinal = Jour + '-' + Mois+ '-' + Annee;
+            string datefinal = Jour + '-' + Mois + '-' + Annee;
             DateTime DateEnd = DateTime.Parse(datefinal);
             return DateEnd;
         }
@@ -643,8 +761,293 @@ namespace Easy_Book_Manager
                 MessageBox.Show("Une erreur est survenu :" + ex.Message);
             }
             if (dbConn != null)
-            dbConn.Close();
+                dbConn.Close();
         }
+
+
+        //---------------SearchBarBook de la page Emprunt -------#Yann------//
+
+
+        private void SearchBarAdherent_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                //Stock dans une string ce qui est mis dans la barre de recherche
+
+                string filtre = SearchBarAdherent.Text;
+
+                //Nettoie la listeBox à chaque fois que la barre de recherche change
+
+                ListeAdherentGererEmprunt.Items.Clear();
+                //Fait le tour de la list
+                foreach (string str in listeAdherent)
+                {
+                    //Endroit ou il faut commencer à chercher selon le mot
+                    int reco = str.IndexOf(" ", 0, str.Length);
+                    reco = reco + 1;
+
+                    //Fait une vérification de la longueur de la recherche
+                    if (filtre.Length <= str.Length)
+                    {
+                        string deb = str.Substring(reco, filtre.Length);
+                        //Vérifie que les données de la list correspondent à la barre de recherche + met tout en minuscule
+                        if (deb.ToLower() == filtre.ToLower())
+                        {
+                            //Si la barre de recherche correspond à un bon nom, l'affiche dans la Listbox
+                            ListeAdherentGererEmprunt.Items.Add(str);
+                        }
+                    }
+                }
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Une erreur est survenu :" + ex.Message);
+            }
+        }
+
+        private void SearchBarBook_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                //Stock dans une string ce qui est mis dans la barre de recherche
+
+                string filtre = SearchBarBook.Text;
+
+                //Nettoie la listeBox à chaque fois que la barre de recherche change
+
+                listBoxLivres.Items.Clear();
+                //Fait le tour de la list
+                foreach (string str in listeLivres)
+                {
+
+                    //Fait une vérification de la longueur de la recherche
+                    if (filtre.Length <= str.Length)
+                    {
+                        string deb = str.Substring(0, filtre.Length);
+                        //Vérifie que les données de la list correspondent à la barre de recherche + met tout en minuscule
+                        if (deb.ToLower() == filtre.ToLower())
+                        {
+                            //Si la barre de recherche correspond à un bon nom, l'affiche dans la Listbox
+                            listBoxLivres.Items.Add(str);
+                        }
+                    }
+                }
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Une erreur est survenu :" + ex.Message);
+            }
+        }
+
+        private void ListeAdherentGererEmprunt_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            //On stock l'adherents selectionnee pour plus tard dans le bouton enregistrer
+            Adherents = ListeAdherentGererEmprunt.SelectedItem.ToString();
+
+            //Remet tout les éléments au texte de base// 
+            nAdherent.Text = "";
+            aAdherent.Text = "";
+            pAdherent.Text = "";
+            tAdherent.Text = "";
+
+
+            //Remet la listBox des livre emprunter par défault
+
+            Liste_Livre_Emprunt.Items.Clear();
+
+            try
+            {
+                //Permet de récuperer l'item séléctionner dans la ListboxAdhérent//
+
+                ObjectSelect = ListeAdherentGererEmprunt.GetItemText(ListeAdherentGererEmprunt.SelectedItem);
+
+                //Fait appel à la fonction isNumeric qui permet de récuperer l'id du nom selectionner//
+                Answer = isNumeric(ObjectSelect);
+                //Empeche l'utilisateur de ne cliquer sur aucun élément et de faire buger la page 
+                if (Answer.Length <= 0)
+                {
+                    nAdherent.Text = "";
+                    aAdherent.Text = "";
+                    pAdherent.Text = "";
+                    tAdherent.Text = "";
+                }
+                else
+                {
+                    dbConn.Open();
+                    RecuperationDonnees = new SqlCommand
+                        (
+                        //Récupère les info d'un utilisateur en fonction de l'id selectionner dans la ListBox Adherent
+                        $"Select * from Adherents where id = {Answer}", dbConn
+
+                        );
+
+                    InfoUtilisateur = RecuperationDonnees.ExecuteReader();
+                        //Affiche l'information de l'adhérent selectionner 
+                        while (InfoUtilisateur.Read())
+                        {
+                            nAdherent.Text = InfoUtilisateur["Nom"].ToString();
+                            aAdherent.Text = InfoUtilisateur["Adresse"].ToString();
+                            pAdherent.Text = InfoUtilisateur["Prenom"].ToString();
+                            tAdherent.Text = InfoUtilisateur["Telephone"].ToString();
+                        }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Une erreur est survenu :" + ex.Message);
+            }
+            finally
+            {
+                //fermer la connection sinon on pourra pas reselectionner un autre adherents.
+                dbConn.Close();
+            }
+        }
+
+
+        private void listBoxLivres_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            //Stock le livre selectionnee dans la variable Livres pour l'appeler avec la fonction Ajouter dans l'autre Liste_Livre_Emprunt
+            Livres = listBoxLivres.SelectedItem.ToString();
+
+        }
+        private void Ajouter_emprunt_Click(object sender, EventArgs e)
+        {
+            //rajout du livre selectionne dans Liste_Livre_Emprunt
+            Liste_Livre_Emprunt.Items.Add(Livres);
+
+        }
+
+        private void Supprimer_Emprunt_Click(object sender, EventArgs e)
+        {
+            //supprimer les Livres de Liste_Livre_Emprunt
+            Liste_Livre_Emprunt.Items.Remove(Liste_Livre_Emprunt.SelectedItem);
+
+        }
+
+        //---------------------------------------Boutton Enregistrer de la Page Emprunt ---------------------------#Yann----------//
+        private void BouttonEnregistrerAjoutEmprunt_Click(object sender, EventArgs e)
+        {
+            //3 if pour 3 situations differentes. Livresbox vide? Adherents pas selectionnee? --> msg erreur sinon lance try{
+            if (Liste_Livre_Emprunt.Items.Count == 0) 
+            {
+                MessageBox.Show("Selectionner les livres");
+            }
+            if (ListeAdherentGererEmprunt.SelectedIndex == -1)
+            {
+                MessageBox.Show("Selectionner l'adherent");
+            }
+            if (Liste_Livre_Emprunt.Items.Count != 0 && ListeAdherentGererEmprunt.SelectedIndex != -1)
+            {
+                try
+                {
+                    /* Tout existe sauf emprunt, du coup on cree emprunt d'abord puis on update les autres tables. 
+                     * On va d'abord cree tout les variables necessaires pous stocker nos donnes */
+                    //stock l'element selectionne de ListeAdherentGererEmprunt et la mettre dans le string
+                    string container = ListeAdherentGererEmprunt.GetItemText(ListeAdherentGererEmprunt.SelectedItem);
+                    //prendre l'ID de la string de l'adherents
+                    string IDadherent = isNumeric(container);
+                    int ID_adherent = Int32.Parse(IDadherent);
+                    //catch la date d'aujourd'hui
+                    DateTime DAuj = DateTime.Today;
+                    //rajoute 1 mois a la date de retour
+                    DateTime DRet = DAuj.AddMonths(1);
+
+
+                    dbConn.Open();
+                    //prepare requete sql dans une string pour cree l'emprunt qui n'existe pas
+                    string sql_emprunt = $"Insert into emprunt (Date_emprunt, Date_retour_prevu, ID_Adherents, ID_Employes) Values('{DAuj}', '{DRet}', {ID_adherent}, 1) ";
+                    //Command SQL "CreationEmprunt" execute le string precedant contre la database, on passe la connection dbConn aussi
+                    CreationEmprunt = new SqlCommand(sql_emprunt, dbConn);
+                    //association de la commande Insert SQL a notre adapter
+                    adapter.InsertCommand = new SqlCommand(sql_emprunt, dbConn);
+                    //Methode ExecuteNonQuery necessaire pour realiser insert,delete,update vers la database
+                    adapter.InsertCommand.ExecuteNonQuery();       
+                    //fermeture de connection avec la database pour faire future requete
+                    CreationEmprunt.Dispose();
+
+
+                    /*update des donnes de la table Livre et Adherents, pour cela, on doit chopper l'ID generee de l'emprunt. */
+                    //chopper ID 
+                    //prepare requete sql dans une string pour chopper le tout dernier ID emprunt qui a etait cree par la requete precedente.
+                    string sql_choppeID = "SELECT IDENT_CURRENT ('Emprunt') AS Current_Identity;  ";
+                    //commande Sql qui execute la requete contre la base de donnee
+                    ChopperID = new SqlCommand(sql_choppeID, dbConn);   
+                    /*data reader qui fetche les infos, plus precisement les lignes de la table/requete appele, 
+                     *dans notre cas, notre requete SQL retourne une seule ligne et colonne qui correspond a l'ID 
+                     *de l'emprunt cree */
+                    reader = ChopperID.ExecuteReader();
+                    //boucle pour lire toute les lignes meme si dans notre cas il y a qu'une seule ligne
+                    while (reader.Read())
+                    {
+                        //Stocker ID de l'emprunt qui se trouve dans le 0eme colonne dans une variable pendant la lecture 
+                        ID_cree = ID_cree + reader.GetValue(0);
+                    }
+                    //ferme le reader pour pouvoir realiser future requete
+                    reader.Close();
+                    //ID de l'emprunt
+                    int ID_emprunt = Int32.Parse(ID_cree);
+
+                    
+                    /*update info de l'adherent colonne emprunt_en_cour */
+                    string sql_adherent = $"UPDATE Adherents SET Emprunt_en_cours = {ID_emprunt} WHERE ID = {ID_adherent}";
+                    //Command SQL "UpdateAdherent" execute le string precedant contre la database, on passe la connection dbConn aussi
+                    UpdateAdherent = new SqlCommand(sql_adherent, dbConn);
+                    ////association de la commande Update SQL a notre adapter
+                    adapter.UpdateCommand = new SqlCommand(sql_adherent, dbConn);
+                    ////Methode ExecuteNonQuery necessaire pour realiser insert,delete,update vers la database
+                    adapter.UpdateCommand.ExecuteNonQuery();
+                    //fermeture de la co pour future requete
+                    UpdateAdherent.Dispose();
+
+
+                    /*update info des livres qui ont ete empruntee par l'adherent */
+                    //boucle pour parcourir tout les livres dans la listbox de livre ajoutee.
+                    //Fonction qui parcour les string Livres et choppe juste le premier nombre qui correspond a l'ID du livre
+                    foreach (string Livre in Liste_Livre_Emprunt.Items)
+                    {
+                        //Fonction qui parcour les string Livres et attrape le premier nombre pour le stocker comme ID du livre.
+                        string ID_livre = null;
+                        int val;
+                        for (int i = 0; i < Livre.Length; i++)
+                        {
+                            if (Char.IsDigit(Livre[i]))
+                                ID_livre += Livre[i];
+                            else if (ID_livre.Length != 0)
+                                break;
+                        }
+                        if (ID_livre.Length > 0)
+                            val = int.Parse(ID_livre);
+
+                        /*update info des livres dont l'ID on a chopper 
+                         * dans la fonction precedente ID_livre pour trouver nos bouquin qu'on va emprunter.
+                         * update dans les colonnes Emprunt et ID_Emprunt qui va correspondre a l'ID de l'emprunt */
+                        string sql_livres = $"UPDATE Livres SET Emprunte = 1 , ID_Emprunt = {ID_emprunt} WHERE ID = {ID_livre}";
+                        UpdateLivres = new SqlCommand(sql_livres, dbConn);
+
+                        adapter.UpdateCommand = new SqlCommand(sql_livres, dbConn);
+                        adapter.UpdateCommand.ExecuteNonQuery();
+
+                        UpdateLivres.Dispose();
+
+                    }
+                    MessageBox.Show("Emprunt termine!");
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Une erreur est survenu :" + ex.Message);
+                }
+                finally
+                {
+                    dbConn.Close();
+                }
+                
+            }
+            
+        }
+
+       
     }
 }
     
