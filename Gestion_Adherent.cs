@@ -220,17 +220,20 @@ namespace Easy_Book_Manager
         private void buttonDeleteAdherent_Click(object senser, EventArgs e)
         {
             if (this.currentIdAdherent != -1)
-            {
+            {   // Get first name and last name without id
                 string nameAdherent = Regex.Replace(listBoxAdherent.SelectedItem.ToString(), @"\d", "");
+                // Ask user before deleting adherent
                 DialogResult res = MessageBox.Show("Voulez-vous vraiment supprimer" + nameAdherent + " de la base de données ?",
                 "Avertissement", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
                 if (res == DialogResult.Yes)
                 {
+                    // Open db
                     SqlConnection conn = new SqlConnection(connString);
                     conn.Open();
-
+                    // Prepare request
                     SqlCommand deleteAdherent = new SqlCommand("DELETE adherents WHERE id= " + this.currentIdAdherent, conn);
+                    // Execute request
                     SqlDataReader reader = deleteAdherent.ExecuteReader();
 
                     // Refresh page
@@ -271,54 +274,6 @@ namespace Easy_Book_Manager
                 if (Char.IsDigit(element) == true)
                     res += element;
             return res;
-        }
-        private void Ajout_Adherent_Load(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label7_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void tabPage3_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void tabControlGestionAdherents_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-        private void button1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void textBoxAjoutNomAd_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void textBoxModifTelAd_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void labelTelModifAd_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void panel2_Paint(object sender, PaintEventArgs e)
-        {
-
         }
     }
 }

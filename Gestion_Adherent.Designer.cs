@@ -114,7 +114,6 @@
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(327, 501);
             this.panel2.TabIndex = 7;
-            this.panel2.Paint += new System.Windows.Forms.PaintEventHandler(this.panel2_Paint);
             // 
             // textBoxModifAdresseAd
             // 
@@ -155,7 +154,6 @@
             this.textBoxModifTelAd.Name = "textBoxModifTelAd";
             this.textBoxModifTelAd.Size = new System.Drawing.Size(218, 29);
             this.textBoxModifTelAd.TabIndex = 13;
-            this.textBoxModifTelAd.TextChanged += new System.EventHandler(this.textBoxModifTelAd_TextChanged);
             // 
             // labelTelModifAd
             // 
@@ -167,7 +165,6 @@
             this.labelTelModifAd.Size = new System.Drawing.Size(143, 19);
             this.labelTelModifAd.TabIndex = 12;
             this.labelTelModifAd.Text = "Numéro de téléphone";
-            this.labelTelModifAd.Click += new System.EventHandler(this.labelTelModifAd_Click);
             // 
             // textBoxModifAgeAd
             // 
@@ -244,7 +241,6 @@
             this.tabControlGestionAdherents.SelectedIndex = 0;
             this.tabControlGestionAdherents.Size = new System.Drawing.Size(405, 592);
             this.tabControlGestionAdherents.TabIndex = 5;
-            this.tabControlGestionAdherents.SelectedIndexChanged += new System.EventHandler(this.tabControlGestionAdherents_SelectedIndexChanged);
             // 
             // tabAjouterAd
             // 
@@ -258,7 +254,6 @@
             this.tabAjouterAd.Size = new System.Drawing.Size(397, 550);
             this.tabAjouterAd.TabIndex = 0;
             this.tabAjouterAd.Text = "Ajouter un adhérent";
-            this.tabAjouterAd.Click += new System.EventHandler(this.tabPage3_Click);
             // 
             // buttonValiderAjoutAd
             // 
@@ -311,7 +306,6 @@
             this.label1.Size = new System.Drawing.Size(254, 37);
             this.label1.TabIndex = 1;
             this.label1.Text = "Ajouter un adhérent";
-            this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
             // labelAdresseAd
             // 
@@ -392,7 +386,6 @@
             this.textBoxAjoutNomAd.Name = "textBoxAjoutNomAd";
             this.textBoxAjoutNomAd.Size = new System.Drawing.Size(218, 29);
             this.textBoxAjoutNomAd.TabIndex = 7;
-            this.textBoxAjoutNomAd.TextChanged += new System.EventHandler(this.textBoxAjoutNomAd_TextChanged);
             // 
             // labelNomAd
             // 
@@ -467,7 +460,6 @@
             this.MaximizeBox = false;
             this.Name = "Gestion_Adherent";
             this.Text = "Gestion adhérents";
-            this.Load += new System.EventHandler(this.Ajout_Adherent_Load);
             this.tabModifierAd.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
