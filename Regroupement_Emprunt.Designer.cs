@@ -115,7 +115,7 @@
             this.tabPageAdherentEmprunt.Controls.Add(this.SearchBar);
             this.tabPageAdherentEmprunt.Location = new System.Drawing.Point(4, 22);
             this.tabPageAdherentEmprunt.Name = "tabPageAdherentEmprunt";
-            this.tabPageAdherentEmprunt.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.tabPageAdherentEmprunt.Padding = new System.Windows.Forms.Padding(3);
             this.tabPageAdherentEmprunt.Size = new System.Drawing.Size(847, 566);
             this.tabPageAdherentEmprunt.TabIndex = 0;
             this.tabPageAdherentEmprunt.Text = "Gerer Emprunt";
@@ -130,7 +130,7 @@
             this.ButtonRefresh.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ButtonRefresh.Image = ((System.Drawing.Image)(resources.GetObject("ButtonRefresh.Image")));
             this.ButtonRefresh.Location = new System.Drawing.Point(316, 10);
-            this.ButtonRefresh.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.ButtonRefresh.Margin = new System.Windows.Forms.Padding(2);
             this.ButtonRefresh.Name = "ButtonRefresh";
             this.ButtonRefresh.Size = new System.Drawing.Size(20, 25);
             this.ButtonRefresh.TabIndex = 22;
@@ -164,7 +164,7 @@
             // 
             this.labelDateEmprunt.AutoSize = true;
             this.labelDateEmprunt.Font = new System.Drawing.Font("Segoe UI", 9.75F);
-            this.labelDateEmprunt.Location = new System.Drawing.Point(495, 243);
+            this.labelDateEmprunt.Location = new System.Drawing.Point(516, 243);
             this.labelDateEmprunt.Name = "labelDateEmprunt";
             this.labelDateEmprunt.Size = new System.Drawing.Size(74, 17);
             this.labelDateEmprunt.TabIndex = 17;
@@ -207,7 +207,7 @@
             this.listBoxAdherent.ItemHeight = 17;
             this.listBoxAdherent.Location = new System.Drawing.Point(8, 49);
             this.listBoxAdherent.Name = "listBoxAdherent";
-            this.listBoxAdherent.Size = new System.Drawing.Size(303, 463);
+            this.listBoxAdherent.Size = new System.Drawing.Size(303, 497);
             this.listBoxAdherent.TabIndex = 2;
             this.listBoxAdherent.SelectedIndexChanged += new System.EventHandler(this.listBoxAdherent_SelectedIndexChanged);
             // 
@@ -272,7 +272,7 @@
             this.InfosAdhérents.Controls.Add(this.NomAdherent);
             this.InfosAdhérents.Controls.Add(this.PrenomAdherent);
             this.InfosAdhérents.Location = new System.Drawing.Point(386, 10);
-            this.InfosAdhérents.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.InfosAdhérents.Margin = new System.Windows.Forms.Padding(2);
             this.InfosAdhérents.Name = "InfosAdhérents";
             this.InfosAdhérents.Size = new System.Drawing.Size(415, 96);
             this.InfosAdhérents.TabIndex = 13;
@@ -313,6 +313,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
+            this.label3.Cursor = System.Windows.Forms.Cursors.Default;
             this.label3.Font = new System.Drawing.Font("Segoe UI", 9.75F);
             this.label3.Location = new System.Drawing.Point(11, 9);
             this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
@@ -325,7 +326,7 @@
             // 
             this.AdresseAdherent.AutoSize = true;
             this.AdresseAdherent.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.AdresseAdherent.Location = new System.Drawing.Point(74, 36);
+            this.AdresseAdherent.Location = new System.Drawing.Point(90, 36);
             this.AdresseAdherent.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.AdresseAdherent.Name = "AdresseAdherent";
             this.AdresseAdherent.Size = new System.Drawing.Size(193, 17);
@@ -367,7 +368,7 @@
             // 
             // BouttonEnregistrer
             // 
-            this.BouttonEnregistrer.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.BouttonEnregistrer.BackColor = System.Drawing.SystemColors.ButtonFace;
             this.BouttonEnregistrer.Cursor = System.Windows.Forms.Cursors.Hand;
             this.BouttonEnregistrer.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.BouttonEnregistrer.Location = new System.Drawing.Point(549, 513);
@@ -412,7 +413,7 @@
             this.tabPageEmprunt.Controls.Add(this.listBox1);
             this.tabPageEmprunt.Location = new System.Drawing.Point(4, 22);
             this.tabPageEmprunt.Name = "tabPageEmprunt";
-            this.tabPageEmprunt.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.tabPageEmprunt.Padding = new System.Windows.Forms.Padding(3);
             this.tabPageEmprunt.Size = new System.Drawing.Size(847, 566);
             this.tabPageEmprunt.TabIndex = 1;
             this.tabPageEmprunt.Text = "Emprunt";
@@ -599,7 +600,7 @@
             this.ListeAdherentGererEmprunt.FormattingEnabled = true;
             this.ListeAdherentGererEmprunt.Location = new System.Drawing.Point(391, 46);
             this.ListeAdherentGererEmprunt.Name = "ListeAdherentGererEmprunt";
-            this.ListeAdherentGererEmprunt.Size = new System.Drawing.Size(180, 69);
+            this.ListeAdherentGererEmprunt.Size = new System.Drawing.Size(180, 95);
             this.ListeAdherentGererEmprunt.TabIndex = 32;
             // 
             // SearchBarAdGererEmprunt
@@ -656,9 +657,10 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(854, 592);
             this.Controls.Add(this.TabEmprunt);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "Regroupement_Emprunt";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Regroupementform";
@@ -720,10 +722,10 @@
         private System.Windows.Forms.Label labelDateEmprunt;
         private System.Windows.Forms.Label DateRendu;
         private System.Windows.Forms.CheckBox checkBoxRendreLivre;
-        private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Button ButtonRefresh;
+        protected internal System.Windows.Forms.Label label3;
     }
 }
