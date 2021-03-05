@@ -27,13 +27,15 @@ namespace Easy_Book_Manager
         SqlCommand RecuperationDonnees = null;
         SqlCommand ChopperID = null;
         SqlCommand CreationEmprunt = null;
+        SqlCommand UpdateAdherent = null;
+        SqlCommand UpdateLivres = null;
         SqlDataAdapter adapter = new SqlDataAdapter();
         List<string> listeNom = new List<string>();
         List<string> listeLivres = new List<string>();
         List<string> listeAdherent = new List<string>();
         List<object> ListeTeste = new List<object>();
         List<string> ListeTesteNom = new List<string>();
-        string ID_Emprunt = null;
+        string ID_cree = null;
         string ObjetSelectionner;
         string ObjectSelect;
         string Mois;
@@ -73,7 +75,7 @@ namespace Easy_Book_Manager
 
                 AdherentCommand = new SqlCommand
                 (
-                   "Select Nom, id, Prenom from Adherents where Emprunt_en_cours is null", dbConn
+                   "Select Nom, id, Prenom from Adherents where Emprunt_en_cours is not null", dbConn
                 );
 
                 //Vérifie si le reader est ouvert ou fermer puis le ferme²
@@ -132,7 +134,7 @@ namespace Easy_Book_Manager
                 //Creation requete SQL
                 LivresCommand = new SqlCommand
                     (
-                        "Select Titre, Auteur, Emprunte from Livres", dbConn
+                        "Select ID, Titre, Auteur, Emprunte from Livres", dbConn
                     );
 
                 //Verifie si le reader est ouvert ou fermer puis le ferme
@@ -146,7 +148,7 @@ namespace Easy_Book_Manager
                 {
                     //Remplis la listBoxLivres avec des livres
 
-                    listBoxLivres.Items.Add(reader["Titre"] + " - " + reader["Auteur"] + " --- " + reader["Emprunte"]);
+                    listBoxLivres.Items.Add(reader["ID"] + " " + reader["Titre"] + " " + reader["Auteur"] + " " + reader["Emprunte"]);
                     listeLivres.Add(reader["Titre"] + "  " + reader["Auteur"] + " " + reader["Emprunte"]);
                 }
             }
@@ -204,6 +206,27 @@ namespace Easy_Book_Manager
                     reader.Close();
                 if (dbConn != null)
                     dbConn.Close();
+            }
+            //attraper la date d'aujourd'hui et date retour (= date auj + 30 jours) et affecter au label date
+            try
+            {
+                
+                DateTime dateTime = DateTime.Now;
+                //afficher a d_emprunt la date d'auj sous format jour-mois-annee
+                this.d_emprunt.Text = dateTime.ToString("dd-MM-yyyy");
+                DateTime arendre = DateTime.Now;
+                DateTime datelimite = arendre.AddDays(30);
+                this.d_retour.Text = datelimite.ToString("dd-MM-yyyy");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+
+            //Ferme la base de donnees + le reader
+            finally
+            {
+
             }
         }
 
@@ -903,6 +926,7 @@ namespace Easy_Book_Manager
 
         }
 
+        //---------------------------------------Boutton Enregistrer de la Page Emprunt ---------------------------#Yann----------//
         private void BouttonEnregistrerAjoutEmprunt_Click(object sender, EventArgs e)
         {
             //3 if pour 3 situations differentes. Livresbox vide? Adherents pas selectionnee? --> msg erreur sinon lance try{
@@ -918,51 +942,101 @@ namespace Easy_Book_Manager
             {
                 try
                 {
-                    /* Tout existe sauf emprunt, du coup on cree emprunt d'abord puis on update les autres tables. */
+                    /* Tout existe sauf emprunt, du coup on cree emprunt d'abord puis on update les autres tables. 
+                     * On va d'abord cree tout les variables necessaires pous stocker nos donnes */
                     //stock l'element selectionne de ListeAdherentGererEmprunt et la mettre dans le string
                     string container = ListeAdherentGererEmprunt.GetItemText(ListeAdherentGererEmprunt.SelectedItem);
                     //prendre l'ID de la string de l'adherents
                     string IDadherent = isNumeric(container);
-                    int Id = Int32.Parse(IDadherent);
+                    int ID_adherent = Int32.Parse(IDadherent);
                     //catch la date d'aujourd'hui
                     DateTime DAuj = DateTime.Today;
                     //rajoute 1 mois a la date de retour
                     DateTime DRet = DAuj.AddMonths(1);
 
+
                     dbConn.Open();
                     //prepare requete sql dans une string pour cree l'emprunt qui n'existe pas
-                    string sql = $"Insert into emprunt (Date_emprunt, Date_retour_prevu, ID_Adherents, ID_Employes) Values('{DAuj}', '{DRet}', {Id}, 1) ";
+                    string sql_emprunt = $"Insert into emprunt (Date_emprunt, Date_retour_prevu, ID_Adherents, ID_Employes) Values('{DAuj}', '{DRet}', {ID_adherent}, 1) ";
                     //Command SQL "CreationEmprunt" execute le string precedant contre la database, on passe la connection dbConn aussi
-                    CreationEmprunt = new SqlCommand(sql, dbConn);
+                    CreationEmprunt = new SqlCommand(sql_emprunt, dbConn);
                     //association de la commande Insert SQL a notre adapter
-                    adapter.InsertCommand = new SqlCommand(sql, dbConn);
+                    adapter.InsertCommand = new SqlCommand(sql_emprunt, dbConn);
                     //Methode ExecuteNonQuery necessaire pour realiser insert,delete,update vers la database
                     adapter.InsertCommand.ExecuteNonQuery();       
-                    //fermeture de connection avec la database
+                    //fermeture de connection avec la database pour faire future requete
                     CreationEmprunt.Dispose();
+
 
                     /*update des donnes de la table Livre et Adherents, pour cela, on doit chopper l'ID generee de l'emprunt. */
                     //chopper ID 
-                    ChopperID = new SqlCommand
-                    (
-                        "SELECT IDENT_CURRENT ('Emprunt') AS Current_Identity;  ", dbConn
-                    );
-
+                    //prepare requete sql dans une string pour chopper le tout dernier ID emprunt qui a etait cree par la requete precedente.
+                    string sql_choppeID = "SELECT IDENT_CURRENT ('Emprunt') AS Current_Identity;  ";
+                    //commande Sql qui execute la requete contre la base de donnee
+                    ChopperID = new SqlCommand(sql_choppeID, dbConn);   
+                    /*data reader qui fetche les infos, plus precisement les lignes de la table/requete appele, 
+                     *dans notre cas, notre requete SQL retourne une seule ligne et colonne qui correspond a l'ID 
+                     *de l'emprunt cree */
                     reader = ChopperID.ExecuteReader();
+                    //boucle pour lire toute les lignes meme si dans notre cas il y a qu'une seule ligne
                     while (reader.Read())
                     {
-                        //Stocker ID de l'emprunt dans une variable pendant la lecture
-                        ID_Emprunt = ID_Emprunt + reader.GetValue(0);
+                        //Stocker ID de l'emprunt qui se trouve dans le 0eme colonne dans une variable pendant la lecture 
+                        ID_cree = ID_cree + reader.GetValue(0);
                     }
-                    MessageBox.Show(ID_Emprunt);
+                    //ferme le reader pour pouvoir realiser future requete
+                    reader.Close();
                     //ID de l'emprunt
-                    int ID = Int32.Parse(ID_Emprunt);
+                    int ID_emprunt = Int32.Parse(ID_cree);
+
+                    
+                    /*update info de l'adherent colonne emprunt_en_cour */
+                    string sql_adherent = $"UPDATE Adherents SET Emprunt_en_cours = {ID_emprunt} WHERE ID = {ID_adherent}";
+                    //Command SQL "UpdateAdherent" execute le string precedant contre la database, on passe la connection dbConn aussi
+                    UpdateAdherent = new SqlCommand(sql_adherent, dbConn);
+                    ////association de la commande Update SQL a notre adapter
+                    adapter.UpdateCommand = new SqlCommand(sql_adherent, dbConn);
+                    ////Methode ExecuteNonQuery necessaire pour realiser insert,delete,update vers la database
+                    adapter.UpdateCommand.ExecuteNonQuery();
+                    //fermeture de la co pour future requete
+                    UpdateAdherent.Dispose();
 
 
+                    /*update info des livres qui ont ete empruntee par l'adherent */
+                    //boucle pour parcourir tout les livres dans la listbox de livre ajoutee.
+                    //Fonction qui parcour les string Livres et choppe juste le premier nombre qui correspond a l'ID du livre
+                    foreach (string Livre in Liste_Livre_Emprunt.Items)
+                    {
+                        //Fonction qui parcour les string Livres et attrape le premier nombre pour le stocker comme ID du livre.
+                        string ID_livre = null;
+                        int val;
+                        for (int i = 0; i < Livre.Length; i++)
+                        {
+                            if (Char.IsDigit(Livre[i]))
+                                ID_livre += Livre[i];
+                            else if (ID_livre.Length != 0)
+                                break;
+                        }
+                        if (ID_livre.Length > 0)
+                            val = int.Parse(ID_livre);
+
+                        /*update info des livres dont l'ID on a chopper 
+                         * dans la fonction precedente ID_livre pour trouver nos bouquin qu'on va emprunter.
+                         * update dans les colonnes Emprunt et ID_Emprunt qui va correspondre a l'ID de l'emprunt */
+                        string sql_livres = $"UPDATE Livres SET Emprunte = 1 , ID_Emprunt = {ID_emprunt} WHERE ID = {ID_livre}";
+                        UpdateLivres = new SqlCommand(sql_livres, dbConn);
+
+                        adapter.UpdateCommand = new SqlCommand(sql_livres, dbConn);
+                        adapter.UpdateCommand.ExecuteNonQuery();
+
+                        UpdateLivres.Dispose();
+
+                    }
+                    MessageBox.Show("Emprunt termine!");
                 }
-                catch
+                catch (Exception ex)
                 {
-
+                    MessageBox.Show("Une erreur est survenu :" + ex.Message);
                 }
                 finally
                 {
@@ -972,6 +1046,8 @@ namespace Easy_Book_Manager
             }
             
         }
+
+       
     }
 }
     
