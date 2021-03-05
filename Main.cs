@@ -241,7 +241,6 @@ namespace Easy_Book_Manager
 
         private void textBoxRecherche_Click(object sender, EventArgs e)
         {
-            object list = listBoxLivres.Items;
             textBoxRecherche.Text = "";
         }
     }
