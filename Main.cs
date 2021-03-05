@@ -29,8 +29,8 @@ namespace Easy_Book_Manager
         private void Main_Load(object sender, EventArgs e)
         {
 
-            // Login dlg = new Login();
-            // dlg.ShowDialog();
+            Login dlg = new Login();
+            dlg.ShowDialog();
             registrationsList=loadlistlivre();
             SqlConnection dbConn = new SqlConnection(connStr);
             string sql1 = "select ID, Categorie from Categories";
@@ -86,9 +86,7 @@ namespace Easy_Book_Manager
             dbConn.Open();
             SqlCommand command;
             SqlDataReader dataReader;
-            string sql;
-            List<string> output = new List<string>();
-            sql = "SELECT Titre FROM Livres";
+            string sql= "SELECT Titre FROM Livres";
             command = new SqlCommand(sql, dbConn);
             dataReader = command.ExecuteReader();
             while (dataReader.Read())
@@ -116,8 +114,7 @@ namespace Easy_Book_Manager
                 dbConn.Open();
                 SqlCommand command;
                 SqlDataReader data;
-                string sql;
-                sql = "SELECT Titre, Auteur, Categories.ID, Categories.Categorie, Edition FROM Livres inner join Categories on Livres.Categorie=Categories.ID where Titre='" + SqlValidString(listBoxLivres.SelectedItem.ToString()) + "'";
+                string sql= "SELECT Titre, Auteur, Categories.ID, Categories.Categorie, Edition FROM Livres inner join Categories on Livres.Categorie=Categories.ID where Titre='" + SqlValidString(listBoxLivres.SelectedItem.ToString()) + "'";
                 command = new SqlCommand(sql, dbConn);
                 data = command.ExecuteReader();
                 while (data.Read())
@@ -230,10 +227,13 @@ namespace Easy_Book_Manager
                 }
             }
             else
-                foreach(string item in registrationsList)
+            {
+                foreach (string item in registrationsList)
                 {
                     listBoxLivres.Items.Add(item); //there is no any filter string, so add all data we have in Store
                 }
+            }
+                
                 
 
             listBoxLivres.EndUpdate();
@@ -242,6 +242,18 @@ namespace Easy_Book_Manager
         private void textBoxRecherche_Click(object sender, EventArgs e)
         {
             textBoxRecherche.Text = "";
+        }
+
+        private void buttonEmprunts_Click(object sender, EventArgs e)
+        {
+            Regroupement_Emprunt dlg = new Regroupement_Emprunt();
+            dlg.ShowDialog();
+        }
+
+        private void buttonAdherents_Click(object sender, EventArgs e)
+        {
+            Gestion_Adherent dlg = new Gestion_Adherent();
+            dlg.ShowDialog();
         }
     }
 }

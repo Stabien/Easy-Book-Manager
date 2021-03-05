@@ -16,7 +16,7 @@ namespace Easy_Book_Manager
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Gestion_Adherent());
+            Application.Run(new Main());
         }
     }
 }

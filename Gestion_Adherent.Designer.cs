@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Gestion_Adherent));
             this.tabModifierAd = new System.Windows.Forms.TabPage();
             this.buttonValiderModifAd = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
@@ -456,6 +457,7 @@
             this.Controls.Add(this.textBoxSearchAdherent);
             this.Controls.Add(this.tabControlGestionAdherents);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(2);
             this.MaximizeBox = false;
             this.Name = "Gestion_Adherent";

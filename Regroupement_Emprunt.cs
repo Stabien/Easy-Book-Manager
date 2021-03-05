@@ -148,7 +148,7 @@ namespace Easy_Book_Manager
                 {
                     //Remplis la listBoxLivres avec des livres
 
-                    listBoxLivres.Items.Add(reader["ID"] + " " + reader["Titre"] + " " + reader["Auteur"] + " " + reader["Emprunte"]);
+                    listBoxLivres.Items.Add(reader["ID"] + " " + reader["Titre"] + " " + reader["Auteur"]);
                     listeLivres.Add(reader["Titre"] + "  " + reader["Auteur"] + " " + reader["Emprunte"]);
                 }
             }
@@ -915,7 +915,28 @@ namespace Easy_Book_Manager
         private void Ajouter_emprunt_Click(object sender, EventArgs e)
         {
             //rajout du livre selectionne dans Liste_Livre_Emprunt
-            Liste_Livre_Emprunt.Items.Add(Livres);
+            bool addtolist = true;
+            if (Liste_Livre_Emprunt.Items.Count==0)
+            {
+                Liste_Livre_Emprunt.Items.Add(Livres);
+            }
+            else
+            {
+                for (int x=0; x<Liste_Livre_Emprunt.Items.Count; x++)
+                {
+                    if (Liste_Livre_Emprunt.Items[x].ToString() == Livres)
+                    {
+                        MessageBox.Show("Ce livre est déjà ajouté");
+                        addtolist = false;
+                    }
+                }
+                if (addtolist == true)
+                {
+                    Liste_Livre_Emprunt.Items.Add(Livres);
+                }
+            }
+            
+            
 
         }
 

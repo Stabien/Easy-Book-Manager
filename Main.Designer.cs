@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Main));
             this.listBoxLivres = new System.Windows.Forms.ListBox();
             this.textBoxRecherche = new System.Windows.Forms.TextBox();
             this.buttonEmprunts = new System.Windows.Forms.Button();
@@ -81,6 +82,7 @@
             this.buttonEmprunts.TabIndex = 3;
             this.buttonEmprunts.Text = "Gestion Emprunts";
             this.buttonEmprunts.UseVisualStyleBackColor = true;
+            this.buttonEmprunts.Click += new System.EventHandler(this.buttonEmprunts_Click);
             // 
             // buttonAjouter
             // 
@@ -250,6 +252,7 @@
             this.buttonAdherents.TabIndex = 15;
             this.buttonAdherents.Text = "Gestion Adhérents";
             this.buttonAdherents.UseVisualStyleBackColor = true;
+            this.buttonAdherents.Click += new System.EventHandler(this.buttonAdherents_Click);
             // 
             // Main
             // 
@@ -265,6 +268,7 @@
             this.Controls.Add(this.textBoxRecherche);
             this.Controls.Add(this.listBoxLivres);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(2);
             this.MaximizeBox = false;
             this.Name = "Main";
@@ -296,7 +300,6 @@
         private System.Windows.Forms.TextBox textBoxAuteurAjouter;
         private System.Windows.Forms.TextBox textBoxTitreAjouter;
         private System.Windows.Forms.ComboBox comboBoxGenreAjouter;
-        private System.Windows.Forms.ComboBox comboBoxEditionAjouter;
         private System.Windows.Forms.TextBox textBoxEditionAjouter;
         private System.Windows.Forms.Button buttonAdherents;
         
