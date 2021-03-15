@@ -463,6 +463,7 @@
             // Supprimer_Emprunt
             // 
             this.Supprimer_Emprunt.BackColor = System.Drawing.SystemColors.Window;
+            this.Supprimer_Emprunt.Cursor = System.Windows.Forms.Cursors.Hand;
             this.Supprimer_Emprunt.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Supprimer_Emprunt.Location = new System.Drawing.Point(1109, 552);
             this.Supprimer_Emprunt.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
@@ -476,6 +477,7 @@
             // Ajouter_emprunt
             // 
             this.Ajouter_emprunt.BackColor = System.Drawing.SystemColors.Window;
+            this.Ajouter_emprunt.Cursor = System.Windows.Forms.Cursors.Hand;
             this.Ajouter_emprunt.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Ajouter_emprunt.Location = new System.Drawing.Point(63, 791);
             this.Ajouter_emprunt.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
@@ -489,6 +491,7 @@
             // BouttonEnregistrerAjoutEmprunt
             // 
             this.BouttonEnregistrerAjoutEmprunt.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.BouttonEnregistrerAjoutEmprunt.Cursor = System.Windows.Forms.Cursors.Hand;
             this.BouttonEnregistrerAjoutEmprunt.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BouttonEnregistrerAjoutEmprunt.Location = new System.Drawing.Point(823, 791);
             this.BouttonEnregistrerAjoutEmprunt.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);

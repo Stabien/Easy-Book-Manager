@@ -42,11 +42,11 @@
             // buttonValider
             // 
             this.buttonValider.CausesValidation = false;
+            this.buttonValider.Cursor = System.Windows.Forms.Cursors.Hand;
             this.buttonValider.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonValider.Location = new System.Drawing.Point(50, 139);
-            this.buttonValider.Margin = new System.Windows.Forms.Padding(2);
+            this.buttonValider.Location = new System.Drawing.Point(75, 214);
             this.buttonValider.Name = "buttonValider";
-            this.buttonValider.Size = new System.Drawing.Size(98, 32);
+            this.buttonValider.Size = new System.Drawing.Size(147, 49);
             this.buttonValider.TabIndex = 3;
             this.buttonValider.Text = "Valider";
             this.buttonValider.UseVisualStyleBackColor = true;
@@ -55,11 +55,12 @@
             // buttonAnnuler
             // 
             this.buttonAnnuler.CausesValidation = false;
+            this.buttonAnnuler.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.buttonAnnuler.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.buttonAnnuler.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonAnnuler.Location = new System.Drawing.Point(184, 139);
-            this.buttonAnnuler.Margin = new System.Windows.Forms.Padding(2);
+            this.buttonAnnuler.Location = new System.Drawing.Point(276, 214);
             this.buttonAnnuler.Name = "buttonAnnuler";
-            this.buttonAnnuler.Size = new System.Drawing.Size(98, 32);
+            this.buttonAnnuler.Size = new System.Drawing.Size(147, 49);
             this.buttonAnnuler.TabIndex = 4;
             this.buttonAnnuler.Text = "Annuler";
             this.buttonAnnuler.UseVisualStyleBackColor = true;
@@ -71,9 +72,11 @@
             this.groupBoxAuthentification.Controls.Add(this.labelNom);
             this.groupBoxAuthentification.Controls.Add(this.textBoxMDP);
             this.groupBoxAuthentification.Controls.Add(this.textBoxNom);
-            this.groupBoxAuthentification.Location = new System.Drawing.Point(15, 12);
+            this.groupBoxAuthentification.Location = new System.Drawing.Point(22, 18);
+            this.groupBoxAuthentification.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.groupBoxAuthentification.Name = "groupBoxAuthentification";
-            this.groupBoxAuthentification.Size = new System.Drawing.Size(303, 111);
+            this.groupBoxAuthentification.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.groupBoxAuthentification.Size = new System.Drawing.Size(454, 171);
             this.groupBoxAuthentification.TabIndex = 7;
             this.groupBoxAuthentification.TabStop = false;
             this.groupBoxAuthentification.Text = "Authentification";
@@ -82,10 +85,9 @@
             // 
             this.labelMDP.AutoSize = true;
             this.labelMDP.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelMDP.Location = new System.Drawing.Point(5, 66);
-            this.labelMDP.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.labelMDP.Location = new System.Drawing.Point(8, 102);
             this.labelMDP.Name = "labelMDP";
-            this.labelMDP.Size = new System.Drawing.Size(102, 21);
+            this.labelMDP.Size = new System.Drawing.Size(159, 32);
             this.labelMDP.TabIndex = 8;
             this.labelMDP.Text = "Mot de passe";
             // 
@@ -93,44 +95,42 @@
             // 
             this.labelNom.AutoSize = true;
             this.labelNom.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelNom.Location = new System.Drawing.Point(5, 27);
-            this.labelNom.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.labelNom.Location = new System.Drawing.Point(8, 42);
             this.labelNom.Name = "labelNom";
-            this.labelNom.Size = new System.Drawing.Size(45, 21);
+            this.labelNom.Size = new System.Drawing.Size(68, 32);
             this.labelNom.TabIndex = 7;
             this.labelNom.Text = "Nom";
             // 
             // textBoxMDP
             // 
             this.textBoxMDP.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBoxMDP.Location = new System.Drawing.Point(112, 68);
-            this.textBoxMDP.Margin = new System.Windows.Forms.Padding(2);
+            this.textBoxMDP.Location = new System.Drawing.Point(168, 105);
             this.textBoxMDP.Name = "textBoxMDP";
-            this.textBoxMDP.Size = new System.Drawing.Size(166, 29);
+            this.textBoxMDP.Size = new System.Drawing.Size(247, 39);
             this.textBoxMDP.TabIndex = 2;
             this.textBoxMDP.UseSystemPasswordChar = true;
             // 
             // textBoxNom
             // 
             this.textBoxNom.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBoxNom.Location = new System.Drawing.Point(112, 27);
-            this.textBoxNom.Margin = new System.Windows.Forms.Padding(2);
+            this.textBoxNom.Location = new System.Drawing.Point(168, 42);
             this.textBoxNom.Name = "textBoxNom";
-            this.textBoxNom.Size = new System.Drawing.Size(166, 29);
+            this.textBoxNom.Size = new System.Drawing.Size(247, 39);
             this.textBoxNom.TabIndex = 1;
             // 
             // Login
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AcceptButton = this.buttonValider;
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.CancelButton = this.buttonAnnuler;
             this.CausesValidation = false;
-            this.ClientSize = new System.Drawing.Size(334, 185);
+            this.ClientSize = new System.Drawing.Size(501, 285);
             this.Controls.Add(this.groupBoxAuthentification);
             this.Controls.Add(this.buttonAnnuler);
             this.Controls.Add(this.buttonValider);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(2);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "Login";
