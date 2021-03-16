@@ -64,6 +64,7 @@ namespace Easy_Book_Manager
             if (res == DialogResult.Yes)
                 Application.Exit();
         }
+
         private void Login_FormClosing(object sender, FormClosingEventArgs e)
         {
             if (this.closeApp)
@@ -78,7 +79,6 @@ namespace Easy_Book_Manager
                   .Select(item => item.ToString("x2")));
             }
         }
-        // Check closing event
         private bool closeApp = true;
 
         private void Login_Load(object sender, EventArgs e)
