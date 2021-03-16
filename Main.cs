@@ -193,18 +193,26 @@ namespace Easy_Book_Manager
 
         private void buttonSupprimer_Click(object sender, EventArgs e)
         {
-            DialogResult result =MessageBox.Show("Voulez-vous vraiment supprimer ce livre?", listBoxLivres.SelectedItem.ToString(), MessageBoxButtons.YesNo);
-
-            if (result.ToString() == "Yes")
+            if (listBoxLivres.SelectedItem == null)
             {
-                SqlConnection dbConn = new SqlConnection(connStr);
-                SqlCommand command = new SqlCommand("delete from Livres where Titre='" + SqlValidString(listBoxLivres.SelectedItem.ToString())+"'", dbConn);
-                dbConn.Open();
-                command.ExecuteNonQuery();
-                dbConn.Close();
-                MessageBox.Show("Livre supprimé avec succès");
-                loadlistlivre();
+                MessageBox.Show("Veuillez sélectionner un livre");
             }
+            else
+            {
+                DialogResult result = MessageBox.Show("Voulez-vous vraiment supprimer ce livre?", listBoxLivres.SelectedItem.ToString(), MessageBoxButtons.YesNo);
+
+                if (result.ToString() == "Yes")
+                {
+                    SqlConnection dbConn = new SqlConnection(connStr);
+                    SqlCommand command = new SqlCommand("delete from Livres where Titre='" + SqlValidString(listBoxLivres.SelectedItem.ToString()) + "'", dbConn);
+                    dbConn.Open();
+                    command.ExecuteNonQuery();
+                    dbConn.Close();
+                    MessageBox.Show("Livre supprimé avec succès");
+                    loadlistlivre();
+                }
+            }
+            
             
         }
         
