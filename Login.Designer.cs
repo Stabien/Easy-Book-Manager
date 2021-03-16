@@ -135,6 +135,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Easy Book Manager";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Login_FormClosing);
+            this.Load += new System.EventHandler(this.Login_Load);
             this.groupBoxAuthentification.ResumeLayout(false);
             this.groupBoxAuthentification.PerformLayout();
             this.ResumeLayout(false);
