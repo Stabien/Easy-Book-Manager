@@ -228,26 +228,32 @@ namespace Easy_Book_Manager
 
                 if (res == DialogResult.Yes)
                 {
-                    // Open db
-                    SqlConnection conn = new SqlConnection(connString);
-                    conn.Open();
-                    // Prepare request
-                    SqlCommand deleteAdherent = new SqlCommand("DELETE adherents WHERE id= " + this.currentIdAdherent, conn);
-                    // Execute request
-                    SqlDataReader reader = deleteAdherent.ExecuteReader();
+                    try
+                    {
+                        // Open db
+                        SqlConnection conn = new SqlConnection(connString);
+                        conn.Open();
+                        // Prepare request
+                        SqlCommand deleteAdherent = new SqlCommand("DELETE adherents WHERE id= " + this.currentIdAdherent, conn);
+                        // Execute request
+                        SqlDataReader reader = deleteAdherent.ExecuteReader();
 
-                    // Refresh page
-                    this.listBoxDisplayAdherents();
-                    this.textBoxSearchAdherent.Text = "";
-                    this.currentIdAdherent = -1;
+                        // Refresh page
+                        this.listBoxDisplayAdherents();
+                        this.textBoxSearchAdherent.Text = "";
+                        this.currentIdAdherent = -1;
 
-                    // Clear fields
-                    textBoxModifNomAd.Text = "";
-                    textBoxModifPrenomAd.Text = "";
-                    textBoxModifAgeAd.Text = "";
-                    textBoxModifTelAd.Text = "";
-                    textBoxModifAdresseAd.Text = "";
-
+                        // Clear fields
+                        textBoxModifNomAd.Text = "";
+                        textBoxModifPrenomAd.Text = "";
+                        textBoxModifAgeAd.Text = "";
+                        textBoxModifTelAd.Text = "";
+                        textBoxModifAdresseAd.Text = "";
+                    }
+                    catch
+                    {
+                        MessageBox.Show("Cet adhérent ne peut pas être supprimé car il a un emprunt en cours"); 
+                    }
                 }
             }
             else
