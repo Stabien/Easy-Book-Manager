@@ -52,11 +52,12 @@
             // 
             // listBoxLivres
             // 
+            this.listBoxLivres.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.listBoxLivres.FormattingEnabled = true;
-            this.listBoxLivres.ItemHeight = 20;
+            this.listBoxLivres.ItemHeight = 29;
             this.listBoxLivres.Location = new System.Drawing.Point(39, 106);
             this.listBoxLivres.Name = "listBoxLivres";
-            this.listBoxLivres.Size = new System.Drawing.Size(564, 724);
+            this.listBoxLivres.Size = new System.Drawing.Size(564, 700);
             this.listBoxLivres.TabIndex = 0;
             this.listBoxLivres.SelectedIndexChanged += new System.EventHandler(this.listBoxLivres_SelectedIndexChanged);
             // 
@@ -151,7 +152,7 @@
             this.comboBoxGenreAjouter.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.comboBoxGenreAjouter.FormattingEnabled = true;
             this.comboBoxGenreAjouter.Location = new System.Drawing.Point(104, 408);
-            this.comboBoxGenreAjouter.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.comboBoxGenreAjouter.Margin = new System.Windows.Forms.Padding(6);
             this.comboBoxGenreAjouter.Name = "comboBoxGenreAjouter";
             this.comboBoxGenreAjouter.Size = new System.Drawing.Size(322, 40);
             this.comboBoxGenreAjouter.TabIndex = 12;
