@@ -31,12 +31,13 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Regroupement_Emprunt));
             this.TabEmprunt = new System.Windows.Forms.TabControl();
             this.tabPageAdherentEmprunt = new System.Windows.Forms.TabPage();
-            this.ButtonRefresh = new System.Windows.Forms.Button();
-            this.checkBoxRendreLivre = new System.Windows.Forms.CheckBox();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.labelDateRetourPrevue = new System.Windows.Forms.Label();
             this.labelDateEmprunt = new System.Windows.Forms.Label();
             this.DateRendu = new System.Windows.Forms.Label();
             this.DateEmprunt = new System.Windows.Forms.Label();
+            this.ButtonRefresh = new System.Windows.Forms.Button();
+            this.checkBoxRendreLivre = new System.Windows.Forms.CheckBox();
             this.ListeLivreEmprunter = new System.Windows.Forms.CheckedListBox();
             this.listBoxAdherent = new System.Windows.Forms.ListBox();
             this.MoisEmprunt = new System.Windows.Forms.ComboBox();
@@ -54,10 +55,11 @@
             this.BouttonEnregistrer = new System.Windows.Forms.Button();
             this.SearchBar = new System.Windows.Forms.TextBox();
             this.tabPageEmprunt = new System.Windows.Forms.TabPage();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.d_retour = new System.Windows.Forms.Label();
             this.d_emprunt = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
-            this.label8 = new System.Windows.Forms.Label();
+            this.d_ret = new System.Windows.Forms.Label();
+            this.D_emp = new System.Windows.Forms.Label();
             this.Supprimer_Emprunt = new System.Windows.Forms.Button();
             this.Ajouter_emprunt = new System.Windows.Forms.Button();
             this.BouttonEnregistrerAjoutEmprunt = new System.Windows.Forms.Button();
@@ -75,15 +77,13 @@
             this.SearchBarAdherent = new System.Windows.Forms.TextBox();
             this.SearchBarBook = new System.Windows.Forms.TextBox();
             this.listBoxLivres = new System.Windows.Forms.ListBox();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.TabEmprunt.SuspendLayout();
             this.tabPageAdherentEmprunt.SuspendLayout();
+            this.groupBox1.SuspendLayout();
             this.InfosAdhérents.SuspendLayout();
             this.tabPageEmprunt.SuspendLayout();
-            this.PanelinfoAdherent.SuspendLayout();
-            this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
+            this.PanelinfoAdherent.SuspendLayout();
             this.SuspendLayout();
             // 
             // TabEmprunt
@@ -122,33 +122,17 @@
             this.tabPageAdherentEmprunt.Text = "Gerer Emprunt";
             this.tabPageAdherentEmprunt.UseVisualStyleBackColor = true;
             // 
-            // ButtonRefresh
+            // groupBox1
             // 
-            this.ButtonRefresh.BackColor = System.Drawing.Color.White;
-            this.ButtonRefresh.CausesValidation = false;
-            this.ButtonRefresh.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.ButtonRefresh.FlatAppearance.BorderSize = 0;
-            this.ButtonRefresh.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.ButtonRefresh.Image = ((System.Drawing.Image)(resources.GetObject("ButtonRefresh.Image")));
-            this.ButtonRefresh.Location = new System.Drawing.Point(474, 15);
-            this.ButtonRefresh.Name = "ButtonRefresh";
-            this.ButtonRefresh.Size = new System.Drawing.Size(30, 38);
-            this.ButtonRefresh.TabIndex = 22;
-            this.ButtonRefresh.UseVisualStyleBackColor = false;
-            this.ButtonRefresh.Click += new System.EventHandler(this.ButtonRefresh_Click_1);
-            // 
-            // checkBoxRendreLivre
-            // 
-            this.checkBoxRendreLivre.AutoSize = true;
-            this.checkBoxRendreLivre.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.checkBoxRendreLivre.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.checkBoxRendreLivre.Location = new System.Drawing.Point(580, 680);
-            this.checkBoxRendreLivre.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.checkBoxRendreLivre.Name = "checkBoxRendreLivre";
-            this.checkBoxRendreLivre.Size = new System.Drawing.Size(376, 32);
-            this.checkBoxRendreLivre.TabIndex = 19;
-            this.checkBoxRendreLivre.Text = "Les livres sélectionnés sont bien rendus";
-            this.checkBoxRendreLivre.UseVisualStyleBackColor = true;
+            this.groupBox1.Controls.Add(this.labelDateRetourPrevue);
+            this.groupBox1.Controls.Add(this.labelDateEmprunt);
+            this.groupBox1.Controls.Add(this.DateRendu);
+            this.groupBox1.Controls.Add(this.DateEmprunt);
+            this.groupBox1.Location = new System.Drawing.Point(579, 359);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(621, 135);
+            this.groupBox1.TabIndex = 23;
+            this.groupBox1.TabStop = false;
             // 
             // labelDateRetourPrevue
             // 
@@ -194,6 +178,34 @@
             this.DateEmprunt.Size = new System.Drawing.Size(159, 28);
             this.DateEmprunt.TabIndex = 15;
             this.DateEmprunt.Text = "Date d\'emprunt :";
+            // 
+            // ButtonRefresh
+            // 
+            this.ButtonRefresh.BackColor = System.Drawing.Color.White;
+            this.ButtonRefresh.CausesValidation = false;
+            this.ButtonRefresh.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.ButtonRefresh.FlatAppearance.BorderSize = 0;
+            this.ButtonRefresh.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.ButtonRefresh.Image = ((System.Drawing.Image)(resources.GetObject("ButtonRefresh.Image")));
+            this.ButtonRefresh.Location = new System.Drawing.Point(474, 15);
+            this.ButtonRefresh.Name = "ButtonRefresh";
+            this.ButtonRefresh.Size = new System.Drawing.Size(30, 38);
+            this.ButtonRefresh.TabIndex = 22;
+            this.ButtonRefresh.UseVisualStyleBackColor = false;
+            this.ButtonRefresh.Click += new System.EventHandler(this.ButtonRefresh_Click_1);
+            // 
+            // checkBoxRendreLivre
+            // 
+            this.checkBoxRendreLivre.AutoSize = true;
+            this.checkBoxRendreLivre.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.checkBoxRendreLivre.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.checkBoxRendreLivre.Location = new System.Drawing.Point(580, 680);
+            this.checkBoxRendreLivre.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.checkBoxRendreLivre.Name = "checkBoxRendreLivre";
+            this.checkBoxRendreLivre.Size = new System.Drawing.Size(376, 32);
+            this.checkBoxRendreLivre.TabIndex = 19;
+            this.checkBoxRendreLivre.Text = "Les livres sélectionnés sont bien rendus";
+            this.checkBoxRendreLivre.UseVisualStyleBackColor = true;
             // 
             // ListeLivreEmprunter
             // 
@@ -413,6 +425,18 @@
             this.tabPageEmprunt.Text = "Emprunt";
             this.tabPageEmprunt.UseVisualStyleBackColor = true;
             // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.d_retour);
+            this.groupBox2.Controls.Add(this.d_emprunt);
+            this.groupBox2.Controls.Add(this.d_ret);
+            this.groupBox2.Controls.Add(this.D_emp);
+            this.groupBox2.Location = new System.Drawing.Point(586, 613);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(648, 153);
+            this.groupBox2.TabIndex = 50;
+            this.groupBox2.TabStop = false;
+            // 
             // d_retour
             // 
             this.d_retour.AutoSize = true;
@@ -436,27 +460,27 @@
             this.d_emprunt.TabIndex = 48;
             this.d_emprunt.Text = "00/00/0000";
             // 
-            // label7
+            // d_ret
             // 
-            this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("Segoe UI", 9.75F);
-            this.label7.Location = new System.Drawing.Point(29, 100);
-            this.label7.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(186, 28);
-            this.label7.TabIndex = 47;
-            this.label7.Text = "Date retour prévue :";
+            this.d_ret.AutoSize = true;
+            this.d_ret.Font = new System.Drawing.Font("Segoe UI", 9.75F);
+            this.d_ret.Location = new System.Drawing.Point(29, 100);
+            this.d_ret.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.d_ret.Name = "d_ret";
+            this.d_ret.Size = new System.Drawing.Size(186, 28);
+            this.d_ret.TabIndex = 47;
+            this.d_ret.Text = "Date retour prévue :";
             // 
-            // label8
+            // D_emp
             // 
-            this.label8.AutoSize = true;
-            this.label8.Font = new System.Drawing.Font("Segoe UI", 9.75F);
-            this.label8.Location = new System.Drawing.Point(27, 28);
-            this.label8.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(159, 28);
-            this.label8.TabIndex = 46;
-            this.label8.Text = "Date d\'emprunt :";
+            this.D_emp.AutoSize = true;
+            this.D_emp.Font = new System.Drawing.Font("Segoe UI", 9.75F);
+            this.D_emp.Location = new System.Drawing.Point(27, 28);
+            this.D_emp.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.D_emp.Name = "D_emp";
+            this.D_emp.Size = new System.Drawing.Size(159, 28);
+            this.D_emp.TabIndex = 46;
+            this.D_emp.Text = "Date d\'emprunt :";
             // 
             // Supprimer_Emprunt
             // 
@@ -655,30 +679,6 @@
             this.listBoxLivres.TabIndex = 27;
             this.listBoxLivres.SelectedIndexChanged += new System.EventHandler(this.listBoxLivres_SelectedIndexChanged);
             // 
-            // groupBox1
-            // 
-            this.groupBox1.Controls.Add(this.labelDateRetourPrevue);
-            this.groupBox1.Controls.Add(this.labelDateEmprunt);
-            this.groupBox1.Controls.Add(this.DateRendu);
-            this.groupBox1.Controls.Add(this.DateEmprunt);
-            this.groupBox1.Location = new System.Drawing.Point(579, 359);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(621, 135);
-            this.groupBox1.TabIndex = 23;
-            this.groupBox1.TabStop = false;
-            // 
-            // groupBox2
-            // 
-            this.groupBox2.Controls.Add(this.d_retour);
-            this.groupBox2.Controls.Add(this.d_emprunt);
-            this.groupBox2.Controls.Add(this.label7);
-            this.groupBox2.Controls.Add(this.label8);
-            this.groupBox2.Location = new System.Drawing.Point(586, 613);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(648, 153);
-            this.groupBox2.TabIndex = 50;
-            this.groupBox2.TabStop = false;
-            // 
             // Regroupement_Emprunt
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
@@ -695,16 +695,16 @@
             this.TabEmprunt.ResumeLayout(false);
             this.tabPageAdherentEmprunt.ResumeLayout(false);
             this.tabPageAdherentEmprunt.PerformLayout();
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
             this.InfosAdhérents.ResumeLayout(false);
             this.InfosAdhérents.PerformLayout();
             this.tabPageEmprunt.ResumeLayout(false);
             this.tabPageEmprunt.PerformLayout();
-            this.PanelinfoAdherent.ResumeLayout(false);
-            this.PanelinfoAdherent.PerformLayout();
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
+            this.PanelinfoAdherent.ResumeLayout(false);
+            this.PanelinfoAdherent.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -755,8 +755,8 @@
         private System.Windows.Forms.Label nAdherent;
         private System.Windows.Forms.Label d_retour;
         private System.Windows.Forms.Label d_emprunt;
-        private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Label d_ret;
+        private System.Windows.Forms.Label D_emp;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.GroupBox groupBox2;
     }

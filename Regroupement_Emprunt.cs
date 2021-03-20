@@ -131,10 +131,10 @@ namespace Easy_Book_Manager
             {
                 dbConn.Open();
 
-                //Creation requete SQL
+                //Creation requete SQL, montrer les livres qui ne sont pas emprunte
                 LivresCommand = new SqlCommand
                     (
-                        "Select ID, Titre, Auteur, Emprunte from Livres", dbConn
+                        "Select ID, Titre, Auteur, Emprunte from Livres where Emprunte = 0", dbConn
                     );
 
                 //Verifie si le reader est ouvert ou fermer puis le ferme
@@ -175,10 +175,10 @@ namespace Easy_Book_Manager
             try
             {
                 dbConn.Open();
-
+                //montrer les adherents qui n'ont pas d'emprunt
                 GerrerAdherentCommand = new SqlCommand
                 (
-                    "Select Nom, id, Prenom from Adherents", dbConn
+                    "Select Nom, id, Prenom from Adherents where Emprunt_en_cours is NULL", dbConn
                 );
 
                 reader = GerrerAdherentCommand.ExecuteReader();
@@ -916,26 +916,33 @@ namespace Easy_Book_Manager
         {
             //rajout du livre selectionne dans Liste_Livre_Emprunt
             bool addtolist = true;
-            if (Liste_Livre_Emprunt.Items.Count==0)
+            //if pour l'exception si l'utilisateur ne selectionne pas un livre avant de cliquer sur boutton rajouter
+            if (Livres == null)
             {
-                Liste_Livre_Emprunt.Items.Add(Livres);
+                MessageBox.Show("Selectionner un livre d'abord");
             }
             else
             {
-                for (int x=0; x<Liste_Livre_Emprunt.Items.Count; x++)
-                {
-                    if (Liste_Livre_Emprunt.Items[x].ToString() == Livres)
-                    {
-                        MessageBox.Show("Ce livre est déjà ajouté");
-                        addtolist = false;
-                    }
-                }
-                if (addtolist == true)
+                if (Liste_Livre_Emprunt.Items.Count == 0)
                 {
                     Liste_Livre_Emprunt.Items.Add(Livres);
                 }
+                else
+                {
+                    for (int x = 0; x < Liste_Livre_Emprunt.Items.Count; x++)
+                    {
+                        if (Liste_Livre_Emprunt.Items[x].ToString() == Livres)
+                        {
+                            MessageBox.Show("Ce livre est déjà ajouté");
+                            addtolist = false;
+                        }
+                    }
+                    if (addtolist == true)
+                    {
+                        Liste_Livre_Emprunt.Items.Add(Livres);
+                    }
+                }
             }
-            
             
 
         }
@@ -963,6 +970,7 @@ namespace Easy_Book_Manager
             {
                 try
                 {
+                    MessageBox.Show("marche 0");
                     /* Tout existe sauf emprunt, du coup on cree emprunt d'abord puis on update les autres tables. 
                      * On va d'abord cree tout les variables necessaires pous stocker nos donnes */
                     //stock l'element selectionne de ListeAdherentGererEmprunt et la mettre dans le string
@@ -1052,8 +1060,46 @@ namespace Easy_Book_Manager
 
                         UpdateLivres.Dispose();
 
-                    }
+                     }
                     MessageBox.Show("Emprunt termine!");
+
+                    //-----------refreshing------------//
+                    nAdherent.Text = "";
+                    pAdherent.Text = "";
+                    aAdherent.Text = "";
+                    tAdherent.Text = "";
+                    
+                    /*
+                    listBoxLivres.Items.Clear();
+                    listeLivres.Clear();
+                    try
+                    {
+                        dbConn.Open();
+                        //montrer les adherents qui n'ont pas d'emprunt
+                        GerrerAdherentCommand = new SqlCommand
+                        (
+                            "Select Nom, id, Prenom from Adherents where Emprunt_en_cours is not NULL", dbConn
+                        );
+
+                        reader = GerrerAdherentCommand.ExecuteReader();
+                        while (reader.Read())
+                        {
+                            //Remplis la listbox ListeAdherentGererEmprunt des adherents
+                            ListeAdherentGererEmprunt.Items.Add(reader["id"] + " " + reader["Nom"] + " " + reader["Prenom"]);
+                            listeAdherent.Add(reader["id"] + " " + reader["Nom"] + " " + reader["Prenom"]);
+                        }
+                    }
+                    //Recupere les erreurs
+                    catch (SqlException ex)
+                    {
+                        MessageBox.Show(ex.Message);
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message);
+                    }*/
+
+
                 }
                 catch (Exception ex)
                 {
