@@ -1068,7 +1068,10 @@ namespace Easy_Book_Manager
             
         }
 
-       
+        private void Regroupement_Emprunt_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }
     

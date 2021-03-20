@@ -281,5 +281,10 @@ namespace Easy_Book_Manager
                     res += element;
             return res;
         }
+
+        private void Gestion_Adherent_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

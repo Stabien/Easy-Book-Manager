@@ -461,6 +461,7 @@
             this.Margin = new System.Windows.Forms.Padding(2);
             this.MaximizeBox = false;
             this.Name = "Gestion_Adherent";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Gestion adhérents";
             this.tabModifierAd.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
