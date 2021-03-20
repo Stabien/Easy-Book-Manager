@@ -35,7 +35,6 @@ namespace Easy_Book_Manager
         List<string> listeAdherent = new List<string>();
         List<object> ListeTeste = new List<object>();
         List<string> ListeTesteNom = new List<string>();
-        string ID_cree = null;
         string ObjetSelectionner;
         string ObjectSelect;
         string Mois;
@@ -966,6 +965,7 @@ namespace Easy_Book_Manager
                     /* Tout existe sauf emprunt, du coup on cree emprunt d'abord puis on update les autres tables. 
                      * On va d'abord cree tout les variables necessaires pous stocker nos donnes */
                     //stock l'element selectionne de ListeAdherentGererEmprunt et la mettre dans le string
+                    string ID_cree = null;
                     string container = ListeAdherentGererEmprunt.GetItemText(ListeAdherentGererEmprunt.SelectedItem);
                     //prendre l'ID de la string de l'adherents
                     string IDadherent = isNumeric(container);
@@ -1054,6 +1054,55 @@ namespace Easy_Book_Manager
 
                     }
                     MessageBox.Show("Emprunt termine!");
+                    if(dbConn != null)
+                        dbConn.Close();
+                    nAdherent.Text = "";
+                    pAdherent.Text = "";
+                    aAdherent.Text = "";
+                    tAdherent.Text = "";
+                    listBoxLivres.Items.Clear();
+                    ListeAdherentGererEmprunt.Items.Clear();
+                    Liste_Livre_Emprunt.Items.Clear();
+                    dbConn.Open();
+
+                    //Creation requete SQL
+                    LivresCommand = new SqlCommand
+                        (
+                            "Select ID, Titre, Auteur, Emprunte from Livres where Emprunte = 0", dbConn
+                        );
+
+                    reader = LivresCommand.ExecuteReader();
+
+                    while (reader.Read())
+                    {
+                        //Remplis la listBoxLivres avec des livres
+
+                        listBoxLivres.Items.Add(reader["ID"] + " " + reader["Titre"] + " " + reader["Auteur"]);
+                        listeLivres.Add(reader["Titre"] + "  " + reader["Auteur"] + " " + reader["Emprunte"]);
+                    }
+                    if (reader != null)
+                        reader.Close();
+                    if (dbConn != null)
+                        dbConn.Close();
+
+                    dbConn.Open();
+
+                    GerrerAdherentCommand = new SqlCommand
+                    (
+                       "Select Nom, id, Prenom from Adherents where Emprunt_en_cours is NULL", dbConn
+                    );
+
+                    reader = GerrerAdherentCommand.ExecuteReader();
+                    while (reader.Read())
+                    {
+                        //Remplis la listbox ListeAdherentGererEmprunt des adherents
+                        ListeAdherentGererEmprunt.Items.Add(reader["id"] + " " + reader["Nom"] + " " + reader["Prenom"]);
+                        listeAdherent.Add(reader["id"] + " " + reader["Nom"] + " " + reader["Prenom"]);
+                    }
+                    if (reader != null)
+                        reader.Close();
+                    if (dbConn != null)
+                        dbConn.Close();
                 }
                 catch (Exception ex)
                 {
@@ -1069,6 +1118,11 @@ namespace Easy_Book_Manager
         }
 
         private void Regroupement_Emprunt_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Regroupement_Emprunt_Load_1(object sender, EventArgs e)
         {
 
         }
