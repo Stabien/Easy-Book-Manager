@@ -133,7 +133,7 @@ namespace Easy_Book_Manager
                 //Creation requete SQL
                 LivresCommand = new SqlCommand
                     (
-                        "Select ID, Titre, Auteur, Emprunte from Livres", dbConn
+                        "Select ID, Titre, Auteur, Emprunte from Livres where Emprunte = 0", dbConn
                     );
 
                 //Verifie si le reader est ouvert ou fermer puis le ferme
@@ -177,7 +177,7 @@ namespace Easy_Book_Manager
 
                 GerrerAdherentCommand = new SqlCommand
                 (
-                    "Select Nom, id, Prenom from Adherents", dbConn
+                    "Select Nom, id, Prenom from Adherents where Emprunt_en_cours is NULL", dbConn
                 );
 
                 reader = GerrerAdherentCommand.ExecuteReader();
@@ -599,9 +599,17 @@ namespace Easy_Book_Manager
                     {
                         dbConn.Open();
                         //"Supprime" les livres emprunter
+                        string BonLivre = "";
                         foreach (string Livre in ListeLivreEmprunter.CheckedItems)
                         {
-                            string BonLivre = Livre.Replace("'", "''");
+                            if (Livre.Contains("'"))
+                            {
+                                BonLivre = Livre.Replace("'", "''");
+                            }
+                            else
+                            {
+                                BonLivre = Livre;
+                            }
                             Lecture = new SqlCommand
                         (
                              $"UPDATE Livres SET Emprunte = 0 , ID_Emprunt = NULL WHERE Titre = '{BonLivre}'", dbConn
@@ -609,7 +617,7 @@ namespace Easy_Book_Manager
                             reader = Lecture.ExecuteReader();
 
                             reader.Read();
-
+                            
                             reader.Close();
 
                         }
@@ -653,9 +661,18 @@ namespace Easy_Book_Manager
                         dbConn.Open();
 
                         //"Supprime" les livres emprunter
+                        string BonLivre = "";
                         foreach (string Livre in ListeLivreEmprunter.CheckedItems)
                         {
-                            string BonLivre = Livre.Replace("'", "''");
+                            if (Livre.Contains("'"))
+                            {
+                                BonLivre = Livre.Replace("'", "''");
+                            }
+                            else
+                            {
+                                BonLivre = Livre;
+                            }
+
                             Lecture = new SqlCommand
                         (
                              $"UPDATE Livres SET Emprunte = 0 , ID_Emprunt = NULL WHERE Titre = '{BonLivre}'", dbConn
@@ -915,23 +932,30 @@ namespace Easy_Book_Manager
         {
             //rajout du livre selectionne dans Liste_Livre_Emprunt
             bool addtolist = true;
-            if (Liste_Livre_Emprunt.Items.Count==0)
+           if (Livres == null)
             {
-                Liste_Livre_Emprunt.Items.Add(Livres);
+                MessageBox.Show("Selectionner un livre d'abord.");
             }
             else
             {
-                for (int x=0; x<Liste_Livre_Emprunt.Items.Count; x++)
-                {
-                    if (Liste_Livre_Emprunt.Items[x].ToString() == Livres)
-                    {
-                        MessageBox.Show("Ce livre est déjà ajouté");
-                        addtolist = false;
-                    }
-                }
-                if (addtolist == true)
+                if (Liste_Livre_Emprunt.Items.Count == 0)
                 {
                     Liste_Livre_Emprunt.Items.Add(Livres);
+                }
+                else
+                {
+                    for (int x = 0; x < Liste_Livre_Emprunt.Items.Count; x++)
+                    {
+                        if (Liste_Livre_Emprunt.Items[x].ToString() == Livres)
+                        {
+                            MessageBox.Show("Ce livre est déjà ajouté");
+                            addtolist = false;
+                        }
+                    }
+                    if (addtolist == true)
+                    {
+                        Liste_Livre_Emprunt.Items.Add(Livres);
+                    }
                 }
             }
             
@@ -978,7 +1002,7 @@ namespace Easy_Book_Manager
 
                     dbConn.Open();
                     //prepare requete sql dans une string pour cree l'emprunt qui n'existe pas
-                    string sql_emprunt = $"Insert into emprunt (Date_emprunt, Date_retour_prevu, ID_Adherents, ID_Employes) Values('{DAuj}', '{DRet}', {ID_adherent}, 1) ";
+                    string sql_emprunt = $"Insert into emprunt (Date_emprunt, Date_retour_prevu, ID_Adherents) Values('{DAuj}', '{DRet}', {ID_adherent}) ";
                     //Command SQL "CreationEmprunt" execute le string precedant contre la database, on passe la connection dbConn aussi
                     CreationEmprunt = new SqlCommand(sql_emprunt, dbConn);
                     //association de la commande Insert SQL a notre adapter

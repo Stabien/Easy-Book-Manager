@@ -72,34 +72,38 @@ namespace Easy_Book_Manager
 
         private void listBoxAdherent_SelectedIndexChanged(object sender, EventArgs e)
         {
-            string adherentSelected = listBoxAdherent.GetItemText(listBoxAdherent.SelectedItem);
-            this.currentIdAdherent = int.Parse(this.getId(adherentSelected));
-
-            try
+            if (listBoxAdherent.SelectedItem != null)
             {
-                // Open database
-                SqlConnection conn = new SqlConnection(connString);
-                conn.Open();
-                // Prepare request
-                SqlCommand getAllAdherents = new SqlCommand("SELECT * FROM Adherents WHERE id=" + this.currentIdAdherent, conn);
-                // Execute request
-                SqlDataReader reader = getAllAdherents.ExecuteReader();
+                string adherentSelected = listBoxAdherent.GetItemText(listBoxAdherent.SelectedItem);
+                this.currentIdAdherent = int.Parse(this.getId(adherentSelected));
 
-                while (reader.Read())
+                try
                 {
-                    textBoxModifNomAd.Text = reader["Nom"].ToString();
-                    textBoxModifPrenomAd.Text = reader["Prenom"].ToString();
-                    textBoxModifAgeAd.Text = reader["Age"].ToString();
-                    textBoxModifTelAd.Text = reader["Telephone"].ToString();
-                    textBoxModifAdresseAd.Text = reader["Adresse"].ToString();
+                    // Open database
+                    SqlConnection conn = new SqlConnection(connString);
+                    conn.Open();
+                    // Prepare request
+                    SqlCommand getAllAdherents = new SqlCommand("SELECT * FROM Adherents WHERE id=" + this.currentIdAdherent, conn);
+                    // Execute request
+                    SqlDataReader reader = getAllAdherents.ExecuteReader();
+
+                    while (reader.Read())
+                    {
+                        textBoxModifNomAd.Text = reader["Nom"].ToString();
+                        textBoxModifPrenomAd.Text = reader["Prenom"].ToString();
+                        textBoxModifAgeAd.Text = reader["Age"].ToString();
+                        textBoxModifTelAd.Text = reader["Telephone"].ToString();
+                        textBoxModifAdresseAd.Text = reader["Adresse"].ToString();
+                    }
+                    reader.Close();
+                    conn.Close();
                 }
-                reader.Close();
-                conn.Close();
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
             }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
+            
         }
 
         private void buttonValiderModifAd_Click(object sender, EventArgs e)
@@ -219,41 +223,48 @@ namespace Easy_Book_Manager
 
         private void buttonDeleteAdherent_Click(object senser, EventArgs e)
         {
-            if (this.currentIdAdherent != -1)
-            {   // Get first name and last name without id
-                string nameAdherent = Regex.Replace(listBoxAdherent.SelectedItem.ToString(), @"\d", "");
-                // Ask user before deleting adherent
-                DialogResult res = MessageBox.Show("Voulez-vous vraiment supprimer" + nameAdherent + " de la base de données ?",
-                "Avertissement", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (listBoxAdherent.SelectedItem != null)
+            {
+                if (this.currentIdAdherent != -1)
+                {   // Get first name and last name without id
+                    string nameAdherent = Regex.Replace(listBoxAdherent.SelectedItem.ToString(), @"\d", "");
+                    // Ask user before deleting adherent
+                    DialogResult res = MessageBox.Show("Voulez-vous vraiment supprimer" + nameAdherent + " de la base de données ?",
+                    "Avertissement", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
-                if (res == DialogResult.Yes)
+                    if (res == DialogResult.Yes)
+                    {
+                        try
+                        {
+                            // Open db
+                            SqlConnection conn = new SqlConnection(connString);
+                            conn.Open();
+                            // Prepare request
+                            SqlCommand deleteAdherent = new SqlCommand("DELETE adherents WHERE id= " + this.currentIdAdherent, conn);
+                            // Execute request
+                            SqlDataReader reader = deleteAdherent.ExecuteReader();
+
+                            // Refresh page
+                            this.listBoxDisplayAdherents();
+                            this.textBoxSearchAdherent.Text = "";
+                            this.currentIdAdherent = -1;
+
+                            // Clear fields
+                            textBoxModifNomAd.Text = "";
+                            textBoxModifPrenomAd.Text = "";
+                            textBoxModifAgeAd.Text = "";
+                            textBoxModifTelAd.Text = "";
+                            textBoxModifAdresseAd.Text = "";
+                        }
+                        catch
+                        {
+                            MessageBox.Show("Cet adhérent ne peut pas être supprimé car il a un emprunt en cours");
+                        }
+                    }
+                }
+                else
                 {
-                    try
-                    {
-                        // Open db
-                        SqlConnection conn = new SqlConnection(connString);
-                        conn.Open();
-                        // Prepare request
-                        SqlCommand deleteAdherent = new SqlCommand("DELETE adherents WHERE id= " + this.currentIdAdherent, conn);
-                        // Execute request
-                        SqlDataReader reader = deleteAdherent.ExecuteReader();
-
-                        // Refresh page
-                        this.listBoxDisplayAdherents();
-                        this.textBoxSearchAdherent.Text = "";
-                        this.currentIdAdherent = -1;
-
-                        // Clear fields
-                        textBoxModifNomAd.Text = "";
-                        textBoxModifPrenomAd.Text = "";
-                        textBoxModifAgeAd.Text = "";
-                        textBoxModifTelAd.Text = "";
-                        textBoxModifAdresseAd.Text = "";
-                    }
-                    catch
-                    {
-                        MessageBox.Show("Cet adhérent ne peut pas être supprimé car il a un emprunt en cours"); 
-                    }
+                    MessageBox.Show("Veuillez sélectionner un adhérent");
                 }
             }
             else

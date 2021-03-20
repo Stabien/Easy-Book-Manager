@@ -82,6 +82,7 @@ namespace Easy_Book_Manager
 
         private List<string> loadlistlivre()
         {
+            listBoxLivres.Items.Clear();
             SqlConnection dbConn = new SqlConnection(connStr);
             dbConn.Open();
             SqlCommand command;
@@ -95,7 +96,6 @@ namespace Easy_Book_Manager
             }
             dbConn.Close();
             listBoxLivres.BeginUpdate();
-            
             listBoxLivres.EndUpdate();
             List<string> listlivres = new List<string>();
             foreach (object item in listBoxLivres.Items)
@@ -114,7 +114,7 @@ namespace Easy_Book_Manager
                 dbConn.Open();
                 SqlCommand command;
                 SqlDataReader data;
-                string sql= "SELECT Titre, Auteur, Categories.ID, Categories.Categorie, Edition FROM Livres inner join Categories on Livres.Categorie=Categories.ID where Titre='" + SqlValidString(listBoxLivres.SelectedItem.ToString()) + "'";
+                string sql= "SELECT Titre, Auteur, Categories.ID, Categories.Categorie, Edition FROM Livres inner join Categories on Livres.Categorie=Categories.ID where Titre='" + RecupID(SqlValidString(listBoxLivres.SelectedItem.ToString())) + "'";
                 command = new SqlCommand(sql, dbConn);
                 data = command.ExecuteReader();
                 while (data.Read())
@@ -142,11 +142,11 @@ namespace Easy_Book_Manager
             if (labelAjouterPanel.Text == "Modifier un livre")
             {
                 SqlConnection dbConn = new SqlConnection(connStr);
-                SqlCommand command = new SqlCommand("update Livres set Titre = @Titre, Auteur = @Auteur, Categorie = @Genre, Edition = @Edition where Titre ="+SqlValidString(listBoxLivres.SelectedItem.ToString()), dbConn);
+                SqlCommand command = new SqlCommand("update Livres set Titre = @Titre, Auteur = @Auteur, Categorie = @Genre, Edition = @Edition where Titre ='"+RecupID(SqlValidString(listBoxLivres.SelectedItem.ToString()))+"'", dbConn);
                 command.Parameters.AddWithValue("@Titre", SqlValidString(textBoxTitreAjouter.Text));
-                command.Parameters.AddWithValue("@Auteur", textBoxAuteurAjouter.Text);
+                command.Parameters.AddWithValue("@Auteur", SqlValidString(textBoxAuteurAjouter.Text));
                 command.Parameters.AddWithValue("@Genre", RecupID(comboBoxGenreAjouter.SelectedItem.ToString()));
-                command.Parameters.AddWithValue("@Edition", textBoxEditionAjouter.Text);
+                command.Parameters.AddWithValue("@Edition", SqlValidString(textBoxEditionAjouter.Text));
                 dbConn.Open();
                 command.ExecuteNonQuery();
                 dbConn.Close();
@@ -156,6 +156,7 @@ namespace Easy_Book_Manager
                 textBoxEditionAjouter.Text = "";
                 comboBoxGenreAjouter.SelectedItem = null;
                 loadlistlivre();
+                
                 
             }
             else

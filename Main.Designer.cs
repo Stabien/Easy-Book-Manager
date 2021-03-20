@@ -54,20 +54,21 @@
             // 
             this.listBoxLivres.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.listBoxLivres.FormattingEnabled = true;
-            this.listBoxLivres.ItemHeight = 29;
-            this.listBoxLivres.Location = new System.Drawing.Point(39, 106);
+            this.listBoxLivres.ItemHeight = 20;
+            this.listBoxLivres.Location = new System.Drawing.Point(29, 86);
+            this.listBoxLivres.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.listBoxLivres.Name = "listBoxLivres";
-            this.listBoxLivres.Size = new System.Drawing.Size(564, 700);
+            this.listBoxLivres.Size = new System.Drawing.Size(375, 464);
             this.listBoxLivres.TabIndex = 0;
             this.listBoxLivres.SelectedIndexChanged += new System.EventHandler(this.listBoxLivres_SelectedIndexChanged);
             // 
             // textBoxRecherche
             // 
             this.textBoxRecherche.Font = new System.Drawing.Font("Segoe UI", 14F);
-            this.textBoxRecherche.Location = new System.Drawing.Point(35, 28);
-            this.textBoxRecherche.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.textBoxRecherche.Location = new System.Drawing.Point(26, 23);
+            this.textBoxRecherche.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.textBoxRecherche.Name = "textBoxRecherche";
-            this.textBoxRecherche.Size = new System.Drawing.Size(502, 39);
+            this.textBoxRecherche.Size = new System.Drawing.Size(378, 32);
             this.textBoxRecherche.TabIndex = 1;
             this.textBoxRecherche.Text = "Recherche de Livres";
             this.textBoxRecherche.Click += new System.EventHandler(this.textBoxRecherche_Click);
@@ -77,10 +78,10 @@
             // 
             this.buttonEmprunts.Cursor = System.Windows.Forms.Cursors.Hand;
             this.buttonEmprunts.Font = new System.Drawing.Font("Segoe UI", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonEmprunts.Location = new System.Drawing.Point(619, 28);
-            this.buttonEmprunts.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.buttonEmprunts.Location = new System.Drawing.Point(464, 23);
+            this.buttonEmprunts.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.buttonEmprunts.Name = "buttonEmprunts";
-            this.buttonEmprunts.Size = new System.Drawing.Size(221, 62);
+            this.buttonEmprunts.Size = new System.Drawing.Size(166, 50);
             this.buttonEmprunts.TabIndex = 3;
             this.buttonEmprunts.Text = "Gestion Emprunts";
             this.buttonEmprunts.UseVisualStyleBackColor = true;
@@ -90,10 +91,10 @@
             // 
             this.buttonAjouter.Cursor = System.Windows.Forms.Cursors.Hand;
             this.buttonAjouter.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonAjouter.Location = new System.Drawing.Point(34, 683);
-            this.buttonAjouter.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.buttonAjouter.Location = new System.Drawing.Point(26, 555);
+            this.buttonAjouter.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.buttonAjouter.Name = "buttonAjouter";
-            this.buttonAjouter.Size = new System.Drawing.Size(148, 43);
+            this.buttonAjouter.Size = new System.Drawing.Size(111, 35);
             this.buttonAjouter.TabIndex = 12;
             this.buttonAjouter.Text = "Ajouter";
             this.buttonAjouter.UseVisualStyleBackColor = true;
@@ -103,10 +104,10 @@
             // 
             this.buttonModifier.Cursor = System.Windows.Forms.Cursors.Hand;
             this.buttonModifier.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonModifier.Location = new System.Drawing.Point(187, 683);
-            this.buttonModifier.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.buttonModifier.Location = new System.Drawing.Point(140, 555);
+            this.buttonModifier.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.buttonModifier.Name = "buttonModifier";
-            this.buttonModifier.Size = new System.Drawing.Size(179, 43);
+            this.buttonModifier.Size = new System.Drawing.Size(134, 35);
             this.buttonModifier.TabIndex = 13;
             this.buttonModifier.Text = "Voir/Modifier";
             this.buttonModifier.UseVisualStyleBackColor = true;
@@ -116,10 +117,10 @@
             // 
             this.buttonSupprimer.Cursor = System.Windows.Forms.Cursors.Hand;
             this.buttonSupprimer.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonSupprimer.Location = new System.Drawing.Point(371, 683);
-            this.buttonSupprimer.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.buttonSupprimer.Location = new System.Drawing.Point(278, 555);
+            this.buttonSupprimer.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.buttonSupprimer.Name = "buttonSupprimer";
-            this.buttonSupprimer.Size = new System.Drawing.Size(167, 43);
+            this.buttonSupprimer.Size = new System.Drawing.Size(125, 35);
             this.buttonSupprimer.TabIndex = 14;
             this.buttonSupprimer.Text = "Supprimer";
             this.buttonSupprimer.UseVisualStyleBackColor = true;
@@ -138,39 +139,38 @@
             this.panel2.Controls.Add(this.labelTitreAjouter);
             this.panel2.Controls.Add(this.textBoxAuteurAjouter);
             this.panel2.Controls.Add(this.textBoxTitreAjouter);
-            this.panel2.Location = new System.Drawing.Point(619, 117);
-            this.panel2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.panel2.Location = new System.Drawing.Point(464, 95);
+            this.panel2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(469, 608);
+            this.panel2.Size = new System.Drawing.Size(352, 494);
             this.panel2.TabIndex = 12;
             // 
             // textBoxEditionAjouter
             // 
             this.textBoxEditionAjouter.Font = new System.Drawing.Font("Segoe UI", 12F);
-            this.textBoxEditionAjouter.Location = new System.Drawing.Point(91, 420);
-            this.textBoxEditionAjouter.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBoxEditionAjouter.Location = new System.Drawing.Point(68, 341);
             this.textBoxEditionAjouter.Name = "textBoxEditionAjouter";
-            this.textBoxEditionAjouter.Size = new System.Drawing.Size(285, 34);
+            this.textBoxEditionAjouter.Size = new System.Drawing.Size(215, 29);
             this.textBoxEditionAjouter.TabIndex = 13;
             // 
             // comboBoxGenreAjouter
             // 
+            this.comboBoxGenreAjouter.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxGenreAjouter.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.comboBoxGenreAjouter.FormattingEnabled = true;
-            this.comboBoxGenreAjouter.Location = new System.Drawing.Point(92, 326);
-            this.comboBoxGenreAjouter.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.comboBoxGenreAjouter.Location = new System.Drawing.Point(69, 265);
+            this.comboBoxGenreAjouter.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.comboBoxGenreAjouter.Name = "comboBoxGenreAjouter";
-            this.comboBoxGenreAjouter.Size = new System.Drawing.Size(287, 36);
+            this.comboBoxGenreAjouter.Size = new System.Drawing.Size(216, 29);
             this.comboBoxGenreAjouter.TabIndex = 12;
             // 
             // labelAjouterPanel
             // 
             this.labelAjouterPanel.AutoSize = true;
             this.labelAjouterPanel.Font = new System.Drawing.Font("Segoe UI", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelAjouterPanel.Location = new System.Drawing.Point(101, 38);
-            this.labelAjouterPanel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.labelAjouterPanel.Location = new System.Drawing.Point(76, 31);
             this.labelAjouterPanel.Name = "labelAjouterPanel";
-            this.labelAjouterPanel.Size = new System.Drawing.Size(249, 46);
+            this.labelAjouterPanel.Size = new System.Drawing.Size(198, 37);
             this.labelAjouterPanel.TabIndex = 11;
             this.labelAjouterPanel.Text = "Ajouter un livre";
             // 
@@ -179,10 +179,10 @@
             this.buttonEnregisterAjouter.BackColor = System.Drawing.SystemColors.ControlLight;
             this.buttonEnregisterAjouter.Cursor = System.Windows.Forms.Cursors.Hand;
             this.buttonEnregisterAjouter.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonEnregisterAjouter.Location = new System.Drawing.Point(151, 501);
-            this.buttonEnregisterAjouter.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.buttonEnregisterAjouter.Location = new System.Drawing.Point(113, 407);
+            this.buttonEnregisterAjouter.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.buttonEnregisterAjouter.Name = "buttonEnregisterAjouter";
-            this.buttonEnregisterAjouter.Size = new System.Drawing.Size(164, 46);
+            this.buttonEnregisterAjouter.Size = new System.Drawing.Size(123, 37);
             this.buttonEnregisterAjouter.TabIndex = 10;
             this.buttonEnregisterAjouter.Text = "Enregistrer";
             this.buttonEnregisterAjouter.UseVisualStyleBackColor = true;
@@ -192,9 +192,10 @@
             // 
             this.labelAuteurAjouter.AutoSize = true;
             this.labelAuteurAjouter.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelAuteurAjouter.Location = new System.Drawing.Point(87, 204);
+            this.labelAuteurAjouter.Location = new System.Drawing.Point(65, 166);
+            this.labelAuteurAjouter.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.labelAuteurAjouter.Name = "labelAuteurAjouter";
-            this.labelAuteurAjouter.Size = new System.Drawing.Size(62, 23);
+            this.labelAuteurAjouter.Size = new System.Drawing.Size(51, 19);
             this.labelAuteurAjouter.TabIndex = 9;
             this.labelAuteurAjouter.Text = "Auteur";
             // 
@@ -202,9 +203,10 @@
             // 
             this.labelGenreAjouter.AutoSize = true;
             this.labelGenreAjouter.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelGenreAjouter.Location = new System.Drawing.Point(88, 297);
+            this.labelGenreAjouter.Location = new System.Drawing.Point(66, 241);
+            this.labelGenreAjouter.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.labelGenreAjouter.Name = "labelGenreAjouter";
-            this.labelGenreAjouter.Size = new System.Drawing.Size(56, 23);
+            this.labelGenreAjouter.Size = new System.Drawing.Size(46, 19);
             this.labelGenreAjouter.TabIndex = 8;
             this.labelGenreAjouter.Text = "Genre";
             // 
@@ -212,9 +214,10 @@
             // 
             this.labelEditionAjouter.AutoSize = true;
             this.labelEditionAjouter.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelEditionAjouter.Location = new System.Drawing.Point(89, 393);
+            this.labelEditionAjouter.Location = new System.Drawing.Point(67, 319);
+            this.labelEditionAjouter.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.labelEditionAjouter.Name = "labelEditionAjouter";
-            this.labelEditionAjouter.Size = new System.Drawing.Size(63, 23);
+            this.labelEditionAjouter.Size = new System.Drawing.Size(51, 19);
             this.labelEditionAjouter.TabIndex = 7;
             this.labelEditionAjouter.Text = "Edition";
             // 
@@ -222,38 +225,39 @@
             // 
             this.labelTitreAjouter.AutoSize = true;
             this.labelTitreAjouter.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelTitreAjouter.Location = new System.Drawing.Point(88, 110);
+            this.labelTitreAjouter.Location = new System.Drawing.Point(66, 89);
+            this.labelTitreAjouter.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.labelTitreAjouter.Name = "labelTitreAjouter";
-            this.labelTitreAjouter.Size = new System.Drawing.Size(44, 23);
+            this.labelTitreAjouter.Size = new System.Drawing.Size(36, 19);
             this.labelTitreAjouter.TabIndex = 5;
             this.labelTitreAjouter.Text = "Titre";
             // 
             // textBoxAuteurAjouter
             // 
             this.textBoxAuteurAjouter.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBoxAuteurAjouter.Location = new System.Drawing.Point(91, 233);
-            this.textBoxAuteurAjouter.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.textBoxAuteurAjouter.Location = new System.Drawing.Point(68, 189);
+            this.textBoxAuteurAjouter.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.textBoxAuteurAjouter.Name = "textBoxAuteurAjouter";
-            this.textBoxAuteurAjouter.Size = new System.Drawing.Size(288, 34);
+            this.textBoxAuteurAjouter.Size = new System.Drawing.Size(217, 29);
             this.textBoxAuteurAjouter.TabIndex = 4;
             // 
             // textBoxTitreAjouter
             // 
             this.textBoxTitreAjouter.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBoxTitreAjouter.Location = new System.Drawing.Point(92, 139);
-            this.textBoxTitreAjouter.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.textBoxTitreAjouter.Location = new System.Drawing.Point(69, 113);
+            this.textBoxTitreAjouter.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.textBoxTitreAjouter.Name = "textBoxTitreAjouter";
-            this.textBoxTitreAjouter.Size = new System.Drawing.Size(287, 34);
+            this.textBoxTitreAjouter.Size = new System.Drawing.Size(216, 29);
             this.textBoxTitreAjouter.TabIndex = 0;
             // 
             // buttonAdherents
             // 
             this.buttonAdherents.Cursor = System.Windows.Forms.Cursors.Hand;
             this.buttonAdherents.Font = new System.Drawing.Font("Segoe UI", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonAdherents.Location = new System.Drawing.Point(862, 28);
-            this.buttonAdherents.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.buttonAdherents.Location = new System.Drawing.Point(646, 23);
+            this.buttonAdherents.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.buttonAdherents.Name = "buttonAdherents";
-            this.buttonAdherents.Size = new System.Drawing.Size(226, 62);
+            this.buttonAdherents.Size = new System.Drawing.Size(170, 50);
             this.buttonAdherents.TabIndex = 15;
             this.buttonAdherents.Text = "Gestion Adhérents";
             this.buttonAdherents.UseVisualStyleBackColor = true;
@@ -261,9 +265,9 @@
             // 
             // Main
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1149, 774);
+            this.ClientSize = new System.Drawing.Size(862, 629);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.buttonAdherents);
             this.Controls.Add(this.buttonSupprimer);
@@ -274,7 +278,7 @@
             this.Controls.Add(this.listBoxLivres);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.MaximizeBox = false;
             this.Name = "Main";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
