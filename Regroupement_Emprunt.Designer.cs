@@ -75,11 +75,15 @@
             this.SearchBarAdherent = new System.Windows.Forms.TextBox();
             this.SearchBarBook = new System.Windows.Forms.TextBox();
             this.listBoxLivres = new System.Windows.Forms.ListBox();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.TabEmprunt.SuspendLayout();
             this.tabPageAdherentEmprunt.SuspendLayout();
             this.InfosAdhérents.SuspendLayout();
             this.tabPageEmprunt.SuspendLayout();
             this.PanelinfoAdherent.SuspendLayout();
+            this.groupBox1.SuspendLayout();
+            this.groupBox2.SuspendLayout();
             this.SuspendLayout();
             // 
             // TabEmprunt
@@ -98,12 +102,9 @@
             // 
             // tabPageAdherentEmprunt
             // 
+            this.tabPageAdherentEmprunt.Controls.Add(this.groupBox1);
             this.tabPageAdherentEmprunt.Controls.Add(this.ButtonRefresh);
             this.tabPageAdherentEmprunt.Controls.Add(this.checkBoxRendreLivre);
-            this.tabPageAdherentEmprunt.Controls.Add(this.labelDateRetourPrevue);
-            this.tabPageAdherentEmprunt.Controls.Add(this.labelDateEmprunt);
-            this.tabPageAdherentEmprunt.Controls.Add(this.DateRendu);
-            this.tabPageAdherentEmprunt.Controls.Add(this.DateEmprunt);
             this.tabPageAdherentEmprunt.Controls.Add(this.ListeLivreEmprunter);
             this.tabPageAdherentEmprunt.Controls.Add(this.listBoxAdherent);
             this.tabPageAdherentEmprunt.Controls.Add(this.MoisEmprunt);
@@ -155,7 +156,7 @@
             this.labelDateRetourPrevue.AutoSize = true;
             this.labelDateRetourPrevue.Font = new System.Drawing.Font("Segoe UI", 9.75F);
             this.labelDateRetourPrevue.ForeColor = System.Drawing.Color.Black;
-            this.labelDateRetourPrevue.Location = new System.Drawing.Point(688, 357);
+            this.labelDateRetourPrevue.Location = new System.Drawing.Point(220, 87);
             this.labelDateRetourPrevue.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelDateRetourPrevue.Name = "labelDateRetourPrevue";
             this.labelDateRetourPrevue.Size = new System.Drawing.Size(96, 23);
@@ -166,7 +167,7 @@
             // 
             this.labelDateEmprunt.AutoSize = true;
             this.labelDateEmprunt.Font = new System.Drawing.Font("Segoe UI", 9.75F);
-            this.labelDateEmprunt.Location = new System.Drawing.Point(660, 299);
+            this.labelDateEmprunt.Location = new System.Drawing.Point(188, 15);
             this.labelDateEmprunt.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelDateEmprunt.Name = "labelDateEmprunt";
             this.labelDateEmprunt.Size = new System.Drawing.Size(96, 23);
@@ -177,7 +178,7 @@
             // 
             this.DateRendu.AutoSize = true;
             this.DateRendu.Font = new System.Drawing.Font("Segoe UI", 9.75F);
-            this.DateRendu.Location = new System.Drawing.Point(512, 357);
+            this.DateRendu.Location = new System.Drawing.Point(22, 87);
             this.DateRendu.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.DateRendu.Name = "DateRendu";
             this.DateRendu.Size = new System.Drawing.Size(164, 23);
@@ -188,7 +189,7 @@
             // 
             this.DateEmprunt.AutoSize = true;
             this.DateEmprunt.Font = new System.Drawing.Font("Segoe UI", 9.75F);
-            this.DateEmprunt.Location = new System.Drawing.Point(511, 299);
+            this.DateEmprunt.Location = new System.Drawing.Point(20, 15);
             this.DateEmprunt.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.DateEmprunt.Name = "DateEmprunt";
             this.DateEmprunt.Size = new System.Drawing.Size(140, 23);
@@ -202,7 +203,7 @@
             this.ListeLivreEmprunter.Location = new System.Drawing.Point(515, 151);
             this.ListeLivreEmprunter.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.ListeLivreEmprunter.Name = "ListeLivreEmprunter";
-            this.ListeLivreEmprunter.Size = new System.Drawing.Size(552, 76);
+            this.ListeLivreEmprunter.Size = new System.Drawing.Size(622, 124);
             this.ListeLivreEmprunter.TabIndex = 14;
             // 
             // listBoxAdherent
@@ -395,10 +396,7 @@
             // 
             // tabPageEmprunt
             // 
-            this.tabPageEmprunt.Controls.Add(this.d_retour);
-            this.tabPageEmprunt.Controls.Add(this.d_emprunt);
-            this.tabPageEmprunt.Controls.Add(this.label7);
-            this.tabPageEmprunt.Controls.Add(this.label8);
+            this.tabPageEmprunt.Controls.Add(this.groupBox2);
             this.tabPageEmprunt.Controls.Add(this.Supprimer_Emprunt);
             this.tabPageEmprunt.Controls.Add(this.Ajouter_emprunt);
             this.tabPageEmprunt.Controls.Add(this.BouttonEnregistrerAjoutEmprunt);
@@ -422,7 +420,7 @@
             this.d_retour.AutoSize = true;
             this.d_retour.Font = new System.Drawing.Font("Segoe UI", 9.75F);
             this.d_retour.ForeColor = System.Drawing.Color.Black;
-            this.d_retour.Location = new System.Drawing.Point(695, 556);
+            this.d_retour.Location = new System.Drawing.Point(227, 100);
             this.d_retour.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.d_retour.Name = "d_retour";
             this.d_retour.Size = new System.Drawing.Size(96, 23);
@@ -433,7 +431,7 @@
             // 
             this.d_emprunt.AutoSize = true;
             this.d_emprunt.Font = new System.Drawing.Font("Segoe UI", 9.75F);
-            this.d_emprunt.Location = new System.Drawing.Point(665, 500);
+            this.d_emprunt.Location = new System.Drawing.Point(195, 28);
             this.d_emprunt.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.d_emprunt.Name = "d_emprunt";
             this.d_emprunt.Size = new System.Drawing.Size(96, 23);
@@ -444,7 +442,7 @@
             // 
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Segoe UI", 9.75F);
-            this.label7.Location = new System.Drawing.Point(519, 556);
+            this.label7.Location = new System.Drawing.Point(29, 100);
             this.label7.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(164, 23);
@@ -455,7 +453,7 @@
             // 
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Segoe UI", 9.75F);
-            this.label8.Location = new System.Drawing.Point(516, 500);
+            this.label8.Location = new System.Drawing.Point(27, 28);
             this.label8.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(140, 23);
@@ -467,8 +465,8 @@
             this.Supprimer_Emprunt.BackColor = System.Drawing.SystemColors.Window;
             this.Supprimer_Emprunt.Cursor = System.Windows.Forms.Cursors.Hand;
             this.Supprimer_Emprunt.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Supprimer_Emprunt.Location = new System.Drawing.Point(985, 442);
-            this.Supprimer_Emprunt.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Supprimer_Emprunt.Location = new System.Drawing.Point(1109, 547);
+            this.Supprimer_Emprunt.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Supprimer_Emprunt.Name = "Supprimer_Emprunt";
             this.Supprimer_Emprunt.Size = new System.Drawing.Size(111, 33);
             this.Supprimer_Emprunt.TabIndex = 45;
@@ -512,7 +510,7 @@
             this.Liste_Livre_Emprunt.Location = new System.Drawing.Point(521, 247);
             this.Liste_Livre_Emprunt.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Liste_Livre_Emprunt.Name = "Liste_Livre_Emprunt";
-            this.Liste_Livre_Emprunt.Size = new System.Drawing.Size(575, 151);
+            this.Liste_Livre_Emprunt.Size = new System.Drawing.Size(648, 228);
             this.Liste_Livre_Emprunt.TabIndex = 34;
             // 
             // PanelinfoAdherent
@@ -659,6 +657,30 @@
             this.listBoxLivres.TabIndex = 27;
             this.listBoxLivres.SelectedIndexChanged += new System.EventHandler(this.listBoxLivres_SelectedIndexChanged);
             // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.labelDateRetourPrevue);
+            this.groupBox1.Controls.Add(this.labelDateEmprunt);
+            this.groupBox1.Controls.Add(this.DateRendu);
+            this.groupBox1.Controls.Add(this.DateEmprunt);
+            this.groupBox1.Location = new System.Drawing.Point(579, 359);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(621, 135);
+            this.groupBox1.TabIndex = 23;
+            this.groupBox1.TabStop = false;
+            // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.d_retour);
+            this.groupBox2.Controls.Add(this.d_emprunt);
+            this.groupBox2.Controls.Add(this.label7);
+            this.groupBox2.Controls.Add(this.label8);
+            this.groupBox2.Location = new System.Drawing.Point(586, 613);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(648, 153);
+            this.groupBox2.TabIndex = 50;
+            this.groupBox2.TabStop = false;
+            // 
             // Regroupement_Emprunt
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -682,6 +704,10 @@
             this.tabPageEmprunt.PerformLayout();
             this.PanelinfoAdherent.ResumeLayout(false);
             this.PanelinfoAdherent.PerformLayout();
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
+            this.groupBox2.ResumeLayout(false);
+            this.groupBox2.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -734,5 +760,7 @@
         private System.Windows.Forms.Label d_emprunt;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.GroupBox groupBox2;
     }
 }

@@ -86,12 +86,12 @@ namespace Easy_Book_Manager
             dbConn.Open();
             SqlCommand command;
             SqlDataReader dataReader;
-            string sql= "SELECT Titre FROM Livres";
+            string sql= "SELECT Titre, Auteur FROM Livres";
             command = new SqlCommand(sql, dbConn);
             dataReader = command.ExecuteReader();
             while (dataReader.Read())
             {
-                listBoxLivres.Items.Add(dataReader.GetValue(0).ToString());
+                listBoxLivres.Items.Add(dataReader.GetValue(0) + " - " + dataReader.GetValue(1));
             }
             dbConn.Close();
             listBoxLivres.BeginUpdate();

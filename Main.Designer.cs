@@ -52,12 +52,12 @@
             // 
             // listBoxLivres
             // 
+            this.listBoxLivres.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.listBoxLivres.FormattingEnabled = true;
-            this.listBoxLivres.ItemHeight = 16;
-            this.listBoxLivres.Location = new System.Drawing.Point(35, 85);
-            this.listBoxLivres.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.listBoxLivres.ItemHeight = 29;
+            this.listBoxLivres.Location = new System.Drawing.Point(39, 106);
             this.listBoxLivres.Name = "listBoxLivres";
-            this.listBoxLivres.Size = new System.Drawing.Size(502, 580);
+            this.listBoxLivres.Size = new System.Drawing.Size(564, 700);
             this.listBoxLivres.TabIndex = 0;
             this.listBoxLivres.SelectedIndexChanged += new System.EventHandler(this.listBoxLivres_SelectedIndexChanged);
             // 
