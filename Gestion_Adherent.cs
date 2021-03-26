@@ -211,6 +211,11 @@ namespace Easy_Book_Manager
                     textBoxAjoutAgeAd.Text = "";
                     textBoxAjoutTelAd.Text = "";
                     textBoxAjoutAdresseAd.Text = "";
+
+                    // Refresh page
+                    this.textBoxSearchAdherent.Text = "";
+                    this.currentIdAdherent = -1;
+                    this.listBoxDisplayAdherents();
                 }
                 else
                     MessageBox.Show("Erreur lors de la saisie du formulaire");
