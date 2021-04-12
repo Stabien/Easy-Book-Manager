@@ -1094,7 +1094,9 @@ namespace Easy_Book_Manager
 
                     }
                     MessageBox.Show("Emprunt termine!");
-
+                    
+                    //Enlever les livres de la listebox_livre_emprunt
+                    Liste_Livre_Emprunt.Items.Clear();
                     //Update de la page avec les nouvelles
                     Base();
 
